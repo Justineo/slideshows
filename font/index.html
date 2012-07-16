@@ -9,10 +9,10 @@
 		<meta name="description" content="An introduction about fonts/typefaces and their application in Web development.">
 		<meta name="author" content="Gu Yiling">
 		
-		<link rel="stylesheet" href="../../../reveal-js/css/reset.css">
-		<link rel="stylesheet" href="../../reveal-js/css/main.css">
+		<link rel="stylesheet" href="../../../reveal.js/css/reset.css">
+		<link rel="stylesheet" href="../../reveal.js/css/main.css">
 
-		<link rel="stylesheet" href="../../reveal-js/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
 	</head>
 	
 	<body>
@@ -1020,11 +1020,11 @@ src: url(basic.woff) format("woff"),
 		</div>
 
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
-		<script src="../../reveal-js/lib/js/head.min.js"></script>
+		<script src="../../reveal.js/lib/js/head.min.js"></script>
 
 		<script>
 			// Load the main reveal.js script
-			head.js( '../../reveal-js/js/reveal.js', function() {
+			head.js( '../../reveal.js/js/reveal.js', function() {
 				// Parse the query string into a key/value object
 				var query = {};
 
@@ -1055,8 +1055,8 @@ src: url(basic.woff) format("woff"),
 			} );
 			
 			// Load third party scripts
-			head.js( '../../reveal-js/lib/js/classList.js' );
-			head.js( '../../reveal-js/lib/js/highlight.js', function() {
+			head.js( '../../reveal.js/lib/js/classList.js' );
+			head.js( '../../reveal.js/lib/js/highlight.js', function() {
 				// Fire off syntax highlighting for potential code samples in the slides
 				hljs.initHighlightingOnLoad();
 			} );
@@ -1064,7 +1064,7 @@ src: url(basic.woff) format("woff"),
 			// If we're runnning the notes server we need to include some additional JS
 			// TODO Is there a better way to determine if we're running the notes server?
 			if( window.location.host === 'localhost:1947' ) {
-				head.js( 'socket.io/socket.io.js', '../../reveal-js/plugin/speakernotes/client.js' );
+				head.js( 'socket.io/socket.io.js', '../../reveal.js/plugin/speakernotes/client.js' );
 			}
 		</script>
 	</body>
