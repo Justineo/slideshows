@@ -1,0 +1,101 @@
+<!doctype html>  
+<html lang="zh-CN">
+    
+    <head>
+        <meta charset="utf-8">
+        
+        <title></title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Gu Yiling">
+        
+        <link rel="stylesheet" href="../../../reveal.js/css/reset.css">
+        <link rel="stylesheet" href="../../reveal.js/css/main.css">
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    </head>
+    
+    <body>
+        
+        <div class="reveal">
+            
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Semantic <abbr title="HyperText Markup Language">HTML</abbr></h1>
+                    <br><br><br><br>
+                      <p>[Author]</p>
+                </section>
+
+                <section>
+                    <h2>参考资料</h2>
+                </section>
+
+                <section>
+                    <h1 class="slogan">「终」</h1>
+                </section>
+            </div>
+
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+
+            <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+
+        <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+
+        <script>
+            // Load the main reveal.js script
+            head.js( '../../reveal.js/js/reveal.js', function() {
+                // Parse the query string into a key/value object
+                var query = {};
+
+                location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                    query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+                } );
+
+                // Fires when a slide with data-state=customevent is activated
+                Reveal.addEventListener( 'customevent', function() {
+                    console.log( '"customevent" has fired' );
+                } );
+
+                // Fires each time a new slide is activated
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                } );
+
+                // Full list of configuration options available here:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                    controls: true,
+                    progress: true,
+                    history: true,
+                    rollingLinks: false,
+                    theme: query.theme || 'default', // default/neon/beige
+                    transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+                });
+            } );
+            
+            // Load third party scripts
+            head.js( '../../reveal.js/lib/js/classList.js' );
+            head.js( '../../reveal.js/lib/js/highlight.js', function() {
+                // Fire off syntax highlighting for potential code samples in the slides
+                hljs.initHighlightingOnLoad();
+            } );
+
+            // If we're runnning the notes server we need to include some additional JS
+            // TODO Is there a better way to determine if we're running the notes server?
+            if( window.location.host === 'localhost:1947' ) {
+                head.js( 'socket.io/socket.io.js', '../../reveal.js/plugin/speakernotes/client.js' );
+            }
+        </script>
+    </body>
+</html>
