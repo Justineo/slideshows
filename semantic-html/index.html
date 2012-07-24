@@ -37,7 +37,7 @@
                     <section>
                         <h3>World Wide Web (万维网)</h3>
                         <div class="fragment">
-                            <blockquote class="left" cite="http://www.w3.org/TR/html4/intro/intro.html#didx-World_Wide_Web_Web"><dfn>The World Wide Web (Web)</dfn> is a network of information resources. </blockquote>
+                            <blockquote class="justify hyphenate" cite="http://www.w3.org/TR/html4/intro/intro.html#didx-World_Wide_Web_Web" lang="en-US"><dfn>The World Wide Web (Web)</dfn> is a network of information resources. </blockquote>
                             <p><small>&dash; <a href="http://www.w3.org/TR/html4/intro/intro.html#didx-World_Wide_Web_Web"><cite>HTML 4.01 Specification</cite></a></small></p>
                         </div>
                         <ul class="fragment">
@@ -61,6 +61,7 @@
 
                     <section>
                         <h3>回到 HTML</h3>
+                        <blockquote class="justify hyphenate" lang="en-US">To publish information for global distribution, one needs a universally understood language, a kind of publishing mother tongue that all computers may potentially understand.</blockquote>
                         <ul>
                             <li class="fragment">发布文档 (文字、表格、列表、照片、视频)</li>
                             <li class="fragment">利用超链接获取信息</li>
@@ -139,6 +140,7 @@
                 // Fire off syntax highlighting for potential code samples in the slides
                 hljs.initHighlightingOnLoad();
             } );
+            head.js( '../../reveal.js/lib/js/Hyphenator.js' );
 
             // If we're runnning the notes server we need to include some additional JS
             // TODO Is there a better way to determine if we're running the notes server?
