@@ -100,11 +100,12 @@
 
                     <section>
                         <h2 class="exclusive">HTML 语义</h2>
-                        <p><small>元素 + 属性 + 属性值</small></p>
+                        <p><small>元素 + 属性 + 属性值 (+ 文档结构)</small></p>
                     </section>
 
                 </section>
 
+<!--
                 <section>
 
                     <section>
@@ -114,6 +115,7 @@
                     </section>
 
                 </section>
+-->
 
                 <section>
 
@@ -136,7 +138,7 @@
                     <section>
                         <section>
                             <h4><code>title</code> 属性</h4>
-                            <ul>
+                            <ul style="font-size:80%;">
                                 <li>链接 - 描述目标信息</li>
                                 <li>图片 - 版权 / 描述</li>
                                 <li>引用 - 来源信息</li>
@@ -144,6 +146,29 @@
                                 <li>...</li>
                             </ul>
                         </section>
+
+                        <section class="fragment">
+                            <h4><code>lang</code> 属性</h4>
+                            <p>内容的语言</p>
+                        </section>
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section>
+                        <h3 class="exclusive">元数据 (metadata)</h3>
+                    </section>
+
+                    <section>
+                        <h4><code>meta</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">元数据</li>
+                            <li class="fragment"><code>name</code> 属性决定种类，<code>content</code> 属性表示内容</li>
+                            <li class="fragment">标准元数据名<br><small>(<code>application-name</code>, <code>author</code>, <code>description</code>, <code>generator</code>, <code>keywords</code>)</small></li>
+                            <li class="fragment">已注册的扩展元数据名 (<a href="http://wiki.whatwg.org/wiki/MetaExtensions"><abbr title="Web Hypertext Application Technology Working Group">WHATWG</abbr> Wiki MetaExtensions</a>)<br><small>最新增加的一条 Proposal 是百度提交的 <code>name="mobile-agent"</code></small></li>
+                        </ul>
                     </section>
 
                 </section>
@@ -151,7 +176,7 @@
                 <section>
 
                     <section>
-                        <h3 class="exclusive">链接</h3>
+                        <h3 class="exclusive">链接 (links)</h3>
                     </section>
 
                     <section>
@@ -232,9 +257,10 @@
                             <li class="fragment">
                                 <h5><code>rel="prev"</code>, <code>rel="next"</code></h5>
                                 <p>链接到文档的前一篇 / 后一篇 / 前一页 / 后一页 <small>(超链接)</small></p>
-                                <div class="fragment">
-                                    <p><img src="img/nextpage.png" alt="Reader mode in Safari" title="Safari 的「阅读器模式」下，有分页的文章可以自动连续读取"><br><small>&uarr; Safari 的「阅读器」模式</small></p>
-                                </div>
+                                <figure class="fragment">
+                                    <p><img src="img/nextpage.png" alt="Reader mode in Safari" title="Safari 的「阅读器模式」下，有分页的文章可以自动连续读取"></p>
+                                    <figcaption>Safari 的「阅读器」模式</figcaption>
+                                </figure>
                             </li>
                         </ul>
                     </section>
@@ -267,7 +293,7 @@
 
                 <section>
                     <section>
-                        <h3 class="exclusive">区块</h3>
+                        <h3 class="exclusive">区块 (sections)</h3>
                     </section>
 
                     <section>
@@ -319,17 +345,21 @@
                             <li class="fragment">表示与周围内容关系不太密切的内容 (eg. 广告)</li>
                             <li class="fragment">通常表现为侧边栏内容 (eg. 相关背景内容)、引述内容</li>
                         </ul>
-                        <p class="fragment"><img src="img/pull-quote.jpg" alt="pull quote"><br><small>&uarr; 引述</small></p>
+                        <figure class="fragment">
+                            <p><img src="img/pull-quote.jpg" alt="pull quote"></p>
+                            <figcaption>引述</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h4><code>h1</code>–<code>h6</code> 元素</h4>
-                        <pre class="fragment highlight"><code>&lt;body&gt;
+                        <figure>
+                            <pre class="fragment highlight"><code>&lt;body&gt;
   &lt;h1&gt;Let&#39;s call it a draw(ing surface)&lt;/h1&gt;
   &lt;h2&gt;Diving in&lt;/h2&gt;
   &lt;h2&gt;Simple shapes&lt;/h2&gt;
 &lt;/body&gt;</code></pre>
-                        <pre class="fragment highlight"><code>&lt;body&gt;
+                            <pre class="fragment highlight"><code>&lt;body&gt;
   &lt;h1&gt;Let&#39;s call it a draw(ing surface)&lt;/h1&gt;
   &lt;section&gt;
     &lt;h1&gt;Diving in&lt;/h1&gt;
@@ -338,7 +368,8 @@
     &lt;h1&gt;Simple shapes&lt;/h1&gt;
   &lt;/section&gt;
 &lt;/body&gt;</code></pre>
-                        <p class="fragment"><small>&uarr; 语义上等价</small></p>
+                            <figcaption class="fragment">语义上等价</figcaption>
+                        </figure>
                     </section>
 
                     <section>
@@ -347,15 +378,17 @@
                             <li class="fragment">标题的组合</li>
                             <li class="fragment">用于副标题、标语 (tagline) 等</li>
                         </ul>
-                        <pre class="fragment highlight"><code>&lt;hgroup&gt;
+                        <figure>
+                            <pre class="fragment highlight"><code>&lt;hgroup&gt;
   &lt;h1&gt;<strong>The Lord of the Rings</strong>&lt;/h1&gt;
   &lt;h2&gt;The Return of the King&lt;/h2&gt;
 &lt;/hgroup&gt;</code></pre>
-                        <pre class="fragment highlight"><code>&lt;hgroup&gt;
+                            <pre class="fragment highlight"><code>&lt;hgroup&gt;
   &lt;h1&gt;<strong>The Lord of the Rings</strong>&lt;/h1&gt;
   &lt;h2&gt;&quot;One ring to rule them all.&quot;&lt;/h2&gt;
 &lt;/hgroup&gt;</code></pre>
-                        <p class="fragment"><small>&uarr; <code>hgroup</code> 中级别最高的标题才出现在提纲中</small></p>
+                            <figcaption class="fragment"><code>hgroup</code> 中级别最高的标题才出现在提纲中</figcaption>
+                        </figure>
                     </section>
 
                     <section>
@@ -401,7 +434,7 @@
                     </section>
 
                     <section>
-                        <style type="text/css">
+                        <style type="text/css" scoped>
                             #mdn {
                                 position: relative;
                                 margin: 0 auto;
@@ -452,7 +485,7 @@
                 <section>
 
                     <section>
-                        <h3 class="exclusive">分组</h3>
+                        <h3 class="exclusive">分组内容 (grouping content)</h3>
                     </section>
 
                     <section>
@@ -464,17 +497,381 @@
                     </section>
 
                     <section>
-                        <h4><code>p</code> 元素</h4>
-                        <div class="fragment left highlight" style="font-size:75%;">
-                            For instance, this fantastic sentence has bullets relating to
-                            <ul class="left">
-                                <li>wizards,</li>
-                                <li>faster-than-light travel, and</li>
-                                <li>telepathy,</li>
-                            </ul>
-                            and is further discussed below.
-                        </div>
+                        <h4><code>hr</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">原意为「horizontal rule」<small>(水平分隔线)</small></li>
+                            <li class="fragment">HTML5 中重定义为不同主题内容间的分隔符<br><small>(eg. 故事场景的转换)</small></li>
+                            <li class="fragment">区块内容之间不需要用 <code>hr</code> 元素分隔</li>
+                        </ul>
                     </section>
+
+                    <section>
+                        <h4><code>pre</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">表示已排版的内容</li>
+                            <li class="fragment">代码片段 / ASCII art / ...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4><code>blockquote</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">引用的来自其他来源的内容</li>
+                            <li class="fragment"><code>cite</code> 属性表示该来源的 URL</li>
+                            <li class="fragment">署名必须放在 <code>blockquote</code> 外</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;p&gt;His next piece was the aptly named &lt;cite&gt;Sonnet 130&lt;/cite&gt;:&lt;/p&gt;
+&lt;blockquote cite=&quot;http://quotes.example.org/s/sonnet130.html&quot;&gt;
+  &lt;p&gt;My mistress&#39; eyes are nothing like the sun,&lt;br&gt;
+  Coral is far more red, than her lips red,&lt;br&gt;
+  <i>[...]</i>&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>ol</code>, <code>ul</code>, <code>li</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">有序 / 无序列表</li>
+                            <li class="fragment">改变列表项顺序是否影响表达</li>
+                            <li class="fragment"><code>ol</code> 下 <code>li</code> 元素的 <code>value</code> 属性代表该列表项的序号值</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;p&gt;Relegation zone:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li value="18"&gt;Bolton Wanderers&lt;/li&gt;
+&lt;li&gt;Blackburn Rovers&lt;/li&gt;
+&lt;li&gt;Wolverhampton Wanderers&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>dl</code>, <code>dt</code>, <code>dd</code> 元素</h4>
+                        <ul>
+                            <li class="fragments">名值对的集合</li>
+                            <li class="fragments">术语定义表 / 元数据 / <abbr title="Frequently asked questions">FAQ</abbr> / ...
+                            </li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;dl&gt;
+  &lt;dt&gt;&lt;dfn&gt;happiness&lt;/dfn&gt;&lt;/dt&gt;
+  &lt;dd class=&quot;part-of-speech&quot;&gt;&lt;i&gt;&lt;abbr&gt;n.&lt;/abbr&gt;&lt;/i&gt;&lt;/dd&gt;
+  &lt;dd&gt;The state of being happy.&lt;/dd&gt;
+  &lt;dd&gt;Good fortune; success. &lt;q&gt;Oh &lt;b&gt;happiness&lt;/b&gt;! It worked!&lt;/q&gt;&lt;/dd&gt;
+  &lt;dt&gt;&lt;dfn&gt;rejoice&lt;/dfn&gt;&lt;/dt&gt;
+  &lt;dd&gt;&lt;i class=&quot;part-of-speech&quot;&gt;&lt;abbr&gt;v.intr.&lt;/abbr&gt;&lt;/i&gt; To be delighted oneself.&lt;/dd&gt;
+  &lt;dd&gt;&lt;i class=&quot;part-of-speech&quot;&gt;&lt;abbr&gt;v.tr.&lt;/abbr&gt;&lt;/i&gt; To cause one to be delighted.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <section>
+                            <h4><code>figure</code> 元素</h4>
+                            <ul>
+                                <li class="fragment">比较独立的、被主要内容引用的部分</li>
+                                <li class="fragment">插画 / 图表 / 照片 / 代码 / ...</li>
+                                <li class="fragment">通常会有一个标题 <small>(<code>figcaption</code>)</small></li>
+                            </ul>
+                        </section>
+
+                        <section class="fragment">
+                            <h4><code>figcaption</code> 元素</h4>
+                            <ul>
+                                <li>图表标题 / 图例 / 代码说明 / ...</li>
+                            </ul>
+                        </section>
+                    </section>
+
+                    <section>
+                        <h4><code>div</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">本身无语义</li>
+                            <li class="fragment">可以和 <code>class</code>, <code>lang</code>, <code>title</code> 等属性结合，为一系列连续的内容增加语义</li>
+                            <li class="fragment">最后考虑的选择</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h3 class="exclusive">文本级语义 (text-level semantics)</h3>
+                    </section>
+
+                    <section>
+                        <h4><code>em</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">表示侧重点的强调</li>
+                            <li class="fragment">强调级别由 <code>em</code> 的嵌套个数决定</li>
+                            <li class="fragment"><code>em</code> 的位置不同，文本本身含义不同</li>
+                            <li class="fragment">在可视化 UA 上一般渲染为斜体</li>
+                        </ul>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;p&gt;&lt;em&gt;Bats&lt;/em&gt; can fly.&lt;/p&gt;
+&lt;p&gt;Bats &lt;em&gt;can&lt;/em&gt; fly.&lt;/p&gt;
+&lt;p&gt;Bats can &lt;em&gt;fly&lt;/em&gt;.&lt;/p&gt;</code></pre>
+                            <figcaption>三句含义各不相同</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4><code>strong</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">表示内容的重要性</li>
+                            <li class="fragment">重要程度由 <code>strong</code> 的嵌套个数决定</li>
+                            <li class="fragment"><code>strong</code> 的位置不同，文本本身含义<strong>不变</strong></li>
+                            <li class="fragment">在可视化 UA 上一般渲染为粗体</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;p&gt;&lt;strong&gt;Warning.&lt;/strong&gt; A huge wave of zombies is approaching.&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>i</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">不再只是「斜体」</li>
+                            <li class="fragment">表示另一种叙述方式</li>
+                            <li class="fragment">分类学名词 / 外来语片段 / 舞台指示 / 船名 / ...</li>
+                            <li class="fragment">建议与 <code>class</code> / <code>lang</code> 属性搭配使用</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;p&gt;Sunflower (&lt;i class=&quot;taxonomy&quot;&gt;Helianthus annuus&lt;/i&gt;) is an annual plant native to the Americas.&lt;/p&gt;
+
+&lt;p&gt;There is a certain &lt;i lang=&quot;fr&quot;&gt;je ne sais quoi&lt;/i&gt; in the air.&lt;/p&gt;
+
+&lt;p&gt;&lt;i class=&quot;ship-name&quot;&gt;Titanic&lt;/i&gt; sank in the North Atlantic Ocean on 15 April 1912.&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>b</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">不再只是「粗体」</li>
+                            <li class="fragment">表示某种需要引起注意却又没有其他额外语义的内容</li>
+                            <li class="fragment">摘要中的关键词 / 评介中的产品名称 / 文章的开篇内容 ...</li>
+                            <li class="fragment">建议与 <code>class</code> 属性搭配使用</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;article&gt;
+  &lt;h2&gt;Kittens &#39;adopted&#39; by pet rabbit&lt;/h2&gt;
+  &lt;p&gt;&lt;b class=&quot;lede&quot;&gt;Six abandoned kittens have found an unexpected new mother figure — a pet rabbit.&lt;/b&gt;&lt;/p&gt;
+  &lt;p&gt;Veterinary nurse Melanie Humble took the three-week-old kittens to her Aberdeen home.&lt;/p&gt;
+<i>[...]</i></code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>small</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">不再只是「小字」</li>
+                            <li class="fragment"><a href="http://en.wikipedia.org/wiki/Fine_print">fine print</a></li>
+                            <li class="fragment">免责声明 / 许可证声明 / 注意事项 / ...</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;small&gt;&lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-sa/3.0/&quot;&gt;Creative Commons Attribution Share-alike license&lt;/a&gt;&lt;/small&gt;
+
+&lt;small&gt;请以实物为准，图片仅供参考&lt;/small&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>s</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">不再只是「带删除线的文字」</li>
+                            <li class="fragment">表示不再准确或不再相关的内容</li>
+                            <li class="fragment">与 <code>del</code> 元素含义不同</li>
+                        </ul>
+                        <figure>
+                            <pre class="highlight fragment"><code>&lt;p&gt;Buy our Iced Tea and Lemonade!&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;Recommended retail price: $3.99 per bottle&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now selling for just $2.99 a bottle!&lt;/strong&gt;&lt;/p&gt;</code></pre>
+                            <div class="highlight fragment" style="font-size:70%;">
+                                <p>Buy our Iced Tea and Lemonade!</p>
+                                <p><s>Recommended retail price: $3.99 per bottle</s></p>
+                                <p><strong style="color:#fff;font-weight:bold;">Now selling for just $2.99 a bottle!</strong></p>
+                            </div>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4><code>u</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">不再只是「带下划线的文字」</li>
+                            <li class="fragment">表示用非文本进行的标注的内容</li>
+                            <li class="fragment">中文专名 / 拼写检查的错误内容 / ...</li>
+                        </ul>
+                        <figure>
+                            <pre class="fragment highlight"><code>&lt;u class=&quot;proper-name&quot;&gt;屈原&lt;/u&gt;放逐，乃賦&lt;cite class=&quot;book-name&quot;&gt;離騒&lt;/cite&gt;。&lt;u class=&quot;proper-name&quot;&gt;左丘&lt;/u&gt;失明，厥有&lt;cite class=&quot;book-name&quot;&gt;國語&lt;/cite&gt;。（司馬遷《報任安書》）</code></pre>
+                            <p class="fragment highlight" style="font-size:70%;">
+                                <style type="text/css" scoped>
+                                    cite.book-name {
+                                        text-decoration: underline;
+                                        -moz-text-decoration-style: wavy;
+                                    }
+                                </style>
+                                <u class="proper-name">屈原</u>放逐，乃賦<cite class="book-name">離騒</cite>。<u class="proper-name">左丘</u>失明，厥有<cite class="book-name">國語</cite>。（司馬遷《報任安書》）
+                            </p>
+                            <p class="fragment"><small>专名包括人名、地名、朝代名、国名、机构名等，大陆已较少使用，在英语中通常首字母大写</small></p>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4><code>cite</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">引述的作品标题</li>
+                            <li class="fragment">书 / 论文 / 散文 / 电影 / 歌曲 / 电视节目 / 画作 / ...</li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;p&gt;My favorite movie is &lt;cite&gt;Transformers&lt;/cite&gt; by Michael Bay.&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>q</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">引用的来自其他来源的段内内容</li>
+                            <li class="fragment"><code>cite</code> 属性表示该来源的 URL</li>
+                            <li class="fragment">不用 <code>q</code> 而用引号亦正确</li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;p&gt;The W3C page &lt;cite&gt;About W3C&lt;/cite&gt; says the W3C&#39;s
+mission is &lt;q cite=&quot;http://www.w3.org/Consortium/&quot;&gt;To lead the
+World Wide Web to its full potential by developing protocols and
+guidelines that ensure long-term growth for the Web&lt;/q&gt;.&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>abbr</code> 元素</h4>
+                        <ul>
+                            <li class="fragment"><q cite="http://dev.w3.org/html5/spec/the-abbr-element.html#the-abbr-element">abbreviation or acronym</q> <small>(<a href="http://www.benmeadowcroft.com/webdev/articles/abbr-vs-acronym/">区别？</a>)</small></li>
+                            <li class="fragment">其 <code>title</code> 属性的含义为所写的全称</li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;p&gt;The &lt;abbr title=&quot;Web Hypertext Application Technology Working Group&quot;&gt;WHATWG&lt;/abbr&gt; started working on HTML5 in 2004.&lt;/p&gt;</code></pre>
+                        <p class="fragment"><small>建议在用户不熟悉的缩写词汇第一次出现时用 <code>abbr</code> + <code>title</code> 进行语义标注，帮助其理解</small></p>
+                    </section>
+
+                    <section>
+                        <h4><code>dfn</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">用来展现一个术语的定义实例</li>
+                            <li class="fragment">最接近的父级段落、定义列表组或区块内容必须包含 <code>dfn</code> 元素指定术语的定义</li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;p&gt;The &lt;dfn&gt;&lt;abbr title=&quot;Garage Door Opener&quot;&gt;GDO&lt;/abbr&gt;&lt;/dfn&gt;
+is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
+                        <p class="fragment"><small>很容易抽取出特定术语的含义，从而很容易回答「What is ...?」类的问题</small></p>
+                    </section>
+
+                    <section>
+                        <h4><code>code</code>, <code>samp</code>, <code>kbd</code> 元素</h4>
+                        <ul>
+                            <li class="fragment"><code>code</code> - 代码片段</li>
+                            <li class="fragment"><code>samp</code> - 计算机程序的输出</li>
+                            <li class="fragment"><code>kbd</code> - 用户输入的内容 / 按键</li>
+                        </ul>
+                        <figure class="fragment">
+                            <p><img src="img/kbd.png" alt="usage of &lt;kbd&gt;"></p>
+                            <figcaption>Stack Overflow 上 <code>kbd</code> 元素的样式让人一目了然</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4><code>mark</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">在引用的文字中使用，表示在当前文档中需要引起注意但原文中并没有强调的含义 <small>(eg. 对一篇文章的分析中对原文的标注)</small></li>
+                            <li class="fragment">表示与用户当前的行为相关的内容 <small>(eg. 高亮显示搜索关键词)</small></li>
+                        </ul>
+<pre class="highlight fragment"><code>&lt;blockquote&gt;
+    &lt;p&gt;6月13日下午，&lt;mark&gt;一场大雨&lt;/mark&gt;过后，正阳门箭楼被带着水雾的脚手架包裹得严严实实。北京旧城中轴线上的这座标志性建筑，正经历着新中国成立后规模最大的一次修缮。&lt;/p&gt;
+    <i>[...]</i>
+    &lt;p&gt;6月13日的&lt;mark&gt;那场大雨&lt;/mark&gt;，将故宫端门外西朝房冲洗得干干净净。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;作者为什么两次提到6月13日的大雨？请谈谈你的看法。&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>ruby</code>, <code>rt</code>, <code>rp</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">注音标示，「ruby」来自日本印刷业</li>
+                            <li class="fragment">主要于 <abbr title="Chinese, Japanese, Korean">CJK</abbr> 文字</li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;ruby&gt;和&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;h&#233;&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;谐&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;xi&#233;&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;社&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;sh&#232;&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;会&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;hu&#236;&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;</code></pre>
+                        <figure class="fragment">
+                            <p><img class="transparent" src="img/ruby.png" alt="Ruby annotations"></p>
+                            <figcaption>理想效果 vs. 降级效果</figcaption>
+                        </figure>
+                        <p class="fragment"><small>目前 IE 5.5+ 以及 Chrome 5+ 支持</small></p>
+                    </section>
+
+                    <section>
+                        <h4><code>span</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">本身无语义</li>
+                            <li class="fragment">可以和 <code>class</code>, <code>lang</code> 等属性结合，为文本片段增加语义</li>
+                            <li class="fragment">有更合适的元素时不应选择 <code>span</code></li>
+                        </ul>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; greet = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; {&lt;/span&gt;
+    console.log(&lt;span class=&quot;string&quot;&gt;&quot;Hello world.&quot;&lt;/span&gt;);
+}</code></pre>
+                            <figcaption>适用场景之一是代码高亮</figcaption>
+                        </figure>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h3 class="exclusive">更改记录 (edits)</h3>
+                    </section>
+                    
+                    <section>
+                        <h4><code>ins</code>, <code>del</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">表示对当前文档内容进行的增添与删改</li>
+                            <li class="fragment"><code>cite</code> 属性指向对某个修改的说明文档的 URL</li>
+                            <li class="fragment"><code>datetime</code> 属性表示了修改发生的时间 <small>(<a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#valid-date-string-with-optional-time">取值规范</a>)</small></li>
+                            <li class="fragment">用来记录文档的编辑历史</li>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h3 class="exclusive">嵌入内容 (embedded content)</h3>
+                    </section>
+                    
+                    <section>
+                        <h4><code>img</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">
+                                <p><code>src</code>, <code>alt</code> 属性决定了图片的含义</p>
+                                <ul class="fragment">
+                                    <li>有 <code>src</code> 且 <code>alt</code> 为空字符串，代表装饰用图</li>
+                                    <li>有 <code>src</code> 且 <code>alt</code> 为非空字符串，图为文档内容的一部分</li>
+                                    <li>有 <code>src</code> 且无 <code>alt</code>，图为内容一部分但无等价的文本内容可用</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">用 <code>alt</code> 文本替换图片，文档含义尽可能<strong>不变</strong></li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;p&gt;
+  You are standing in an open field west of a house.
+  &lt;img src=&quot;house.jpeg&quot; alt=&quot;<s>A white house</s><strong>The house is white</strong>, with a boarded front door.&quot;&gt;
+  There is a small mailbox here.
+&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>video</code>, <code>audio</code> 元素</h4>
+                        <ul>
+                            <li class="fragment"><code>video</code> - 视频 / 影片</li>
+                            <li class="fragment"><code>audio</code> - 音频</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4><code>source</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">描述多媒体元素对应内容的资源</li>
+                            <li class="fragment">同一多媒体元素内的多个 <code>source</code> 元素表示相同内容的多个来源 <small>(可能不同格式 / 清晰度，读取失败或无法解码时可以依次尝试)</small></li>
+                            <li class="fragment"><code>type</code> 属性中除了 MIME 类型外，可使用 <code>codecs=</code> 来指定编码</small></li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;video controls autoplay&gt;
+  &lt;source src=&#39;video.mp4&#39; type=&#39;video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;&#39;&gt;
+  &lt;source src=&#39;video.ogv&#39; type=&#39;video/ogg; codecs=&quot;theora, vorbis&quot;&#39;&gt;
+&lt;/video&gt;</code></pre>
+                    </section>
+
+<!--                    section>(h4>code)+ul>li.fragment*3 -->
 
                 </section>
 
@@ -521,7 +918,7 @@
                     { src: '../../reveal.js/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: '../../reveal.js/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
                     { src: '../../reveal.js/plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-                    { src: '../../reveal.js/lib/js/Hyphenator.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } }
+                    { src: '../../reveal.js/lib/js/Hyphenator.js', async: true }
                 ]
             });
         </script>
