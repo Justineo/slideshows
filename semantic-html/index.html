@@ -750,6 +750,25 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     </section>
 
                     <section>
+                        <h4><code>time</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">为表述的内容增加一个机器可读的时间数据</li>
+                            <li class="fragment"><code>datetime</code> 属性值必须是预定义的几种<a href="http://dev.w3.org/html5/spec/the-time-element.html#datetime-value">时间格式</a>之一</li>
+                            <li class="fragment">如果不含 <code>datetime</code> 属性，则会解析其文本内容值</li>
+                        </ul>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;div class=&quot;vevent&quot;&gt;
+  &lt;a class=&quot;url&quot; href=&quot;http://www.web2con.com/&quot;&gt;http://www.web2con.com/&lt;/a&gt;
+  &lt;span class=&quot;summary&quot;&gt;Web 2.0 Conference&lt;/span&gt;:
+  &lt;time class=&quot;dtstart&quot; datetime=&quot;2005-10-05&quot;&gt;October 5&lt;/time&gt; -
+  &lt;time class=&quot;dtend&quot; datetime=&quot;2005-10-07&quot;&gt;7&lt;/time&gt;,
+  at the &lt;span class=&quot;location&quot;&gt;Argent Hotel, San Francisco, CA&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                            <figcaption><code>time</code> 元素与 Microformats hCalendar 格式的配合使用</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
                         <h4><code>code</code>, <code>samp</code>, <code>kbd</code> 元素</h4>
                         <ul>
                             <li class="fragment"><code>code</code> - 代码片段</li>
@@ -851,19 +870,50 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     </section>
 
                     <section>
-                        <h4><code>video</code>, <code>audio</code> 元素</h4>
+                        <h4><code>iframe</code>, <code>embed</code>, <code>object</code>, <code>param</code> 元素</h4>
                         <ul>
-                            <li class="fragment"><code>video</code> - 视频 / 影片</li>
+                            <li class="fragment"><code>iframe</code> - 内嵌的浏览上下文</li>
+                            <li class="fragment"><code>embed</code> - 外部应用或可交互内容的整合入口</li>
+                            <li class="fragment"><code>object</code> - 通用外部资源<br><small>根据具体内容可以被处理为图片、内嵌的浏览上下文、供插件调用的资源</small></li>
+                            <li class="fragment"><code>param</code> - 为 <code>object</code> 元素传递的参数</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4><code>iframe</code>, <code>embed</code>, <code>object</code>, <code>param</code> 元素</h4>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;object type=&quot;image/png&quot; data=&quot;embed.png&quot;&gt;&lt;/object&gt;
+&lt;object type=&quot;text/html&quot; data=&quot;embed.html&quot;&gt;&lt;/object&gt;
+</code></pre>
+                            <figcaption>相当于 <code>img</code> 与 <code>iframe</code> 的效果</figcaption>
+                        </figure>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;embed src=&quot;catgame.swf&quot; type=&quot;application/x-shockwave-flash&quot; quality=&quot;high&quot;&gt;
+
+&lt;object data=&quot;catgame.swf&quot; type=&quot;application/x-shockwave-flash&quot;&gt; 
+  &lt;param name=&quot;quality&quot; value=&quot;high&quot;&gt;
+  &lt;p&gt;Plugin needed.&lt;/p&gt;
+&lt;/object&gt;</code></pre>
+                            <figcaption>功能等价但 <code>object</code> 提供更好的回退策略</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>多媒体元素</h4>
+                        <ul>
+                            <li class="fragment"><code>video</code> - 视频</li>
                             <li class="fragment"><code>audio</code> - 音频</li>
                         </ul>
+                        <div class="fragment left">
+                            <p>公共属性：<code>src</code>, <code>crossorigin</code>, <code>preload</code>, <code>autoplay</code>, <code>mediagroup</code>, <code>loop</code>, <code>muted</code>, <code>controls</code></p>
+                        </div>
                     </section>
 
                     <section>
                         <h4><code>source</code> 元素</h4>
                         <ul>
-                            <li class="fragment">描述多媒体元素对应内容的资源</li>
-                            <li class="fragment">同一多媒体元素内的多个 <code>source</code> 元素表示相同内容的多个来源 <small>(可能不同格式 / 清晰度，读取失败或无法解码时可以依次尝试)</small></li>
-                            <li class="fragment"><code>type</code> 属性中除了 MIME 类型外，可使用 <code>codecs=</code> 来指定编码</small></li>
+                            <li class="fragment">表示所在多媒体元素的可替代资源<br><small>(可能不同格式 / 清晰度，读取失败或无法解码时可以依次尝试)</small></li>
+                            <li class="fragment"><code>type</code> 属性中除了 <abbr title="Multipurpose Internet Mail Extensions">MIME</abbr> 类型外，可使用 <code>codecs=</code> 来指定编码</small></li>
                         </ul>
                         <pre class="highlight fragment"><code>&lt;video controls autoplay&gt;
   &lt;source src=&#39;video.mp4&#39; type=&#39;video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;&#39;&gt;
@@ -871,12 +921,226 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
 &lt;/video&gt;</code></pre>
                     </section>
 
-<!--                    section>(h4>code)+ul>li.fragment*3 -->
+                    <section>
+                        <h4><code>track</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">用来为多媒体元素指定「文本轨」</li>
+                            <li class="fragment"><code>kind</code> 属性描述文本轨的类型<br><small>可用值包括 <code>subtitles</code>, <code>captions</code>, <code>descriptions</code>, <code>chapters</code>, <code>metadata</code></small></li>
+                        </ul>
+                        <pre class="highlight fragment"><code>&lt;video src=&quot;brave.webm&quot;&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.en.vtt&quot; srclang=&quot;en&quot; label=&quot;English&quot;&gt;
+  &lt;track kind=&quot;captions&quot; src=&quot;brave.en.hoh.vtt&quot; srclang=&quot;en&quot; label=&quot;English for the Hard of Hearing&quot;&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.fr.vtt&quot; srclang=&quot;fr&quot; lang=&quot;fr&quot; label=&quot;Fran&#231;ais&quot;&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.de.vtt&quot; srclang=&quot;de&quot; lang=&quot;de&quot; label=&quot;Deutsch&quot;&gt;
+&lt;/video&gt;</code></pre>
+                    </section>
 
                 </section>
 
                 <section>
+
+                    <section>
+                        <h3 class="exclusive">表格数据 (tabular data)</h3>
+                    </section>
+
+                    <section>
+
+                        <section>
+                            <h4><code>table</code> 元素</h4>
+                            <ul>
+                                <li class="fragment">用来表示超过一维的数据</li>
+                            </ul>
+                        </section>
+                        
+                        <section>
+                            <h4 class="fragment"><code>caption</code> 元素</h4>
+                            <ul>
+                                <li class="fragment">表示所处的 <code>table</code> 的标题</li>
+                            </ul>
+                            <p class="fragment"><small>当所处的 <code>table</code> 是外部 <code>figure</code> 元素的唯一子元素，应首选 <code>figcaption</code></small></p>
+                        </section>
+
+                    </section>
+
+                    <section>
+
+                        <section>
+                            <h4><code>tbody</code>, <code>thead</code>, <code>tfoot</code> 元素</h4>
+                            <ul>
+                                <li class="fragment">均为一组表格行</li>
+                                <li class="fragment"><code>thead</code> 表示列头 (通常为列标题，单元格用 <code>th</code> 元素)</li>
+                                <li class="fragment"><code>tfoot</code> 表示列脚 (通常为列数据汇总)</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h4 class="fragment"><code>col</code>, <code>colgroup</code>, <code>tr</code> 元素</h4>
+                            <p class="fragment">列，列组，行</p>
+                        </section>
+
+                    </section>
+
+                    <section>
+                        <h4><code>td</code>, <code>th</code> 元素</h4>
+                        <ul>
+                            <li class="fragment"><code>td</code> - 数据单元格</li>
+                            <li class="fragment"><code>th</code> - 标题单元格</li>
+                        </ul>
+                        <p class="fragment"><code>th</code> 的 <code>scope</code> 属性表示标题对应的数据范围</p>
+                        <p class="fragment"><img src="img/table-scope-diagram.png" alt="table scope diagram"></p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2 class="exclusive">进一步扩展</h2>
+                </section>
+
+                <section>
+                    
+                    <section>
+                        <h3 class="exclusive">微格式 (Microformats)</h3>
+                        <p><small>Microformats 是 HTML 的扩展，用来标注人物 / 组织 / 事件 / 地点 / 简历 / 菜谱 / ...<br>很多格式已是业界的事实标准<br>(<a href="http://microformats.org/">Microformats Wiki</a>)</small></p>
+                    </section>
+
+                    <section>
+                        <h4>Microformats 的基本思路</h4>
+                        <p class="left" style="font-size:80%;">用 HTML 已有的元素 / 属性，配合对属性值语义的扩展 (主要针对 <code>class</code> 属性) 以及对文档结构的约定来增强 HTML 的语义表达能力。Microformats 的规范本质上就是对一系列常用类型数据 HTML 格式的约定。</p>
+                        <figure class="fragment">
+                            <p><img class="transparent" src="img/hcard.png" alt="Google retrives hCard information from Wikipedia"></p>
+                            <figcaption>Google 通过从 Wikipedia 获取的 hCard 格式数据在搜索结果匹配出人物信息</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>举例：<a href="http://microformats.org/wiki/hcard" title="hCard 1.0 &middot; Microformats Wiki">hCard</a></h4>
+                        <ul>
+                            <li class="fragment">用来在 Web 上发布人物 / 公司 / 组织机构信息的格式</li>
+                            <li class="fragment">和 vCard 格式 (MIME 类型：<code>text/vcard</code>, <a href="http://www.ietf.org/rfc/rfc2426.txt">RFC2426</a>) 定义的属性名值定义一一对应</li>
+                        </ul>
+                        <figure class="fragment">
+                            <pre class="highlight"><code style="font-size:80%;">&lt;div class=&quot;vcard&quot;&gt;
+  &lt;span class=&quot;fn&quot;&gt;Sally Ride&lt;/span&gt;
+  &lt;div class=&quot;org&quot;&gt;Sally Ride Science&lt;/div&gt;
+  &lt;img class=&quot;photo&quot; src=&quot;http://example.com/sk.jpg&quot;/&gt;
+  &lt;a class=&quot;url&quot; href=&quot;http://sally.example.com&quot;&gt;w&lt;/a&gt;,
+  &lt;a class=&quot;email&quot; href=&quot;mailto:sally@example.com&quot;&gt;e&lt;/a&gt;
+  &lt;div class=&quot;tel&quot;&gt;+1.818.555.1212&lt;/div&gt;
+  &lt;time class=&quot;bday&quot;&gt;1951-05-26&lt;/time&gt; birthday
+  <i>[...]</i>
+&lt;/div&gt;</code></pre>
+                            <figcaption>人物名片的一部分</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>其他 Microformats</h4>
+                        <ul>
+                            <li class="fragment"><a href="http://microformats.org/wiki/hcalendar" title="hCalendar 1.0 &middot; Microformats Wiki">hCalendar</a> - 发布事件<br><small>基于 iCalendar 格式 (MIME 类型：<code>text/calendar</code>, <a href="http://www.ietf.org/rfc/rfc2445.txt">RFC2445</a>)</small></li>
+                            <li class="fragment"><a href="http://microformats.org/wiki/hreview" title="hReview 0.4 &middot; Microformats Wiki">hReview</a> - 发布书评 / 影评 / 产品评价 / ...</li>
+                            <li class="fragment">对 HTML <code>rel</code> 属性值的扩展定义<br><small><code>rel="license"</code>, <code>rel="tag"</code>, <code>rel="enclosure"</code>, ... 部分已经进入 HTML5 草案</small></li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h3 class="exclusive">微数据 (HTML Microdata)</h3>
+                        <p><small>允许在现有的文档中嵌入一组项的名值对集合<br>(<a href="http://www.w3.org/TR/microdata/">W3C 草案</a>)</small></p>
+                    </section>
+
+                    <section>
+                        <h4><code>itemscope</code> 属性</h4>
+                        <p class="fragment">用来标注描述项的位置</p>
+                        <figure class="fragment">
+                            <pre class="highlight"><code>&lt;div itemscope&gt;
+  &lt;p&gt;My name is &lt;span itemprop=&quot;name&quot;&gt;Elizabeth&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div itemscope&gt;
+  &lt;p&gt;My name is &lt;span itemprop=&quot;name&quot;&gt;Daniel&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                            <figcaption>两个项，各有一个名为 <code>name</code> 的属性</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+
+                        <section>
+                            <h4><code>itemtype</code> 属性</h4>
+                            <ul>
+                                <li class="fragment">如果期望服用已定义的项的模式，可用 <code>itemtype</code> 属性给出该类型的 URI</li>
+                                <li class="fragment">必须与 <code>itemscope</code> 属性置于同一元素上</li>
+                            </ul>
+                        </section>
+
+                        <section class="fragment">
+                            <h4><code>itemprop</code> 属性</h4>
+                            <p>当前项的属性名</p>
+                        </section>
+
+                    </section>
+
+                    <section>
+                        <h4><code>itemid</code> 属性</h4>
+                        <p class="fragment">当前项的全局 ID (eg. <abbr title="International Standard Book Number">ISBN</abbr>)</p>
+                        <pre class="highlight fragment"><code>&lt;dl itemscope itemtype=&quot;http://vocab.example.net/book&quot; itemid=&quot;urn:isbn:0-330-34032-8&quot;&gt;
+  &lt;dt&gt;Title&lt;/dt&gt;
+  &lt;dd itemprop=&quot;title&quot;&gt;The Reality Dysfunction&lt;/dd&gt;
+  &lt;dt&gt;Author&lt;/dt&gt;
+  &lt;dd itemprop=&quot;author&quot;&gt;Peter F. Hamilton&lt;/dd&gt;
+  &lt;dt&gt;Publication date&lt;/dt&gt;
+  &lt;dd&gt;&lt;time itemprop=&quot;pubdate&quot; datetime=&quot;1996-01-26&quot;&gt;26 January 1996&lt;/time&gt;&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    </section>
+
+                    <section>
+
+                        <section>
+                            <h4>属性取值</h4>
+                            <p>情况复杂，根据元素类型不同，取值方式各有不同<br>具体请参考 <a href="http://www.w3.org/TR/microdata/#values">Microdata 规范草案</a></p>
+                        </section>
+
+                        <section class="fragment">
+                            <h4>统一词汇表</h4>
+                            <p>请参考 <a href="http://schema.org/docs/schemas.html">Schema.org</a></p>
+                            <p class="fragment"><small>搜索引擎 (Google, Bing, Yahoo!) 建立，爬虫支持并理解用此词汇表中词汇表达的语义</small></p>
+                        </section>
+
+                    </section>
+
+                    <section>
+                        <h4>实例</h4>                        
+                        <figure class="fragment">
+                            <p><img src="img/microdata_imdb.png" alt="IMDB embeds microdata in movie reviews."></p>
+                            <figcaption>IMDB 的影片描述中嵌入了 microdata</figcaption>
+                        </figure>
+                        <figure class="fragment">
+                            <p><img src="img/microdata_google.png" alt="Google retrives rating information from IMDB using microdata."></p>
+                            <figcaption>Google 通过获取 IMDB 的 microdata 数据将影片评分直接显示在搜索结果中</figcaption>
+                        </figure>
+
+                    </section>
+
+                </section>
+
+
+<!--                    section>(h4>code)+ul>li.fragment*3 -->
+
+                <section>
                     <h2>参考文档</h2>
+                    <ol>
+                        <li><a href="http://www.w3.org/TR/html401/">HTML 4.01 Specification</a>, W3C.</li>
+                        <li><a href="http://dev.w3.org/html5/spec/">HTML5 Editor's Draft</a>, W3C.</li>
+                        <li><a href="http://wiki.whatwg.org/wiki/MetaExtensions">MetaExtensions</a>, WHATWG Wiki.</li>
+                        <li><a href="http://microformats.org/wiki/Main_Page">Microformats Wiki</a>, Microformats community.</li>
+                        <li><a href="http://www.w3.org/TR/microdata/#values">HTML Microdata Editor's Draft</a>, W3C.</li>
+                        <li><a href="http://www.alistapart.com/articles/semanticsinhtml5/">Semantics in HTML 5</a>, A List Apart.</li>
+                        <li><a href="http://diveintohtml5.info/semantics.html">Semantics - Dive Into HTML5</a>, Dive Into HTML5.</li>
+                        <li><a href="http://schemas.org/">schemas.org</a>.</li>
+                        <li><a href="http://html5doctor.com/">HTML5 Doctor</a>.</li>
+                    </ol>
                 </section>
 
                 <section>
