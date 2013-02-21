@@ -1,0 +1,449 @@
+<!doctype html>  
+<html lang="zh-CN">
+    
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Modern Modular JavaScript</title>
+
+        <meta name="description" content="介绍模块化JavaScript、CommonJS Modules、AMD、CMD等等">
+        <meta name="author" content="Gu Yiling">
+        
+        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/print.css" media="print">
+
+        <link rel="stylesheet" type="text/css" href="../../reveal.js/lib/css/zenburn.css">
+    </head>
+    
+    <body>
+        
+        <div class="reveal">
+            
+            <div class="slides">
+                <section>
+                    <h1>Modern Modular JavaScript</h1>
+                    <br><br>
+                    <p>顾轶灵</p>
+                    <p><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a></p>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>模块化</h2>
+                        <ul>
+                            <li>封装（解决冲突）</li>
+                            <li>依赖（模块间的相互引用）</li>
+                            <li>加载（运行环境影响加载方式）</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>function add(x, y) {
+    return x + y;
+}</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>var a = add(1, 2);
+alert(a);</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">index.html</p>
+                            <pre class="highlight"><code>&lt;script src="math.js"&gt;&lt;/script&gt;
+&lt;script src="main.js"&gt;&lt;/script&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>var math = {};
+math.add = function(x, y) {
+    return x + y;
+}</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>var a = math.add(1, 2);
+alert(a);</code></pre>
+                        </div>
+                        <p class="fragment">记忆/输入代价 vs. 冲突概率</p>
+                    </section>
+
+                    <section>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>(function() {
+    var math = {};
+    math.add = function(x, y) {
+        return x + y;
+    };
+    this.math = math;
+})();</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>(function() {
+    var a = math.add(1, 2);
+    alert(a);
+})();</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>动态加载</h3>
+                        <ul>
+                            <li class="fragment"><abbr title="XMLHttpRequest">XHR</abbr> + <code>eval</code><br><small>跨域、调试</small></li>
+                            <li class="fragment"><code>document.write()</code><br><small>阻塞页面渲染、页面加载完毕后无法再用</small></li>
+                            <li class="fragment"><code>head.appendChild(script)</code></li>
+                        </ul>
+                        <p class="fragment">模块加载顺序？</p>
+                    </section>
+
+                    <section>
+                        <h3>依赖</h3>
+                        <ul>
+                            <li class="fragment">模块通过显示声明<small>（eg. <code>goog.provide('mod');</code>）</small>或不声明<small>（eg. 与文件路径对应）</small></li>
+                            <li class="fragment">某种 include/import/require 声明依赖<br><small>eg. <code>goog.require('mod');</code></small></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>问题</h3>
+                        <p>模块不执行，如何获取依赖决定执行顺序？</p>
+                        <ul>
+                            <li class="fragment">服务端静态分析后顺序加载执行<br><small>eg. <code>deps.js</code> for Closure</small></li>
+                            <li class="fragment">
+                                <p>将依赖声明和模块执行分开（利用 function wrapping）</p>
+                                <pre class="highlight"><code>define(['math'], function(math) {
+    var a = math.add(1, 2);
+    alert(a);
+});</code></pre>
+                            </li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2 class="exclusive">CommonJS Modules</h2>
+                    </section>
+
+                    <section>
+                        <h3>Module Context</h3>
+                        <ul>
+                            <li class="fragment"><code title="为函数，接受一个模块标识符作为参数，返回对应模块导出的 API">require</code></li>
+                            <li class="fragment"><code title="为此变量添加属性是模块导出接口的唯一方法">exports</code></li>
+                            <li class="fragment"><code title="存储模块的元数据（id, uri）">module</code></li>
+                        </ul>
+                        <p class="fragment"><small><a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">（详细定义 &rarr;）</a></small></p>
+                    </section>
+
+                    <section>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>exports.add = function(x, y) {
+    return x + y;
+}</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>var add = require('math').add;
+var a = add(1, 2);</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Server-oriented</h3>
+                        <ul>
+                            <li class="fragment">模块运行环境天然隔离</li>
+                            <li class="fragment">同步读取执行模块依赖</li>
+                            <li class="fragment"><strong>无法</strong>直接在浏览器环境下使用<br><small class="fragment">可以通过服务端自动构建为遵循 Wrappings 或 Transport 规范的代码来满足浏览器运行条件</small></li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2 class="exclusive">RequireJS 与 <abbr title="Asynchronous Module Definition">AMD</abbr></h2>
+                    </section>
+
+                    <section>
+                        <h3>RequireJS <small><a href="https://github.com/jrburke/requirejs">(repo &rarr;)</a></small></h3>
+                        <ul>
+                            <li>前身为 RunJS</li>
+                            <li>试图解决老版本 Dojo Loader（XHR + <code>eval</code>）的缺陷</li>
+                            <li>加载执行遵循 AMD 规范的模块</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>AMD</h3>
+                        <ul>
+                            <li class="fragment">“CommonJS Transport/C”</li>
+                            <li class="fragment">RequireJS 的规范化产出</li>
+                            <li class="fragment"><code>define(id?, dependencies?, factory);</code></li>
+                        </ul>
+                        <p class="fragment"><small><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">（详细定义 &rarr;）</a></small></p>
+                    </section>
+
+                    <section>
+                        <h4>module id</h4>
+                        <ul>
+                            <li class="fragment">"/" 分隔的 "terms"</li>
+                            <li class="fragment">不得包含后缀如 ".js"</li>
+                            <li class="fragment">"relative" &amp; "top-level"</li>
+                            <li class="fragment">使用加载器插件时，"!" 用来分隔资源类型 ID 与模块名</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>baidu/dom</code><code>./lang</code><code>css!./normalize.css</code></pre>
+                    </section>
+
+                    <section>
+                        <h4>dependencies</h4>
+                        <ul>
+                            <li class="fragment">缺省值为 <code>["require", "exports", "module"]</code></li>
+                            <li class="fragment">依赖模块的导出接口将会对应到 factory 的参数列表</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>factory</h4>
+                        <ul>
+                            <li class="fragment">函数/对象</li>
+                            <li class="fragment">若为函数，仅运行一次，且返回值作为模块的导出接口</li>
+                            <li class="fragment">若为对象，直接作为模块的导出接口</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>require <small>(local)</small></h4>
+                        <p>传入 AMD define factory 的 <code>require</code> 函数</p>
+                        <pre class="highlight fragment"><code>define(['require'], function(require) {
+    //the require in here is a local require.
+});
+
+define(function(require, exports, module) {
+    //the require in here is a local require.
+});</code></pre>
+                    </section>
+
+                    <section>
+                        <h4>require <small>(global)</small></h4>
+                        <p>用来启动模块加载的全局函数</p>
+                        <pre class="highlight fragment"><code>require(['foo', 'bar'], function (foo, bar) {
+    foo.doSomething();
+});</code></pre>
+                    </section>
+
+                    <section>
+                        <h4>require</h4>
+                        <ul>
+                            <li class="fragment"><code>require(String)</code><br><small><strong>同步</strong>返回指定模块接口</small><pre class="highlight fragment"><code>define(function(require) {
+    var a = require('a');
+});</code></pre></li>
+                        </ul>
+                        <code class="fragment">Function.prototype.toString()</code>
+                    </section>
+
+                    <section>
+                        <h4>require</h4>
+                        <ul>
+                            <li class="fragment"><code>require(Array, Function)</code><br><small><strong>异步</strong>读取多个依赖模块后执行回调</small><pre class="highlight fragment"><code>define(function(require) {
+    require(['a', 'b'], function(a, b) {
+        //modules a and b are now available for use.
+    });
+});</code></pre></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>define(function() {
+    var math = {};
+    math.add = function(x, y) {
+        return x + y;
+    };
+    return math;
+});</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>require(['math'], function(math) {
+    var a = math.add(1, 2);
+    alert(a);
+});</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h4>Simplified CommonJS wrapping</h4>
+                        <div class="fragment">
+                            <p class="left">math.js</p>
+                            <pre class="highlight"><code>define(function(require, exports) {
+    exports.add = function(x, y) {
+        return x + y;
+    }
+});
+</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p class="left">main.js</p>
+                            <pre class="highlight"><code>define(function(require) {
+    var add = require('math').add;
+    var a = add(1, 2);
+});</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h4>实现</h4>
+                        <ul>
+                            <li><a href="http://requirejs.org/">RequireJS</a></li>
+                            <li><a href="https://github.com/unscriptable/curl">curl</a></li>
+                            <li><a href="https://github.com/zazl/lsjs">lsjs</a></li>
+                            <li><a href="http://dojotoolkit.org/">Dojo</a> 1.7+</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>AMD 特点</h4>
+                        <ul>
+                            <li class="fragment">可以在浏览器中运行</li>
+                            <li class="fragment">封装性好</li>
+                            <li class="fragment">同时支持 exports/返回值，相比 CommonJS 模块，导出接口可以是函数等更丰富的类型 <small>eg. 模块直接导出一个构造函数</small></li>
+                            <li class="fragment">不支持动态计算同步依赖<pre class="highlight"><code>var mod = require(someCondition ? 'a' : 'b');
+
+if (someCondition) {
+    var a = require('a');
+} else {
+    var a = require('b');
+}</code></pre></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>AMD 特点（cont.）</h4>
+                        <ul>
+                            <li class="fragment">便于调试 <small>相对于 XHR + <code>eval</code></small></li>
+                            <li class="fragment">加载器插件丰富灵活</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2 class="exclusive">SeaJS 与 <abbr title="Common Module Definition">CMD</abbr></h2>
+                    </section>
+
+                    <section>
+                        <h3>SeaJS</h3>
+                        <ul>
+                            <li class="fragment">在浏览器上运行 CommonJS 模块</li>
+                            <li class="fragment">模块的快速迁移</li>
+                            <li class="fragment">加载遵循 CMD 规范的模块</li>
+                            <li class="fragment">SPM</li>
+                        </ul>
+                    </section>
+                            
+                    <section>
+                        <h3>CMD</h3>
+                        <ul>
+                            <li class="fragment">SeaJS 的规范化产出</li>
+                            <li class="fragment"><code>define(factory);</code></li>
+                            <li class="fragment"><code>define(id?, deps?, factory);</code><br><small>非 CMD 一部分，而作为 Transport 规范存在。推荐不写 <code>id</code> 与 <code>deps</code>，在构建时用工具生成</small></li>
+                        </ul>
+                        <p class="fragment"><small><a href="https://github.com/seajs/seajs/issues/242">（详细定义 &rarr;）</a></small></p>
+                    </section>
+
+                    <section>
+                        <h4>factory</h4>
+                        <ul>
+                            <li class="fragment">与 AMD 类似，不同之处在于可以是字符串
+                                <pre class="highlight fragment"><code class="language-javascript">define('I am a template. My name is {{name}}.');</code></pre>
+</li>
+                            <li class="fragment">还可以通过 module.exports 进行导出（兼容 node.js 模块）
+                                <pre class="highlight fragment"><code class="language-javascript">define(function(require, exports, module) {
+    module.exports = new SomeClass();
+});</code></pre></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>require</h4>
+                        <ul>
+                            <li class="fragment">只有 local require</li>
+                            <li class="fragment"><code>require(String)</code> 同步加载</li>
+                            <li class="fragment"><code>require.async(id, callback?)</code> 异步加载<br><small>类似于 AMD 的 <code>require(Array, Function)</code></small></li>
+                            <li class="fragment">SeaJS 下的入口为 <code>seajs.use()</code></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>SeaJS vs. RequreJS, CMD vs. AMD</h4>
+                        <p class="left fragment"><a href="http://weibo.com/lifesinger">@lifesinger</a>：</p>
+                        <ul>
+                            <li class="fragment">依赖<strong>延迟执行</strong> vs. <strong>提前执行</strong></li>
+                            <li class="fragment">依赖<strong>就近</strong> vs. <strong>前置</strong></li>
+                            <li class="fragment">CMD 更为贴近 CommonJS Modules/1.1 和 Node Modules</li>
+                            <li class="fragment">明显没有 bug vs. 没有明显的 bug</li>
+                            <li class="fragment">调试、插件机制、...</li>
+                        </ul>
+                    </section>
+
+                </section>
+                        
+                <section>
+                    <h2 class="exclusive">Q&A</h2>
+                    <p><small>- EOF -</small></p>
+                </section>
+            </div>
+
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+
+            <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+
+        <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.min.js"></script>
+
+        <script>
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                rollingLinks: false,
+                
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../../reveal.js/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+                    { src: '../../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../../reveal.js/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../../reveal.js/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../../reveal.js/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+                    { src: '../../reveal.js/plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } }
+                ]
+            });
+        </script>
+    </body>
+</html>
