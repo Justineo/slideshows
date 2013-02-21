@@ -19,23 +19,90 @@
     <style type="text/css">
       body {
         margin: 0;
+        background-color: #666;
+        font-family: 'Myriad Pro', 'Helvetica Neue', arial, 'Hiragino Sans GB', 'Hiragino Sans GB W6', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif;
+        color: #fff;
+      }
+
+      header {
+        padding: 15px 30px;
+      }
+
+      header h1 {
+        margin: 0;
+        padding: 0;
+        color: #ccc;
+        font-size: 24px;
       }
 
       .item {
         display: block;
-        background: gold;
+        padding: 45px 0;
+        font-size: 48px;
+        font-weight: bold;
         color: #fff;
-        font-family: 'Myriad Pro', 'Helvetica Neue', arial, 'Hiragino Sans GB', 'Hiragino Sans GB W6', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif;
-        font-size: 64px;
         text-align: center;
-        line-height: 240px;
         text-decoration: none;
+        transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
+      }
+
+      .item:hover {
+        border-left: 20px solid gold;
+        background-color: #555;
+        text-shadow: 0 -1px 0 #333;
+      }
+
+      footer {
+        padding: 45px 0;
+        text-align: center;
+      }
+
+      /*********************************************
+       * FAVICON
+       *********************************************/
+
+      .favicon {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: 5px;
+        border-radius: 4px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .favicon:hover {
+        background-color: #fff;
+      }
+
+      .favicon.weibo {
+        background-image: url(../reveal.js/img/favicon/weibo.png);
+      }
+
+      .favicon.twitter {
+        background-image: url(../reveal.js/img/favicon/twitter.png);
+      }
+
+      .favicon.lync-in {
+        background-image: url(../reveal.js/img/favicon/lync.in.png);
       }
     </style>
 </head>
 <body>
-    <a class="item" href="http://justineo.github.com/slideshows/font/">字体漫谈</a>
-    <a class="item" href="http://justineo.github.com/slideshows/semantic-html/">Semantic HTML</a>
-    <a class="item" href="http://justineo.github.com/slideshows/modular-js/">Modern Modular JavaScript</a>
+    <header>
+        <h1>Slideshows &raquo;</h1>
+    </header>
+    <nav>
+        <a class="item" href="http://justineo.github.com/slideshows/font/">字体漫谈</a>
+        <a class="item" href="http://justineo.github.com/slideshows/semantic-html/">Semantic HTML</a>
+        <a class="item" href="http://justineo.github.com/slideshows/modular-js/">Modern Modular JavaScript</a>
+    </nav>
+    <footer><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a></footer>
+
 </body>
 </html>
