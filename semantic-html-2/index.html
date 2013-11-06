@@ -163,7 +163,7 @@
                         <h3 class="exclusive">元数据 (metadata)</h3>
                     </section>
 
-                    <section>
+<!--                     <section>
                         <section>
                             <h4><code>head</code> 元素</h4>
                             <p>一组元数据</p>
@@ -174,7 +174,7 @@
                             <p>文档对外的标题<br><small>窗口标题 / 历史记录 / 搜索结果标题 / ...</small></p>
                         </section>
                     </section>
-
+ -->
                     <section>
                         <h4><code>meta</code> 元素</h4>
                         <ul>
@@ -192,11 +192,11 @@
                         </ul>
                     </section>
 
-                    <section>
+<!--                     <section>
                         <h4><code>style</code>, <code>script</code> 元素</h4>
                         <p>描述文档样式、交互行为</p>
                     </section>
-
+ -->
                 </section>
 
                 <section>
@@ -683,7 +683,7 @@
                         <ul>
                             <li class="fragment">不再只是「斜体」</li>
                             <li class="fragment">表示另一种叙述方式</li>
-                            <li class="fragment">分类学名词 / 外来语片段 / 舞台指示 / 船名 / ...</li>
+                            <li class="fragment">画外音 / 分类学名词 / 外来语片段 / 舞台指示 / 船名 / ...</li>
                             <li class="fragment">建议与 <code>class</code> / <code>lang</code> 属性搭配使用</li>
                         </ul>
                         <pre class="fragment highlight"><code>&lt;p&gt;Sunflower (&lt;i class=&quot;taxonomy&quot;&gt;Helianthus annuus&lt;/i&gt;) is an annual plant native to the Americas.&lt;/p&gt;
@@ -691,6 +691,17 @@
 &lt;p&gt;There is a certain &lt;i lang=&quot;fr&quot;&gt;je ne sais quoi&lt;/i&gt; in the air.&lt;/p&gt;
 
 &lt;p&gt;&lt;i class=&quot;ship-name&quot;&gt;Titanic&lt;/i&gt; sank in the North Atlantic Ocean on 15 April 1912.&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>i</code> 元素</h4>
+                        <figure class="left highlight" style="font-size: 80%;">
+                            <p>Sunflower (<i class="taxonomy">Helianthus annuus</i>) is an annual plant native to the Americas.</p>
+
+                            <p>There is a certain <i lang="fr">je ne sais quoi</i> in the air.</p>
+
+                            <p><i class="ship-name">Titanic</i> sank in the North Atlantic Ocean on 15 April 1912.</p> 
+                        </figure>
                     </section>
 
                     <section>
@@ -709,6 +720,15 @@
                     </section>
 
                     <section>
+                        <h4><code>i</code> 元素</h4>
+                        <figure class="left highlight" style="font-size: 80%;">
+                            <h2>Kittens 'adopted' by pet rabbit</h2>
+                            <p><b class="lede">Six abandoned kittens have found an unexpected new mother figure — a pet rabbit.</b></p>
+                            <p>Veterinary nurse Melanie Humble took the three-week-old kittens to her Aberdeen home.</p>
+                        </figure>
+                    </section>
+
+                    <section>
                         <h4><code>small</code> 元素</h4>
                         <ul>
                             <li class="fragment">不再只是「小字」</li>
@@ -721,6 +741,14 @@
                     </section>
 
                     <section>
+                        <h4><code>small</code> 元素</h4>
+                        <figure class="left highlight" style="font-size: 80%;">
+                            <p><img src="img/noodle.png" style="width: 90%;"></p>
+                            <p><small>请以实物为准，图片仅供参考</small></p>
+                        </figure>
+                    </section>
+
+                    <section>
                         <h4><code>s</code> 元素</h4>
                         <ul>
                             <li class="fragment">不再只是「带删除线的文字」</li>
@@ -728,13 +756,9 @@
                             <li class="fragment">与 <code>del</code> 元素含义不同</li>
                         </ul>
                         <figure>
-                            <pre class="highlight fragment"><code>&lt;p&gt;Buy our Iced Tea and Lemonade!&lt;/p&gt;
-&lt;p&gt;&lt;s&gt;Recommended retail price: $3.99 per bottle&lt;/s&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Now selling for just $2.99 a bottle!&lt;/strong&gt;&lt;/p&gt;</code></pre>
+                            <pre class="highlight fragment"><code>¥ &lt;strong&gt;76.5&lt;/strong&gt; &lt;s&gt;原价79.0&lt;/s&gt;</code></pre>
                             <div class="highlight fragment" style="font-size:70%;">
-                                <p>Buy our Iced Tea and Lemonade!</p>
-                                <p><s>Recommended retail price: $3.99 per bottle</s></p>
-                                <p><strong style="color:#fff;font-weight:bold;">Now selling for just $2.99 a bottle!</strong></p>
+                                <p>¥ <strong>76.5</strong> <s>原价79.0</s></p>
                             </div>
                         </figure>
                     </section>
@@ -844,10 +868,23 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                         </ul>
 <pre class="highlight fragment"><code>&lt;blockquote&gt;
     &lt;p&gt;6月13日下午，&lt;mark&gt;一场大雨&lt;/mark&gt;过后，正阳门箭楼被带着水雾的脚手架包裹得严严实实。北京旧城中轴线上的这座标志性建筑，正经历着新中国成立后规模最大的一次修缮。&lt;/p&gt;
-    <i>[...]</i>
+    <i>...</i>
     &lt;p&gt;6月13日的&lt;mark&gt;那场大雨&lt;/mark&gt;，将故宫端门外西朝房冲洗得干干净净。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;作者为什么两次提到6月13日的大雨？请谈谈你的看法。&lt;/p&gt;</code></pre>
+&lt;p&gt;作者为什么两次提到6月13日那场大雨？请谈谈你的看法。&lt;/p&gt;</code></pre>
+                    </section>
+
+                    <section>
+                        <h4><code>mark</code> 元素</h4>
+                        <figure style="font-size: 80%;">
+                            <blockquote class="left highlight" style="width: 90%;">
+                                <p>6月13日下午，<mark>一场大雨</mark>过后，正阳门箭楼被带着水雾的脚手架包裹得严严实实。北京旧城中轴线上的这座标志性建筑，正经历着新中国成立后规模最大的一次修缮。</p>
+                                ...
+                                <p>6月13日的<mark>那场大雨</mark>，将故宫端门外西朝房冲洗得干干净净。</p>
+                            </blockquote>
+                            <p>作者为什么两次提到6月13日那场大雨？请谈谈你的看法。</p>
+                            <figcaption>2011 年福建高考语文题</figcaption>
+                        </figure>
                     </section>
 
                     <section>
@@ -992,7 +1029,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
 
                 </section>
 
-                <section>
+<!--                 <section>
 
                     <section>
                         <h3 class="exclusive">表格数据 (tabular data)</h3>
@@ -1046,7 +1083,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     </section>
 
                 </section>
-
+ -->
                 <section>
                     <h2 class="exclusive">进一步扩展</h2>
                 </section>
