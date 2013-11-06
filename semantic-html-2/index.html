@@ -60,8 +60,8 @@
 
                     <section>
                         <h3><abbr title="HyperText Markup Language">HTML</abbr></h3>
-                        <blockquote class="justify hyphenate" cite="http://www.w3.org/TR/html4/intro/intro.html#h-2.2" lang="en-US">To publish information for global distribution, one needs <mark>a universally understood language</mark>, a kind of publishing mother tongue that all computers may potentially understand.</blockquote>
-                        <p><small>&dash; <a href="http://www.w3.org/TR/html4/intro/intro.html#h-2.2"><cite>HTML 4.01 规范</cite></a></small></p>
+                        <blockquote class="justify hyphenate" cite="http://www.w3.org/TR/html4/intro/intro.html#h-2.2" lang="en-US" style="font-size: 80%;">To publish information for global distribution, one needs <mark>a universally understood language</mark>, a kind of publishing mother tongue that all computers may potentially understand.</blockquote>
+                        <p class="fragment"><small><q>the publishing language of the World Wide Web</q></small></p>
                     </section>
 
                     <section>
@@ -76,7 +76,7 @@
                     </section>
 
                     <section>
-                        <h3>HTML的使用</h3>
+                        <h3>Exploiting HTML</h3>
                         <figure>
                             <p><img src="img/flow.png" class="transparent"></p>
                             <figcaption class="fragment">HTML最终由机器读取解析，或进行渲染，或挖掘出有用的信息为其他应用提供支持。</figcaption>
@@ -84,7 +84,11 @@
                     </section>
 
                     <section>
-                        <h3 class="exclusive">如何从HTML中获取有用的内容？</h3>
+                        <h3>Exploiting HTML</h3>
+                        <ul>
+                            <li class="fragment">「半结构化」</li>
+                            <li class="fragment">如何提取内容？</li>
+                        </ul>
                     </section>
 
                     <section>
@@ -160,6 +164,18 @@
                     </section>
 
                     <section>
+                        <section>
+                            <h4><code>head</code> 元素</h4>
+                            <p>一组元数据</p>
+                        </section>
+
+                        <section class="fragment">
+                            <h4><code>title</code> 元素</h4>
+                            <p>文档对外的标题<br><small>窗口标题 / 历史记录 / 搜索结果标题 / ...</small></p>
+                        </section>
+                    </section>
+
+                    <section>
                         <h4><code>meta</code> 元素</h4>
                         <ul>
                             <li class="fragment"><code>name</code> / <code>http-equiv</code> / <code>charset</code></li>
@@ -170,10 +186,15 @@
                                     <li>Baidu: <code>mobile-agent</code>, <code>baiduspider</code></li>
                                     <li>Twitter: <code>twitter:card</code>, <code>twitter:image</code>, <code>twitter:creator:id</code></li>
                                     <li>Google: <code>application-url</code>, <code>google-site-verification</code>, <code>googlebot</code></li>
-                                    <li>360: <code>renderer</code> (<strong>not registered</strong>)</li>
+                                    <li>360: <code>renderer</code> (<strong>未注册</strong>)</li>
                                 </ul>
                             </li>
                         </ul>
+                    </section>
+
+                    <section>
+                        <h4><code>style</code>, <code>script</code> 元素</h4>
+                        <p>描述文档样式、交互行为</p>
                     </section>
 
                 </section>
@@ -316,6 +337,23 @@
                     </section>
 
                     <section>
+                        <h4><code>article</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">独立的文档、页面、应用、站点</li>
+                            <li class="fragment">可以单独发布、重用</li>
+                            <li class="fragment">可以是...<br>
+                                <ul>
+                                    <li>一篇帖子</li>
+                                    <li>一篇文章</li>
+                                    <li>一则用户评论</li>
+                                    <li>一个可交互的 widget</li>
+                                    <li>...</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
                         <h4><code>section</code> 元素</h4>
                         <ul>
                             <li class="fragment">按主题将内容分组，通常会有标题 (heading)</li>
@@ -339,23 +377,6 @@
 &lt;/nav&gt;</code></pre>
                         <p class="fragment left">可以帮助 UA 迅速获得导航内容，例如读屏器可以省去很多渲染直接跳到导航位置。</small></p>
                         <p class="fragment"><small>不一定要包含 <code>ul</code>，也可用自然文本进行导航。</small></p>
-                    </section>
-
-                    <section>
-                        <h4><code>article</code> 元素</h4>
-                        <ul>
-                            <li class="fragment">独立的文档、页面、应用、站点</li>
-                            <li class="fragment">可以单独发布、重用</li>
-                            <li class="fragment">可以是...<br>
-                                <ul>
-                                    <li>一篇帖子</li>
-                                    <li>一篇报刊文章</li>
-                                    <li>一则用户评论</li>
-                                    <li>一个可交互的 widget</li>
-                                    <li>...</li>
-                                </ul>
-                            </li>
-                        </ul>
                     </section>
 
                     <section>
@@ -391,7 +412,7 @@
                         </figure>
                     </section>
 
-                    <section>
+<!--                     <section>
                         <h4><code>hgroup</code> 元素</h4>
                         <ul>
                             <li class="fragment">标题的组合</li>
@@ -408,14 +429,15 @@
 &lt;/hgroup&gt;</code></pre>
                             <figcaption class="fragment"><code>hgroup</code> 中级别最高的标题才出现在提纲中</figcaption>
                         </figure>
-                    </section>
+                    </section> -->
 
                     <section>
                         <h4><code>header</code> 元素</h4>
                         <ul>
                             <li class="fragment">一组介绍性描述或导航信息 <small>(目录 / 搜索框 / logo / ...)</small></li>
-                            <li class="fragment">通常包含 <code>h1</code>–<code>h6</code>, <code>hgroup</code></li>
-                            <li class="fragment"><strong>不影响</strong>文档提纲的生成</li>
+                            <li class="fragment">用来描述最近的父级区块</li>
+                            <li class="fragment">通常包含 <code>h1</code>–<code>h6</code></li>
+                            <li class="fragment"><em>不影响</em>文档提纲的生成</li>
                         </ul>
                         <pre class="fragment highlight"><code>&lt;header&gt;
   &lt;p&gt;Welcome to...&lt;/p&gt;
@@ -428,7 +450,7 @@
                         <ul>
                             <li class="fragment">代表最近的父级区块内容的页脚</li>
                             <li class="fragment">作者信息 / 相关文档 / 版权信息</li>
-                            <li class="fragment"><strong>不影响</strong>文档提纲的生成</li>
+                            <li class="fragment"><em>不影响</em>文档提纲的生成</li>
                         </ul>
                         <pre class="fragment highlight"><code>&lt;footer&gt;&lt;!-- site footer --&gt;
   &lt;nav&gt;
@@ -444,7 +466,7 @@
 
                     <section>
                         <h4><code>address</code> 元素</h4>
-                        <p>代表与最近的父级 <code>article</code> 或 <code>body</code> 关联的联系人信息</p>
+                        <p>代表与最近父级 <code>article</code> 或整个文档关联的联系人信息</p>
                         <pre class="fragment highlight"><code>&lt;address&gt;
   &lt;a href=&quot;../People/Raggett/&quot;&gt;Dave Raggett&lt;/a&gt;,
   &lt;a href=&quot;../People/Arnaud/&quot;&gt;Arnaud Le Hors&lt;/a&gt;,
@@ -587,7 +609,7 @@
                             <h4><code>figure</code> 元素</h4>
                             <ul>
                                 <li class="fragment">比较独立的、被主要内容引用的部分</li>
-                                <li class="fragment">插画 / 图表 / 照片 / 代码 / ...</li>
+                                <li class="fragment">插图 / 图表 / 照片 / 代码 / ...</li>
                                 <li class="fragment">通常会有一个标题 <small>(<code>figcaption</code>)</small></li>
                             </ul>
                         </section>
@@ -607,6 +629,18 @@
                             <li class="fragment">可以和 <code>class</code>, <code>lang</code>, <code>title</code> 等属性结合，为一系列连续的内容增加语义</li>
                             <li class="fragment">最后考虑的选择</li>
                         </ul>
+                    </section>
+
+                    <section>
+                        <h4><code>main</code> 元素</h4>
+                        <ul>
+                            <li class="fragment">文档的主内容 / 应用的核心功能</li>
+                            <li class="fragment">唯一</li>
+                            <li class="fragment">对应于 <abbr title="Accessible Rich Internet Applications">ARIA</abbr> <code>role="main"</code> (<a href="http://www.w3.org/TR/wai-aria/roles#main">定义</a>)</li>
+                        </ul>
+                        <pre class="fragment highlight"><code>&lt;main role="main"&gt;
+  &lt;!-- main content --&gt;
+&lt;/main&gt;</code></pre>
                     </section>
 
                 </section>
@@ -1100,7 +1134,6 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                             <h4><code>itemprop</code> 属性</h4>
                             <p>当前项的属性名</p>
                         </section>
-
                     </section>
 
                     <section>
@@ -1165,7 +1198,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                 </section>
 
                 <section>
-                    <h1 class="exclusive">Q ? A : Thanks!</p>
+                    <h3 class="exclusive">- EOF -</h3>
                 </section>
             </div>
 
