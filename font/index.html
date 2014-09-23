@@ -970,21 +970,27 @@ p.gamma { font-family: Helvetica, serif; }</code></pre>
 
                     <section>
                         <h4>src descriptor</h4>
-                        <p class="fragment"><small>是一系列字体资源的列表，优先使用 UA 能够使用的第一个资源，每个资源项后的文件类型描述可选。</small></p>
+                        <p class="fragment normal">是一系列字体资源的列表，优先使用 UA 能够使用的第一个资源，每个资源项后的文件类型描述可选。</p>
                         <pre class="fragment highlight"><code>src: url(fonts/simple.ttf);
 src: url(basic.woff) format("woff"),
      url(fonts/basic.ttf) format("opentype");
 </code></pre>
-                        <figure class="fragment"><img src="img/format-strings.png" alt="Format strings"><br><small>truetype 和 opentype 同义</small></figure>
+                        <figure class="fragment">
+                            <img src="img/format-strings.png" alt="Format strings">
+                            <figcaption>truetype 和 opentype 同义</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h4>src (descriptor)</h4>
                         <p class="fragment">读取本地字体</p>
-                        <pre class="fragment highlight"><code>src: local(Baidu), // try local font first
+                        <figure class="fragment">
+                            <pre><code>src: local(Baidu), // try local font first
      url(baidu.ttf) format("opentype");
 </code></pre>
-                        <p class="fragment"><small>对于 OpenType 和 TrueType 字体，仅匹配 PostScript name (ID 6) 或 full font name (ID 4)，且不支持 localized 名称。</small></p>
+                            <figcaption class="normal">对于 OpenType 和 TrueType 字体，仅匹配 PostScript name (ID 6) 或 full font name (ID 4)，且不支持 localized 名称。</figcaption>
+                        </figure>
+
                     </section>
 
                     <section>
@@ -1026,8 +1032,8 @@ src: url(basic.woff) format("woff"),
 
                     <section>
                         <figure>
-                            <img src="img/Chinese_Character_zhao1_cai2_jin4_bao3.png" alt="合字" style="height: 60%; float: left;">
-                            <img src="img/cao-ni-ma.png" alt="合字" style="height: 60%; float: right;">
+                            <img src="img/Chinese_Character_zhao1_cai2_jin4_bao3.png" alt="合字" style="height: 320px; display: inline-block;">
+                            <img src="img/cao-ni-ma.jpg" alt="合字" style="height: 320px;  display: inline-block;">
                             <figcaption style="clear: both;">中文也有「合字」</figcaption>
                         </figure>
                     </section>
@@ -1082,7 +1088,10 @@ src: url(basic.woff) format("woff"),
                     <ol>
                         <li><a href="http://www.microsoft.com/typography/fonts/product.aspx?PID=145">Fonts supplied with Windows XP SP2</a></li>
                         <li><a href="http://www.microsoft.com/typography/fonts/product.aspx?PID=161">Fonts supplied with Windows 7</a></li>
+                        <li><a href="http://www.microsoft.com/typography/fonts/product.aspx?PID=164">Fonts supplied with Windows 8</a></li>
                         <li><a href="http://support.apple.com/kb/HT1642">OSX 10.5: Font List</a></li>
+                        <li><a href="http://support.apple.com/kb/HT5379">OS X: Fonts included with Mountain Lion</a></li>
+                        <li><a href="http://support.apple.com/kb/HT5878">iOS 7: Font list</a></li>
                     </ol>
                 </section>
 
