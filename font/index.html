@@ -1,48 +1,64 @@
-<!doctype html>  
+<!doctype html>
 <html lang="zh-CN">
-    
+
     <head>
         <meta charset="utf-8">
-        
+
         <title>字体漫谈</title>
 
         <meta name="description" content="An introduction about fonts/typefaces and their application in Web development.">
         <meta name="author" content="Gu Yiling">
-        
+
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/main.css">
-        <link rel="stylesheet" type="text/css" href="../../reveal.js/css/print.css" media="print">
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/just.css" id="theme">
 
-        <link rel="stylesheet" type="text/css" href="../../reveal.js/lib/css/zenburn.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+        <!-- If the query includes "print-pdf", include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( "link" );
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = "../../reveal.js/css/print/pdf.css";
+                document.getElementsByTagName( "head" )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
         <script type="text/javascript">
 
           var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-34177998-1']);
-          _gaq.push(['_trackPageview']);
+          _gaq.push(["_setAccount", "UA-34177998-1"]);
+          _gaq.push(["_trackPageview"]);
 
           (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+            ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+            var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
           })();
 
         </script>
     </head>
-    
+
     <body>
-        
+
         <div class="reveal">
-            
+
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section>
                     <h1>字体漫谈</h1>
-                    <br><br>
-                    <p>顾轶灵</p>
-                    <p><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a></p>
+                    <address>
+                        <span>顾轶灵</span><br><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <!-- <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a> -->
+                    </address>
                 </section>
 
                 <section>
@@ -64,27 +80,27 @@
                     <section>
                         <h3>字形 - Glyph</h3>
                         <p>单个「字符」的具体表达，一个字可有多个不同的字形。</p>
-                        <p class="fragment">
+                        <figure class="fragment">
                             <img src="img/A-small_glyphs.svg" alt="Glyphs">
-                        </p>
-                        <p class="fragment"><small>原则上 Unicode 中只对<strong>字</strong>，而非字形编码。</small></p>
+                            <figcaption>原则上 Unicode 中只对<em>字</em>，而非字形编码。</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h3>字型 - Font</h3>
-                        <p class="left">印刷行业中，指某一整套具有同样样式和尺码的字形，如一整套中易宋体 5 号字、一整套 9 磅 Helvetica 粗体字。</p>
+                        <p>印刷行业中，指某一整套具有同样样式和尺码的字形，如一整套中易宋体 5 号字、一整套 9 磅 Helvetica 粗体字。</p>
                     </section>
 
                     <section>
                         <h3>字体 - Typeface</h3>
                         <p>若干个「字型」在若干个尺寸上的集合。</p>
-                        <p class="left fragment"><small>随着计算机字体 (computer font) 的普及，可缩放的矢量字体的出现使得「字型」与「字体」的界限逐渐模糊，现今这两个概念在数字排印领域越来越多地被当做同义词使用。</small></p>
+                        <p class="fragment normal"><small>随着计算机字体 (computer font) 的普及，可缩放的矢量字体的出现使得「字型」与「字体」的界限逐渐模糊，现今这两个概念在数字排印领域越来越多地被当做同义词使用。</small></p>
                         <br>
                         <p class="fragment">「书体」- 宋体、仿宋体、黑体等…</p>
                         <p class="fragment"><small>例如 Windows 自带的「宋体」实为「中易宋体」。</small></p>
                     </section>
                 </section>
-                
+
                 <section>
                     <section>
                         <h2>字体分类</h2>
@@ -101,7 +117,6 @@
                             <li>衬线字体 (serif)</li>
                             <li>无衬线字体 (sans serif)</li>
                         </ul>
-                        <br><br>
                         <table class="fragment">
                             <tr>
                                 <th>无衬线字体</th>
@@ -124,8 +139,10 @@
                             <li>比例字体 (proportional) - 适合普通文本</li>
                             <li>等宽字体 (monospace) - 适合代码、ASCII art</li>
                         </ul>
-                        <p class="fragment"><img src="img/Proportional-vs-monospace-v4.jpg" alt="Proportional vs. Monospace"></p>
-                        <p class="fragment"><small>HTML 中的 <code>&lt;pre&gt;</code>、<code>&lt;code&gt;</code> 标签常使用等宽字体。</small></p>
+                        <figure class="fragment">
+                            <img src="img/Proportional-vs-monospace-v4.jpg" alt="Proportional vs. Monospace">
+                            <figcaption class="fragment">HTML 中的 <code>&lt;pre&gt;</code>、<code>&lt;code&gt;</code> 标签常使用等宽字体。</figcaption>
+                        </figure>
                     </section>
 
                     <section>
@@ -188,8 +205,8 @@
                             <li>后 Adobe 加入开发，增加对 PostScript 轮廓的支持</li>
                             <li>PostScript flavor / TrueType flavor</li>
                         </ul>
-                        <p class="fragment"><img src="img/AdobeHei.png" alt="Adobe 黑体"></p>
-                        <p class="fragment"><img src="img/SimSun.png" alt="中易宋体"></p>
+                        <figure class="fragment"><img src="img/AdobeHei.png" alt="Adobe 黑体"></figure>
+                        <figure class="fragment"><img src="img/SimSun.png" alt="中易宋体"></figure>
                     </section>
                 </section>
 
@@ -223,8 +240,10 @@
 
                     <section>
                         <h3>font-family</h3>
-                        <p class="fragment highlight"><code>font-family: 宋体;</code></p>
-                        <p class="fragment">「宋体」定义在何处？</p>
+                        <figure>
+                            <code>font-family: 宋体;</code>
+                            <figcaption class="fragment">「宋体」定义在何处？</figcaption>
+                        </figure>
                     </section>
 
                     <section>
@@ -246,7 +265,7 @@
 
                     <section>
                         <h3>Name IDs<br><small>(部分)</small></h3>
-                        <table class="fragment" style="font-size: 50%">
+                        <table class="fragment" style="line-height: 1; font-size: 70%;">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -386,163 +405,169 @@
 
                     <section>
                         <h3>自造字体测试结果</h3>
-                        <table style="font-size: 70%; line-height: 1.1;">
-                            <thead style="font-size: 80%;">
-                                <tr>
-                                    <th></th>
-                                    <th colspan="3">中文</th>
-                                    <th colspan="3">英文</th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th>Family</th>
-                                    <th>Pref. Family</th>
-                                    <th>Full</th>
-                                    <th>Family</th>
-                                    <th>Pref. Family</th>
-                                    <th>Full</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>IE 6~8</th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>&#10003;</td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>IE 9, IE 10 <sup>PP2</sup></th>
-                                    <td>&#10003;</td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>*</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Firefox 3.6</th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>&#10003;</td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th rowspan="2">Firefox 4 +<strong></strong></th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>:(</td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>:(</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Chrome 18</th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>&#10003;</td>
-                                    <td>*</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Safari 5 <sup>Win</sup></th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td>&#10003;</td>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Opera 11</th>
-                                    <td>&#10003;</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><strong>:(</strong></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="fragment"><small>Firefox 4+ 下字体只要有 Preferred Family，就无法通过 Family 匹配。</small></p>
-                        <p class="fragment"><small>* 从「SimSun」来看应该是可以通过英文 Family 匹配的，这里的原因尚不明。</small></p>
+                        <figure>
+                            <table style="font-size: 70%; line-height: 1.1;">
+                                <thead style="font-size: 80%;">
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="3">中文</th>
+                                        <th colspan="3">英文</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th>Family</th>
+                                        <th>Pref. Family</th>
+                                        <th>Full</th>
+                                        <th>Family</th>
+                                        <th>Pref. Family</th>
+                                        <th>Full</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>IE 6~8</th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>IE 9, IE 10 <sup>PP2</sup></th>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>*</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Firefox 3.6</th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">Firefox 4 +<strong></strong></th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>:(</td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>:(</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Chrome 18</th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>&#10003;</td>
+                                        <td>*</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Safari 5 <sup>Win</sup></th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Opera 11</th>
+                                        <td>&#10003;</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>:(</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <figcaption>
+                                <p class="fragment">Firefox 4+ 下字体只要有 Preferred Family，就无法通过 Family 匹配。</p>
+                                <p class="fragment">* 从「SimSun」来看应该是可以通过英文 Family 匹配的，这里的原因尚不明。</p>
+                            </figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h3>Generic font families</h3>
-                        <pre class="highlight fragment"><code>body {
-    font-family: Helvetica, Arial, <strong>sans-serif</strong>;
+                        <pre class="fragment"><code>body {
+    font-family: Helvetica, Arial, sans-serif;
 }</code></pre>
                         <ul class="fragment" lang="en-US" style="line-height: 1.2;">
-                            <li><span style="font-family: Times, Times New Roman, serif;">serif</span></li>
+                            <li><span style="font-family: Times, "Times New Roman", serif;">serif</span></li>
                             <li><span style="font-family: Helvetica, Arial, sans-serif;">sans-serif</span></li>
-                            <li><span style="font-family: Apple Chancery, Comic Sans, cursive;">cursive</span> <small>(script)</small></li>
+                            <li><span style="font-family: "Apple Chancery", "Comic Sans", cursive;">cursive</span> <small>(script)</small></li>
                             <li><span style="font-family: Western, Impact, fantasy;">fantasy</span> <small>(decorative)</small></li>
-                            <li><span style="font-family: Monaco, Courier New, monospace;">monospace</span></li>
+                            <li><span style="font-family: Monaco, "Courier New", monospace;">monospace</span></li>
                         </ul>
-                        <p class="left fragment"><small>影响默认值、fallback 值因素：OS 相关机制、浏览器配置、charset、lang 属性、font-family 中之前项的值…可参考<a href="http://lifesinger.github.com/lab/2011/default-fonts/">玉伯的实验</a>。</small></p>
+                        <p class="fragment"><small>影响默认值、fallback 值因素：OS 相关机制、浏览器配置、charset、lang 属性、font-family 中之前项的值…可参考<a href="http://lifesinger.github.com/lab/2011/default-fonts/">玉伯的实验</a>。</small></p>
                     </section>
 
                     <section>
                         <h3>相关机制</h3>
                         <div class="fragment">
-                            <h5 class="left">Windows</h5>
-                            <p class="left"><small><a href="http://technet.microsoft.com/en-us/library/cc757457%28v=ws.10%29.aspx">FontSubstitutes</a></small></p>
-                            <p><img src="img/fontsubstitutes.png" alt="FontSubstitutes"></p>
+                            <h5>Windows</h5>
+                            <figure>
+                                <figcaption><a href="http://technet.microsoft.com/en-us/library/cc757457%28v=ws.10%29.aspx">FontSubstitutes</a></figcaption>
+                                <img src="img/fontsubstitutes.png" alt="FontSubstitutes">
+                            </figure>
                         </div>
                         <div class="fragment">
-                            <h5 class="left">Linux</h5>
-                            <p class="left"><small><a href="http://fontconfig.org/">fontconfig</a></small></p>
+                            <h5>Linux</h5>
+                            <p><small><a href="http://fontconfig.org/">fontconfig</a></small></p>
                         </div>
                     </section>
 
                     <section>
                         <h3>相关机制</h3>
                         <div class="fragment">
-                            <h5 class="left">WebKit</h5>
-                            <p class="left"><small>WebKit settings 中可设定各个 generic family 的默认值</small></p>
+                            <h5>WebKit</h5>
+                            <p><small>WebKit settings 中可设定各个 generic family 的默认值。</small></p>
                         </div>
                         <div class="fragment">
-                            <h5 class="left">Firefox</h5>
-                            <p class="left"><small>访问 about:config 后筛选出的 font 相关项中包含不同语言下 generic families 的默认值。</small></p>
+                            <h5>Firefox</h5>
+                            <p><small>访问 about:config 后筛选出的 font 相关项中包含不同语言下 generic families 的默认值。</small></p>
                         </div>
                         <div class="fragment">
-                            <h5 class="left">Opera</h5>
-                            <p class="left"><small>opera:config#CSSGenericFontFamily</small></p>
+                            <h5>Opera</h5>
+                            <p><small>opera:config#CSSGenericFontFamily</small></p>
                         </div>
                     </section>
 
                     <section>
                         <h3>font-style</h3>
-                        <p class="fragment"><u>normal</u> | italic | oblique | inherit</p>
+                        <p class="fragment"><code><u>normal</u> | italic | oblique | inherit</code></p>
                         <p class="fragment"><small>「italic」为单独设计的斜体字体，而「oblique」则由普通字体变形而成。</small></p>
-                        <p class="fragment"><img src="img/Garamond_Roman_Italic.svg" alt="Normal vs. italic" title="Normal vs. italic"></p>
-                        <p class="fragment"><img src="img/Oblique_type_example.svg" alt="Oblique" title="Oblique"></p>
+                        <figure class="fragment"><img src="img/Garamond_Roman_Italic.svg" alt="Normal vs. italic" title="Normal vs. italic"></figure>
+                        <figure class="fragment"><img src="img/Oblique_type_example.svg" alt="Oblique" title="Oblique"></figure>
                     </section>
 
                     <section>
                         <h3>font-variant</h3>
-                        <p class="fragment"><u>normal</u> | small-caps | inherit</p>
+                        <p class="fragment"><code><u>normal</u> | small-caps | inherit</code></p>
                         <p class="fragment"><small>允许使用同字体的大写字母缩小而成(甚至不缩小亦被允许)。</small></p>
-                        <p class="fragment"><img src="img/True_vs_Scaled_Small_Caps.svg" alt="True small caps vs. scaled small caps" title="True small caps vs. scaled small caps"></p>
+                        <figure class="fragment"><img src="img/True_vs_Scaled_Small_Caps.svg" alt="True small caps vs. scaled small caps" title="True small caps vs. scaled small caps"></figure>
                     </section>
 
                     <section>
                         <h3>font-weight<br><small>(never fail)</small></h3>
-                        <p class="fragment" style="font-size: 70%;"><u>normal</u> | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit</p>
+                        <p class="fragment" style="font-size: 80%;"><code><u>normal</u> | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit</code></p>
                         <ul>
                             <li class="fragment">normal = 400, bold = 700</li>
                             <li class="fragment">Book / Regular / Roman / Normal / Medium &rarr; normal</li>
@@ -552,7 +577,7 @@
                     </section>
 
                     <section>
-                        <p>Myriad Pro Regular / Semibold / Bold</p>
+                        <h4>Myriad Pro Regular / Semibold / Bold</h4>
                         <table style="font-size: 60%;">
                             <thead>
                                 <tr>
@@ -612,33 +637,42 @@
 
                     <section>
                         <h3>font-size<br><small>(never fail)</small></h3>
-                        <p style="font-size: 80%;">&lt;absolute-size&gt; | &lt;relative-size&gt; | &lt;length&gt; | &lt;percentage&gt; | inherit</p>
+                        <p style="font-size: 70%;"><code>&lt;absolute-size&gt; | &lt;relative-size&gt; | &lt;length&gt; | &lt;percentage&gt; | inherit</code></p>
                         <ul>
                             <li>
                                 <h5>absolute-size</h5>
-                                <p><small>xx-small | x-small | small | medium | large | x-large | xx-large</small></p>
+                                <p style="font-size: 70%;"><code>xx-small | x-small | small | medium | large | x-large | xx-large</code></p>
+                                <p><small>对对应于 HTML 的字体大小 1–7</small></p>
                             </li>
                             <li>
                                 <h5>relative-size</h5>
-                                <p><small></small></p>
+                                <p style="font-size: 70%;"><code>larger | smaller</code></pre>
                             </li>
                         </ul>
                     </section>
 
                     <section>
                         <h3>一个例子</h3>
-                        <pre class="fragment highlight"><code>body {
+                        <figure>
+                            <pre class="fragment highlight"><code>body {
     font-family: Tahoma, sans-serif;
     font-style: italic;
     font-weight: bold;
 }</code></pre>
-                        <p class="fragment"><small>(系统中已安装 Tahoma Regular 和 Tahoma Bold)</small></p>
-                        <p class="left fragment" style="font-size: 80%;">实际匹配过程 (<acronym title="WebCore\css\CSSFontSelector.cpp">WebKit</acronym>)：<br><span class="fragment">找到所有 Family 为「Tahoma」的字体</span><br><span class="fragment">&rarr; 候选字体做<acronym title="font-style / font-variant 为 normal 而字体非 normal">一定过滤</acronym>需后按设定的条件排序</span><br><span class="fragment">&rarr; 选出排序最高的 Tahoma Bold</span><br><span class="fragment">&rarr; 渲染前检查出需要 italic 于是拟合为 oblique 样式</p>
+                            <figcaption class="fragment">(假设系统中已安装 Tahoma Regular 和 Tahoma Bold)</figcaption>
+                        </figure>
+                        <p class="fragment">实际匹配过程 (<abbr title="WebCore\css\CSSFontSelector.cpp">WebKit</abbr>)：</p>
+                        <ol style="font-size: 80%;">
+                            <li class="fragment">找到所有 Family 为「Tahoma」的字体</li>
+                            <li class="fragment">候选字体做<abbr title="font-style / font-variant 为 normal 而字体非 normal">一定过滤</abbr>需后按设定的条件排序</li>
+                            <li class="fragment">选出排序最高的 Tahoma Bold</li>
+                            <li class="fragment">渲染前检查出需要 italic 于是拟合为 oblique 样式</li>
+                        </ol>
                     </section>
 
                     <section>
-                        <h3>未定义内容</h3>
-                        <ul>
+                        <h3>未定义的内容</h3>
+                        <ul style="font-size: 90%;">
                             <li class="fragment">font-family 是否支持 localized names？</li>
                             <li class="fragment">font-family 是否支持 Preferred Family？</li>
                             <li class="fragment">font-style / font-weight / font-variation 不满足时是否需要拟合？</li>
@@ -653,84 +687,93 @@
                     <section>
                         <h2>讨论</h2>
                         <p class="fragment">font-family 没有设定中文字体时，汉字应该怎么显示？</p>
-                        <pre class="highlight fragment"><code>p {
+                        <figure>
+                        <pre class="fragment"><code>p {
     font-family: Helvetica;
 }</code></pre>
-                        <pre class="highlight fragment"><code>p {
+                        <pre class="fragment"><code>p {
     font-family: Helvetica, serif;
 }</code></pre>
+                            <figcaption class="fragment">两者有什么不同？</figcaption>
+                        </figure>
                     </section>
 
                     <section>
-                        <h3 class="exclusive">现实 (悲惨世界)</h3>
+                        <h3 title="测试时间较早，可能过时">现实 (悲惨世界)</h3>
                     </section>
 
                     <section>
                         <h3>Win 7<br><small>IE 8 +</small></h3>
-                        <p class="left fragment"><small>UTF-8 页面，默认 serif 字体会错误地优先使用朝鲜文字体「Batang」。<br>GBK 页面除了前面这个问题外，默认 sans-serif 还会优先使用朝鲜文字体「Gulim」。</small></p>
                         <p class="fragment"><img src="img/batang.png" alt="Why Batang?"></p>
-                        <p class="left fragment"><small><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"&gt;</code> 可<acronym title="只要不是单独定义 font-family: serif; 都能正确 fallback 到「宋体」">缓解</acronym></small></p>
-                        <p class="left fragment"><small>Win 7 下其他浏览器的 serif / sans-serif 汉字默认最终都会落到到「宋体」。</small></p>
+                        <ul style="font-size: 75%;">
+                            <li class="fragment">UTF-8 页面，默认 serif 字体会错误地优先使用朝鲜文字体「Batang」；</li>
+                            <li class="fragment">GBK 页面除了前面这个问题外，默认 sans-serif 还会优先使用朝鲜文字体「Gulim」；</li>
+                            <li class="fragment"><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"&gt;</code> 可<abbr title="只要不是单独定义 font-family: serif; 都能正确 fallback 到「宋体」">缓解</abbr></li>
+                            </li>
+                            <li class="fragment">Win 7 下其他浏览器的 serif / sans-serif 汉字默认最终都会落到到「宋体」。</li>
+                        </ul>
                     </section>
 
                     <section>
                         <h3>Mac OS X<br><small>Safari 5</small></h3>
                         <ul>
-                            <li class="fragment"><small>默认 serif 为「Times」，汉字会使用「华文宋体」(STSong)；<br>默认 sans-serif 为「Helvetica」，汉字会 使用「华文黑体」(STHeiti)。</small></li>
-                            <li class="fragment"><small>所有 family 都缺字时 WebKit 中汉字按<strong>首字体</strong>来选择 system fallback 字体：<br>
-                                <pre class="highlight"><code>p.foo { font-family: Helvetica, Times; }
+                            <li class="fragment">默认 serif 为「Times」，汉字会使用「华文宋体」(STSong)；</li>
+                            <li class="fragment">默认 sans-serif 为「Helvetica」，汉字会 使用「华文黑体」(STHeiti)。</li>
+                            <li class="fragment">
+                                所有 family 都缺字时 WebKit 中汉字按<strong>首字体</strong>来选择 system fallback 字体：
+                                <pre><code>p.foo { font-family: Helvetica, Times; }
 p.bar { font-family: Helvetica, serif; }</code></pre>
-                                其中的汉字均会 fallback 为「华文黑体」。</small>
-                            </li>
+                                其中的汉字均会 fallback 为「华文黑体」。</li>
                         </ul>
                     </section>
 
                     <section>
                         <h3>Mac OS X<br><small>Chrome 18</small></h3>
-                        <ul>
-                            <li class="fragment"><small>默认 serif 为「华文宋体」；默认 sans-serif 为「华文黑体」。</small></li>
-                            <li class="fragment"><small>没有 generic family 时，与 Safari 相同即按首字体 fallback。</small>
+                        <ul style="font-size: 80%;">
+                            <li class="fragment">默认 serif 为「华文宋体」；默认 sans-serif 为「华文黑体」。</li>
+                            <li class="fragment">没有 generic family 时，与 Safari 相同即按首字体 fallback。
                             </li>
-                            <li class="fragment"><small>有 generic family 时，因为默认 serif 和 sans-serif 都包含汉字，故不需要再按首字体来 fallback：<br>
+                            <li class="fragment">
+                                有 generic family 时，因为默认 serif 和 sans-serif 都包含汉字，故不需要再按首字体来 fallback：
                                 <pre class="highlight"><code>p { font-family: Helvetica, serif; }</code></pre>
-                                其中的汉字字体会根据 serif 选择为「华文宋体」。</small>
+                                其中的汉字字体会根据 serif 选择为「华文宋体」。
                             </li>
                         </ul>
                     </section>
 
                     <section>
                         <h3>Mac OS X<br><small>Firefox 11</small></h3>
-                        <ul>
-                            <li class="fragment"><small>默认 serif 为「华文宋体」；默认 sans-serif 为「华文黑体」。</small></li>
-                            <li class="fragment"><small>没有 generic family 时，汉字总是通过 system fallback 选择「华文黑体」。</small>
+                        <ul style="font-size: 80%;">
+                            <li class="fragment">默认 serif 为「华文宋体」；默认 sans-serif 为「华文黑体」；</li>
+                            <li class="fragment">没有 generic family 时，汉字总是通过 system fallback 选择「华文黑体」；
                             </li>
-                            <li class="fragment"><small>有 generic family 时，按配置项选择对应字体 (默认配置中 serif 和 sans-serif 字体均含汉字)<br>
+                            <li class="fragment">有 generic family 时，按配置项选择对应字体 (默认配置中 serif 和 sans-serif 字体均含汉字)<br>
                                 <pre class="highlight"><code>p.alpha { font-family: Times, Helvetica; }
 p.beta { font-family: Helvetica, Times; }
 p.gamma { font-family: Helvetica, serif; }</code></pre>
-                                其中前两条的汉字字体都会 fallback 为「华文黑体」，第三条为默认 serif「华文宋体」。</small>
+                                其中前两条的汉字字体都会 fallback 为「华文黑体」，第三条为默认 serif「华文宋体」。
                             </li>
                         </ul>
-                        <p class="fragment"><small>Mac 下这几个浏览器具体表现可参考<a href="img/mac.png">此图</a></small></p>
+                        <p class="fragment">Mac 下这几个浏览器具体表现可参考<a href="img/mac.png">此图</a></p>
                     </section>
 
                     <section>
                         <h3>More…</h3>
                         <ul style="font-size: 80%;">
-                            <li class="fragment">Opera 对包含 localized family 的字体无法识别英文名字如「SimSun」</li>
-                            <li class="fragment">Opera 在 Windows 下无视 FontSubstitutes</li>
+                            <li class="fragment">Opera <small>(Presto)</small> 对包含 localized family 的字体无法识别英文名字如「SimSun」</li>
+                            <li class="fragment">Opera <small>(Presto)</small> 在 Windows 下无视 FontSubstitutes</li>
                             <li class="fragment">Mac OS 下的 WebKit 不识别 localized family 如「宋体」</li>
                             <li class="fragment">…</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h3 class="exclusive">没有银弹</h3>
+                        <h3>没有银弹</h3>
                     </section>
 
                     <section>
                         <h3>建议</h3>
-                        <ul class="left">
+                        <ul>
                             <li class="fragment">尽量使用 UTF-8 编码并指定 lang 为 zh-CN</li>
                             <li class="fragment">尽量指定 generic family</li>
                             <li class="fragment">
@@ -738,86 +781,96 @@ p.gamma { font-family: Helvetica, serif; }</code></pre>
                                 <small>在 Windows 下，sans-serif 会默认采用「宋体」；Mac 下的「华文黑体」本就是通用选择。「Arial」换为「Tahoma」、「Verdana」等均可，可视设计而定。(可能引起文本对齐问题)<br>
                                 实在需要使用 GB2312/GBK 时，推荐去掉「sans-serif」，否则 Win 7 IE8+ 会错误使用「Gulim」。(亦可为 IE 写单独的 font-family)</small>
                             </li>
-                            <li class="fragment">family name 中的汉字的 Unicode 编码</li>
+                            <li class="fragment">对 family name 中的汉字进行 Unicode 编码一般情况下没有必要</li>
                         </ul>
                     </section>
 
                     <section>
                         <h3>建议</h3>
-                        <ul class="left">
+                        <ul>
                             <li class="fragment">
                                 尽量显式声明，避免让浏览器/操作系统选择字体<br>
                                 <small>西文字体在中文前、将平台独有的字体在通用字体前、generic family 列最后。</small>
-                                <pre class="highlight" style="font-size: 50%;"><code>'Lucida Grande', Verdana, STHeiti, 'Microsoft Yahei', sans-serif;</code></pre>
+                                <pre class="highlight" style="font-size: 40%;"><code>"Lucida Grande", Verdana, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;</code></pre>
                             </li>
                             <li class="fragment">
                                 特殊 family name 两边加引号<br>
-                                <small>包含空格符、数字、除 '-' 外的特殊字符时建议加，但非必须。</small>
+                                <small>包含空格符、数字、除 "-" 外的特殊字符时建议加，但非必须。</small>
                             </li>
                             <li class="fragment">
                                 family name 名称统一<br>
                                 <small>大小写建议统一，也尽量避免「宋体」、「SimSun」混用，有利于 gzip。</small>
                             </li>
-                            <li class="fragment">中文 font-size 至少 12px</li>
+                            <li class="fragment">中文 font-size 至少 12px (SimSun &lt; 12px 时难以辨识)</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h3>鉴赏</h3>
+                        <h3 title="最后更新时间：2014-09-22">鉴赏</h3>
                         <div class="fragment">
-                            <h5>google.com / google.com.hk <small>(首页、搜索结果)</small></h5>
+                            <h5>google.com / google.com.hk <small>(首页、搜索「百度」结果)</small></h5>
                             <ul style="font-size: 80%;">
-                                <li><strong>arial,sans-serif</strong></li>
-                                <li>Arial,sans-serif</li>
-                            </ul>
-                        </div>
-                        <div class="fragment">
-                            <h5>baidu.com <small>(首页、搜索结果)</small></h5>
-                            <ul style="font-size: 80%;">
-                                <li><strong>arial</strong></li>
-                                <li>"宋体"</li>
-                                <li>Arial,宋体</li>
-                                <li>Simsun</li>
+                                <li><em><code>arial,sans-serif</code></em></li>
+                                <li><code>Arial,sans-serif</code></li>
+                                <li><code>"Arial"</code></li>
                             </ul>
                         </div>
                     </section>
 
                     <section>
-                        <h3>鉴赏</h3>
+                        <h3 title="最后更新时间：2014-09-22">鉴赏</h3>
+                        <div class="fragment">
+                            <h5>baidu.com <small>(首页、搜索「百度」结果)</small></h5>
+                            <ul style="font-size: 80%;">
+                                <li><em><code>arial</code></em></li>
+                                <li><code>simsun</code></li>
+                                <li><code>"微软雅黑","黑体"</code></li>
+                                <li><code>Simsun</code></li>
+                                <li><code>arial,"微软雅黑","黑体"</code></li>
+                                <li><code>"方正隶书简体","Microsoft Yahei"</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 title="最后更新时间：2014-09-22">鉴赏</h3>
                         <div class="fragment">
                             <h5>taobao.com <small>(首页)</small></h5>
                             <ul style="font-size: 80%;">
-                                <li><strong>tahoma,arial,宋体</strong></li>
-                                <li>courier new,courier,monospace</li>
-                                <li>'simsun'</li>
-                                <li>arial,verdana</li>
-                                <li>verdana,arial</li>
-                                <li>arial</li>
-                                <li>verdana</li>
-                                <li>Tahoma</li>
-                                <li>'Verdana',"????????"</li>
+                                <li><em><code>tahoma,arial,"Hiragino Sans GB",\5b8b\4f53,sans-serif</code></em></li>
+                                <li><code>arial</code></li>
+                                <li><code>verdana,arial</code></li>
+                                <li><code>Microsoft YaHei, Hiragino Sans GB</code></li>
+                                <li><code>microsoft yahei</code></li>
+                                <li><code>"Microsoft YaHei,\5B8B\4F53"</code></li>
+                                <li><code>SimSun</code></li>
+                                <li><code>verdana</code></li>
+                                <li><code><span class="alert">"tahoma,arial,\5b8b\4f53,sans-serif"</span></code></li>
                             </ul>
                         </div>
                     </section>
 
                     <section>
-                        <h3>鉴赏</h3>
+                        <h3 title="最后更新时间：2014-09-22">鉴赏</h3>
                         <div class="fragment">
                             <h5>qq.com <small>(首页)</small></h5>
                             <ul style="font-size: 80%;">
-                                <li><strong>"宋体","Arial Narrow",HELVETICA</strong></li>
-                                <li>"宋体","Arial Narrow"</li>
-                                <li>tahoma</li>
-                                <li>Verdana</li>
-                                <li>宋体,STSong</li>
-                                <li>tahoma,宋体</li>
-                                <li>Tahoma</li>
+                                <li><em><code>"宋体","Arial Narrow",HELVETICA</code></em></li>
+                                <li><code>"\5B8B\4F53",arial,sans-serif</code></li>
+                                <li><code>Tahoma,Arial</code></li>
+                                <li><code>Tahoma</code></li>
+                                <li><code>Tahoma,"微软雅黑",<span class="alert">"MicrosoftYahei"</span>,"宋体"</code></li>
+                                <li><code>Tahoma,"宋体"</code></li>
+                                <li><code>Arial</code></li>
+                                <li><code>"Microsoft Yahei"</code></li>
+                                <li><code>arial, simsun</code></li>
+                                <li><code><span class="alert">"\u7039\u5b29\u7d8b"</span>,arial,sans-serif</code><br>&uarr; "瀹嬩綋"</li>
                             </ul>
                         </div>
                     </section>
 
                     <section>
-                        <h3 class="exclusive">What's next?</h3>
+                        <h3>What"s next?</h3>
                     </section>
                 </section>
 
@@ -870,14 +923,14 @@ p.gamma { font-family: Helvetica, serif; }</code></pre>
                         <h3>font-stretch</h3>
                         <p class="fragment" style="font-size: 80%;"><u>normal</u> | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded | inherit</p>
                         <p class="fragment"><small>用来选择字体的伸缩程度</small></p>
-                        <p class="fragment"><img src="img/universwidths.png" alt="condensed to expanded" title="condensed to expanded"></p>
+                        <figure class="fragment"><img src="img/universwidths.png" alt="condensed to expanded" title="condensed to expanded"></figure>
                     </section>
 
                     <section>
                         <h3>font-size-adjust</h3>
                         <p class="fragment">&lt;number&gt; | <u>none</u> | inherit </p>
                         <p class="fragment"><small>aspect value：字体的 x-height 与 font-size 的比例</small></p>
-                        <p class="fragment left">字体发生 fallback 以后，aspect value 可能会不一致，这个属性用来调整 font-size 使得不同字体的 x-height 保持一致，取值为需要的 aspect value 值。效果参见<a href="img/fontsizeadjust.png">示意图</a>。</p>
+                        <p class="fragment">字体发生 fallback 以后，aspect value 可能会不一致，这个属性用来调整 font-size 使得不同字体的 x-height 保持一致，取值为需要的 aspect value 值。效果参见<a href="img/fontsizeadjust.png">示意图</a>。</p>
                     </section>
 
                     <section>
@@ -892,7 +945,7 @@ p.gamma { font-family: Helvetica, serif; }</code></pre>
 
                     <section>
                         <h3>@font-face</h3>
-                        <pre class="highlight fragment"><code>@font-face {
+                        <pre class="fragment"><code>@font-face {
     <var>descriptor</var>: <var>value</var>;
     <var>descriptor</var>: <var>value</var>;
     …
@@ -917,12 +970,12 @@ p.gamma { font-family: Helvetica, serif; }</code></pre>
 
                     <section>
                         <h4>src descriptor</h4>
-                        <p class="fragment left"><small>是一系列字体资源的列表，优先使用 UA 能够使用的第一个资源，每个资源项后的文件类型描述可选。</small></p>
+                        <p class="fragment"><small>是一系列字体资源的列表，优先使用 UA 能够使用的第一个资源，每个资源项后的文件类型描述可选。</small></p>
                         <pre class="fragment highlight"><code>src: url(fonts/simple.ttf);
 src: url(basic.woff) format("woff"),
      url(fonts/basic.ttf) format("opentype");
 </code></pre>
-                        <p class="fragment"><img src="img/format-strings.png" alt="Format strings"><br><small>truetype 和 opentype 同义</small></p>
+                        <figure class="fragment"><img src="img/format-strings.png" alt="Format strings"><br><small>truetype 和 opentype 同义</small></figure>
                     </section>
 
                     <section>
@@ -931,7 +984,7 @@ src: url(basic.woff) format("woff"),
                         <pre class="fragment highlight"><code>src: local(Baidu), // try local font first
      url(baidu.ttf) format("opentype");
 </code></pre>
-                        <p class="fragment left"><small>对于 OpenType 和 TrueType 字体，仅匹配 PostScript name (ID 6) 或 full font name (ID 4)，且不支持 localized 名称。</small></p>
+                        <p class="fragment"><small>对于 OpenType 和 TrueType 字体，仅匹配 PostScript name (ID 6) 或 full font name (ID 4)，且不支持 localized 名称。</small></p>
                     </section>
 
                     <section>
@@ -951,36 +1004,52 @@ src: url(basic.woff) format("woff"),
                     </section>
 
                     <section>
-                        <h3 class="exclusive">font features<br><small>更好地利用字体的的原生功能，提供更丰富的样式</small></h3>
+                        <h3>font features</h3>
+                        <p><small>更好地利用字体的的原生功能，提供更丰富的样式</small></p>
                     </section>
 
                     <section>
                         <h4>font-variant-position</h4>
-                        <p><img src="img/realsubscripts.png" alt="下标 vs. 拟合下标"><br><small>下标 vs. 拟合下标</small></p>
+                        <figure>
+                            <img src="img/realsubscripts.png" alt="下标 vs. 拟合下标">
+                            <figcaption>下标 vs. 拟合下标</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h4>font-variant-position</h4>
-                        <p><img src="img/ligatures.png" alt="合字"><br><small>合字</small></p>
+                        <figure>
+                            <img src="img/ligatures.png" alt="合字">
+                            <figcaption>合字 (ligatures)</figcaption>
+                        </figure>
                     </section>
 
                     <section>
-                        <p><img src="img/Chinese_Character_zhao1_cai2_jin4_bao3.png" alt="合字" style="height: 60%; float: left;"><img src="img/cao-ni-ma.png" alt="合字" style="height: 60%; float: right;"></p>
-                        <p style="clear: both;"><small>中文也有「合字」</small></p>
+                        <figure>
+                            <img src="img/Chinese_Character_zhao1_cai2_jin4_bao3.png" alt="合字" style="height: 60%; float: left;">
+                            <img src="img/cao-ni-ma.png" alt="合字" style="height: 60%; float: right;">
+                            <figcaption style="clear: both;">中文也有「合字」</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h4>font-variant-caps</h4>
-                        <p><img src="img/small-caps.png" alt="小型大写字"><br><small>小型大写字</small></p>
+                        <figure>
+                            <img src="img/small-caps.png" alt="小型大写字">
+                            <figcaption>小型大写字</figcaption>
+                        </figure>
                     </section>
 
                     <section>
                         <h4>font-variant-numeric</h4>
-                        <p><img src="img/numberstyles.png" alt="数字样式"><br><small>数字样式</small></p>
+                        <figure>
+                            <img src="img/numberstyles.png" alt="数字样式">
+                            <figcaption>数字样式</figcaption>
+                        </figure>
                     </section>
 
                     <section>
-                        <p class="exclusive">更多请参考 <a href="http://www.w3.org/TR/css3-fonts/#font-rend-props">CSS 3 Font feature properties</a></p>
+                        <p>更多请参考 <a href="http://www.w3.org/TR/css3-fonts/#font-rend-props">CSS 3 Font feature properties</a></p>
                     </section>
 
                     <section>
@@ -1018,47 +1087,42 @@ src: url(basic.woff) format("woff"),
                 </section>
 
                 <section>
-                    <h1 class="exclusive">「终」</h1>
+                    <h1>Q ? A : Thanks</h1>
                 </section>
             </div>
-
-            <!-- The navigational controls UI -->
-            <aside class="controls">
-                <a class="left" href="#">&#x25C4;</a>
-                <a class="right" href="#">&#x25BA;</a>
-                <a class="up" href="#">&#x25B2;</a>
-                <a class="down" href="#">&#x25BC;</a>
-            </aside>
-
-            <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
-            <div class="progress"><span></span></div>
-            
         </div>
 
-        <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
         <script src="../../reveal.js/lib/js/head.min.js"></script>
         <script src="../../reveal.js/js/reveal.min.js"></script>
 
         <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
                 controls: true,
                 progress: true,
                 history: true,
-                rollingLinks: false,
-                
-                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || "linear", // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
+                // parallaxBackgroundSize: "2100px 900px",
 
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    { src: '../../reveal.js/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-                    { src: '../../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '../../reveal.js/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../../reveal.js/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../../reveal.js/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-                    { src: '../../reveal.js/plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-                    { src: '../../reveal.js/lib/js/Hyphenator.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } }
+                    { src: "../../reveal.js/lib/js/classList.js", condition: function() { return !document.body.classList; } },
+                    { src: "../../reveal.js/plugin/markdown/marked.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/markdown/markdown.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/highlight/highlight.js", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: "../../reveal.js/plugin/zoom-js/zoom.js", async: true, condition: function() { return !!document.body.classList; } },
+                    { src: "../../reveal.js/plugin/notes/notes.js", async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
+
         </script>
     </body>
 </html>
