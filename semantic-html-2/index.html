@@ -1,14 +1,14 @@
-<!doctype html>  
+<!doctype html>
 <html lang="zh-CN">
-    
+
     <head>
         <meta charset="utf-8">
-        
+
         <title>Semantic HTML</title>
 
         <meta name="description" content="An introduction about semantic HTML.">
         <meta name="author" content="Gu Yiling">
-        
+
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -31,17 +31,21 @@
 
         </script>
     </head>
-    
+
     <body>
-        
+
         <div class="reveal">
-            
+
             <div class="slides">
                 <section>
                     <h1>Semantic <abbr title="HyperText Markup Language">HTML</abbr></h1>
-                    <address class="separated">
+                    <address>
                         <p>顾轶灵</p>
-                        <p><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a></p>
+                        <p>
+                            <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
+                            <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
+                            <a href="http://github.com/Justineo" title="@Justineo" class="icon-github-circled"></a>
+                        </p>
                     </address>
                 </section>
 
@@ -158,7 +162,7 @@
                 </section>
 
                 <section>
-                    
+
                     <section>
                         <h3 class="exclusive">元数据 (metadata)</h3>
                     </section>
@@ -700,7 +704,7 @@
 
                             <p>There is a certain <i lang="fr">je ne sais quoi</i> in the air.</p>
 
-                            <p><i class="ship-name">Titanic</i> sank in the North Atlantic Ocean on 15 April 1912.</p> 
+                            <p><i class="ship-name">Titanic</i> sank in the North Atlantic Ocean on 15 April 1912.</p>
                         </figure>
                     </section>
 
@@ -923,7 +927,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     <section>
                         <h3 class="exclusive">更改记录 (edits)</h3>
                     </section>
-                    
+
                     <section>
                         <h4><code>ins</code>, <code>del</code> 元素</h4>
                         <ul>
@@ -940,7 +944,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     <section>
                         <h3 class="exclusive">嵌入内容 (embedded content)</h3>
                     </section>
-                    
+
                     <section>
                         <h4><code>img</code> 元素</h4>
                         <ul>
@@ -982,7 +986,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                         <figure class="fragment">
                             <pre class="highlight"><code>&lt;embed src=&quot;catgame.swf&quot; type=&quot;application/x-shockwave-flash&quot; quality=&quot;high&quot;&gt;
 
-&lt;object data=&quot;catgame.swf&quot; type=&quot;application/x-shockwave-flash&quot;&gt; 
+&lt;object data=&quot;catgame.swf&quot; type=&quot;application/x-shockwave-flash&quot;&gt;
   &lt;param name=&quot;quality&quot; value=&quot;high&quot;&gt;
   &lt;p&gt;Plugin needed.&lt;/p&gt;
 &lt;/object&gt;</code></pre>
@@ -1043,7 +1047,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                                 <li class="fragment">用来表示超过一维的数据</li>
                             </ul>
                         </section>
-                        
+
                         <section>
                             <h4 class="fragment"><code>caption</code> 元素</h4>
                             <ul>
@@ -1089,7 +1093,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                 </section>
 
                 <section>
-                    
+
                     <section>
                         <h3 class="exclusive">微格式 (Microformats)</h3>
                         <p><small>Microformats 是 HTML 的扩展，用来标注人物 / 组织 / 事件 / 地点 / 简历 / 菜谱 / ...<br>很多格式已是业界的事实标准<br>(<a href="http://microformats.org/">Microformats Wiki</a>)</small></p>
@@ -1202,7 +1206,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                     </section>
 
                     <section>
-                        <h4>实例</h4>                        
+                        <h4>实例</h4>
                         <figure class="fragment">
                             <p><img src="img/microdata_imdb.png" alt="IMDB embeds microdata in movie reviews."></p>
                             <figcaption>IMDB 的影片描述中嵌入了 microdata</figcaption>
@@ -1249,7 +1253,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
 
             <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
             <div class="progress"><span></span></div>
-            
+
         </div>
 
         <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
@@ -1262,7 +1266,7 @@ is a device that allows off-world teams to open the iris.&lt;/p&gt;</code></pre>
                 progress: true,
                 history: true,
                 rollingLinks: false,
-                
+
                 transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
                 // Optional libraries used to extend on reveal.js
