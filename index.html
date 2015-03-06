@@ -17,16 +17,21 @@
 
     </script>
     <style type="text/css">
+      html {
+        font-size: 16px; // 1rem
+      }
+
       body {
         margin: 0;
         background-color: #333;
-        font-family: "Helvetica Heue", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        font-family: "Avenir Next", "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
         font-weight: 100;
         color: #fff;
       }
 
       a {
         color: #fff;
+        text-decoration: none;
       }
 
       header {
@@ -44,7 +49,7 @@
       .item {
         display: block;
         padding: 45px 0;
-        font-size: 48px;
+        font-size: 2rem;
         text-align: center;
         text-decoration: none;
         transition: all 0.3s;
@@ -67,36 +72,53 @@
       }
 
       /*********************************************
-       * FAVICON
+       * FONT FACES
        *********************************************/
+      @font-face {
+        font-family: 'profile';
+        src: url('assets/fonts/profile.eot?65651127');
+        src: url('assets/fonts/profile.eot?65651127#iefix') format('embedded-opentype'),
+             url('assets/fonts/profile.woff?65651127') format('woff'),
+             url('assets/fonts/profile.ttf?65651127') format('truetype'),
+             url('assets/fonts/profile.svg?65651127#profile') format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
 
-      .favicon {
+      [class^="icon-"]:before, [class*=" icon-"]:before {
+        font-family: "profile";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+
         display: inline-block;
-        width: 24px;
-        height: 24px;
-        margin: 5px;
-        border-radius: 4px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        text-decoration: inherit;
+        width: 1em;
+        margin-right: .2em;
+        text-align: center;
+        /* opacity: .8; */
+
+        /* For safety - reset parent styles, that can break glyph codes*/
+        font-variant: normal;
+        text-transform: none;
+
+        /* fix buttons height, for twitter bootstrap */
+        line-height: 1em;
+
+        /* Animation center compensation - margins should be symmetric */
+        /* remove if not needed */
+        margin-left: .2em;
+
+        /* you can be more comfortable with increased icons size */
+        /* font-size: 120%; */
+
+        /* Uncomment for 3D effect */
+        /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
       }
 
-      .favicon:hover {
-        background-color: #fff;
-      }
-
-      .favicon.weibo {
-        background-image: url(../reveal.js/img/favicon/weibo.png);
-      }
-
-      .favicon.twitter {
-        background-image: url(../reveal.js/img/favicon/twitter.png);
-      }
-
-      .favicon.lync-in {
-        background-image: url(../reveal.js/img/favicon/lync.in.png);
-      }
+      .icon-twitter:before { content: '\e800'; } /* '' */
+      .icon-weibo:before { content: '\e801'; } /* '' */
+      .icon-github-circled:before { content: '\e802'; } /* '' */
     </style>
 </head>
 <body>
@@ -104,14 +126,18 @@
         <h1>Slideshows &raquo;</h1>
     </header>
     <nav>
-        <a class="item" href="http://justineo.github.com/slideshows/font/">字体漫谈</a>
-        <a class="item" href="http://justineo.github.com/slideshows/semantic-html/">Semantic HTML</a>
-        <a class="item" href="http://justineo.github.com/slideshows/modular-js/">Modern Modular JavaScript</a>
-        <a class="item" href="http://justineo.github.com/slideshows/es6-feature/">ES6 Features</a>
-        <a class="item" href="http://justineo.github.com/slideshows/processing-css/">Processing CSS</a>
+        <a class="item" href="font/">字体漫谈</a>
+        <a class="item" href="semantic-html/">Semantic HTML</a>
+        <a class="item" href="modular-js/">Modern Modular JavaScript</a>
+        <a class="item" href="es6-features/">ES6 Features</a>
+        <a class="item" href="processing-css/">Processing CSS</a>
     </nav>
     <footer>
-        <p><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a></p>
+        <p>
+            <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
+            <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
+            <a href="http://github.com/Justineo" title="@Justineo" class="icon-github-circled"></a>
+        </p>
         <p>Text is available under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a></p>
     </footer>
 
