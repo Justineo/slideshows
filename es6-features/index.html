@@ -258,7 +258,7 @@ GET`http://foo.org/bar?a=${a}&amp;b=${b}
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js" style="font-size: 70%;">// list matching
+                        <pre><code class="js" style="font-size: 80%;">// list matching
 var [a, , b] = [1,2,3];
 
 // object matching
@@ -355,7 +355,7 @@ f(...[1,2,3]) == 6</code></pre>
                     <section>
                         <h2>Iterators + For..Of</h2>
                         <ul>
-                            <li>custom iteration<br><small><code>next()</code>, <code>value</code>, <code>done</code></small></li>
+                            <li>custom iteration<br><code>next()</code>, <code>value</code>, <code>done</code></li>
                             <li>generalize <code>for..in</code> with <code>for..of</code></li>
                         </ul>
                     </section>
@@ -578,7 +578,7 @@ System.set('jquery', Module({$: $})); // WARNING: not yet finalized</code></pre>
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js">// Sets
+                        <pre><code class="js" style="font-size: 80%;">// Sets
 var s = new Set();
 s.add("hello").add("goodbye").add("hello");
 s.size === 2;
@@ -616,7 +616,7 @@ ws.add({ data: 42 });
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js">// Proxying a normal object
+                        <pre><code class="js" style="font-size: 90%;">// Proxying a normal object
 var target = {};
 var handler = {
   get: function (receiver, name) {
@@ -658,7 +658,7 @@ p() === 'I am the proxy';</code></pre>
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js">var MyClass = (function() {
+                        <pre><code class="js" style="font-size: 90%;">var MyClass = (function() {
 
   // module scoped symbol
   var key = Symbol("key");
@@ -698,7 +698,7 @@ c["key"] === undefined</code></pre>
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js">// Pseudo-code of Array
+                        <pre><code class="js" style="font-size: 90%;">// Pseudo-code of Array
 class Array {
     constructor(...args) { /* ... */ }
     static [Symbol.create]() {
