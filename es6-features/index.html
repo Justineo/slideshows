@@ -20,17 +20,24 @@
         <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
 
         <style>
-            .reveal h3.icon-title {
-                margin: 0;
+            .reveal .icon-title + pre {
+                margin-top: 0;
             }
+
+            .reveal .icon-title {
+                margin-bottom: 0.4em;
+            }
+
             .reveal h3 .fa {
                 font-weight: 700;
                 font-size: 1em;
             }
+
             .reveal img.clear {
                 border: none;
                 background: none;
             }
+
             .reveal img.inline {
                 vertical-align: middle;
             }
@@ -75,7 +82,7 @@
                 <section>
                     <h1>ES6 Features</h1>
                     <address>
-                        <p>GU Yiling <small>@ Baidu EFE</small></p>
+                        <p>GU Yiling <small>@ <a href="http://efe.baidu.com/">Baidu <abbr title="Excellent Front-end">EFE</abbr></a></small></p>
                         <p>
                             <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
                             <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
@@ -251,7 +258,7 @@ GET`http://foo.org/bar?a=${a}&amp;b=${b}
 
                     <section>
                         <h3 class="icon-title"><span class="fa fa-code"></span></h3>
-                        <pre><code class="js">// list matching
+                        <pre><code class="js" style="font-size: 70%;">// list matching
 var [a, , b] = [1,2,3];
 
 // object matching
