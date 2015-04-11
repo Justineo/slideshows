@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-cmn-Hans">
 
     <head>
         <meta charset="utf-8">
@@ -55,9 +55,14 @@
             <div class="slides">
                 <section>
                     <h1>Modern Modular JavaScript</h1>
-                    <br><br>
-                    <p>顾轶灵</p>
-                    <p><a href="http://weibo.com/justineo" title="@Justineo" class="favicon image weibo"></a> <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="favicon image twitter"></a> <a href="http://lync.in/" title="Lync.in" class="favicon image lync-in"></a></p>
+                    <address>
+                        <p>顾轶灵</p>
+                        <p>
+                            <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
+                            <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
+                            <a href="http://github.com/Justineo" title="@Justineo" class="icon-github-circled"></a>
+                        </p>
+                    </address>
                 </section>
 
                 <section>
@@ -276,23 +281,21 @@ define(function(require, exports, module) {
 
                     <section>
                         <h4>require</h4>
-                        <ul>
-                            <li class="fragment"><code>require(String)</code><br><small><strong>同步</strong>返回指定模块接口</small><pre class="highlight fragment"><code>define(function(require) {
+                        <p class="fragment"><code>require(String)</code><br><small><strong>同步</strong>返回指定模块接口</small></p>
+                        <pre class="highlight fragment"><code>define(function(require) {
     var a = require('a');
 });</code></pre></li>
-                        </ul>
                         <code class="fragment">Function.prototype.toString()</code>
                     </section>
 
                     <section>
                         <h4>require</h4>
-                        <ul>
-                            <li class="fragment"><code>require(Array, Function)</code><br><small><strong>异步</strong>读取多个依赖模块后执行回调</small><pre class="highlight fragment"><code>define(function(require) {
+                        <p class="fragment"><code>require(Array, Function)</code><br><small><strong>异步</strong>读取多个依赖模块后执行回调</small></p>
+                        <pre class="highlight fragment"><code>define(function(require) {
     require(['a', 'b'], function(a, b) {
         //modules a and b are now available for use.
     });
 });</code></pre></li>
-                        </ul>
                     </section>
 
                     <section>
