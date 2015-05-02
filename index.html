@@ -191,12 +191,12 @@ function randomize() {
     size: items.length,
     s: 0.7,
     l: 0.8,
-    format: 'rgba'
+    space: 'rgba'
   });
 
   var styleText = '';
   items.forEach(function (item, i) {
-    item.style.borderColor = colors[i];
+    item.style.borderColor = colors[i].css();
 
     if (style) {
       style.parentNode.removeChild(style);
