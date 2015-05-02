@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Writing CSS</title>
+
+        <meta name="description" content="A brief introduction of CSS.">
+        <meta name="author" content="Gu Yiling">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/font-awesome.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/just.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+        <style>
+            var::before {
+                content: "[";
+            }
+            var::after {
+                content: "]";
+            }
+            var::before,
+            var::after {
+                color: #666;
+                font-style: normal;
+            }
+
+            iframe {
+                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+            }
+            span.type::before {
+                content: "‘<";
+            }
+            span.type::after {
+                content: ">’";
+            }
+        </style>
+
+        <!-- If the query includes "print-pdf", include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( "link" );
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = "../../reveal.js/css/print/pdf.css";
+                document.getElementsByTagName( "head" )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(["_setAccount", "UA-34177998-1"]);
+          _gaq.push(["_trackPageview"]);
+
+          (function() {
+            var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+            ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+            var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <div class="slides">
+                <section>
+                    <h1>Writing <abbr title="Cascading Style Sheets">CSS</abbr> Right</h1>
+                    <address>
+                        <p>GU Yiling <small>@ Baidu</small></p>
+                        <p>
+                            <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
+                            <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
+                            <a href="http://github.com/Justineo" title="@Justineo" class="icon-github-circled"></a>
+                        </p>
+                    </address>
+                </section>
+
+                <section>
+                    <h2>In this lecture:</h2>
+                    <style>
+                    #overview-list li {
+                        list-style-type: none;
+                    }
+
+                    #overview-list .fa {
+                        display: inline-block;
+                        width: 40px;
+                    }
+                    </style>
+                    <ul id="overview-list">
+                        <li><span class="fa fa-check"></span> General knowledge</li>
+                        <li><span class="fa fa-check"></span> Syntax</li>
+                        <li><span class="fa fa-check"></span> Cascading</li>
+                        <li><span class="fa fa-check"></span> Layout basics</li>
+                        <li><span class="fa fa-close"></span> Rendering details</li>
+                    </ul>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>What is CSS?</h2>
+                        <p class="fragment"><b>C</b>ascading <b>S</b>tyle <b>S</b>heets</p>
+                    </section>
+
+                    <section>
+                        <h3>History</h3>
+                        <ul>
+                            <li class="fragment">
+                                <h4>CSS 1 <small>(1996)</small></h4>
+                                <p>font, color, align, box-model, #id, .class, ...</p>
+                            </li>
+                            <li class="fragment">
+                                <h4>CSS 2 <small>(1998)</small></h4>
+                                <p>position, z-index, media, text-shadow, ...</p>
+                            </li>
+                            <li class="fragment">
+                                <h4>CSS 2.1 <small>(2011)</small></h4>
+                                <p><a href="http://www.w3.org/TR/CSS21/about.html#css2.1-v-css2">CSS 2.1 vs CSS 2</a></p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>CSS 3<span class="fragment">, even CSS 4</span><strong class="fragment">?</strong></h3>
+                        <p class="fragment">No. Modules + Level!</p>
+                    </section>
+
+                    <section>
+                        <h3>CSS Modules <small>(imcomplete)</small></h3>
+                        <table style="font-size: 55%;">
+                            <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Latest Level (2014/05)</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Text</td>
+                                    <td>3</td>
+                                    <td>text-justify, word-break</td>
+                                </tr>
+                                <tr>
+                                    <td>Text Decoration</td>
+                                    <td>3</td>
+                                    <td>text-shadow, text-emphasis</td>
+                                </tr>
+                                <tr>
+                                    <td>Flexible Box</td>
+                                    <td>1</td>
+                                    <td>flex, justify-content</td>
+                                </tr>
+                                <tr>
+                                    <td>Color</td>
+                                    <td>4</td>
+                                    <td>hwb(), color()</td>
+                                </tr>
+                                <tr>
+                                    <td>Animations</td>
+                                    <td>1</td>
+                                    <td>animation, @keyframes</td>
+                                </tr>
+                                <tr>
+                                    <td>Transforms</td>
+                                    <td>1</td>
+                                    <td>transform, perspective</td>
+                                </tr>
+                                <tr>
+                                    <td>Transitions</td>
+                                    <td>1</td>
+                                    <td>transition, timing functions</td>
+                                </tr>
+                                <tr>
+                                    <td>Cascading Variables</td>
+                                    <td>1</td>
+                                    <td>--foo, var()</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="fragment"><a href="http://www.w3.org/Style/CSS/current-work#roadmap">More...</a></p>
+                    </section>
+
+                    <section>
+                        <h3>Including CSS into HTML</h3>
+                        <p>How?</p>
+                    </section>
+
+                    <section>
+                        <h4>1. <code>&lt;link&gt;</code> element</h4>
+                        <figure>
+                            <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>2. <code>&lt;style&gt;</code> element</h4>
+                        <figure>
+                            <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;style type="text/css"&gt;
+        /* ... */
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>3. Inline styles</h4>
+                        <figure>
+                            <pre><code class="html">&lt;body&gt;
+    &lt;h1 style="color: red;"&gt;
+        Hello World
+    &lt;/h1&gt;
+    &lt;p style="margin: 2em 0;"&gt;
+        Paragraph here
+    &lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>4. <code>@import</code> rules</h4>
+                        <figure>
+                            <pre><code class="css">@import url(normalize.css);
+@import url(layout.css);
+@import url(typography.css);
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3em;
+}
+</code></pre>
+                        </figure>
+                        <p>Performs <em>worse</em> than the <code>&lt;link&gt;</code> way!<br><small>See <cite><a href="http://www.stevesouders.com/blog/2009/04/09/dont-use-import/">don’t use @import</a></cite>.</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Recap</h3>
+                        <ul>
+                            <li class="fragment"><em><b>C</b>ascading</em> <b>S</b>tyle <b>S</b>heets</li>
+                            <li class="fragment">CSS 1, CSS 2, CSS 2.1<span class="fragment">, <s>CSS 3</s></span><span class="fragment">, <s>CSS 4</s></span></li>
+                            <li class="fragment">CSS Modules + Level</li>
+                            <li class="fragment">4 ways to use CSS in HTML</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2><code>/* break */</code></h2>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>CSS Syntax<br><small>— writing valid CSS</small></h2>
+                    </section>
+
+                    <section>
+                        <h3>At-rules</h3>
+                        <ul>
+                            <li class="fragment"><code>@charset</code><br><small>(before anything else — any character)</small></li>
+                            <li class="fragment"><code>@import</code><br><small>(before any statement except <code>@charset</code>)</small></li>
+                            <li class="fragment"><code>@media</code></li>
+                            <li class="fragment"><code>@font-face</code></li>
+                            <li class="fragment">...</li>
+                        </ul>
+                        <figure class="fragment">
+                            <pre><code class="css">@charset "UTF-8";
+@import "styles.css" screen and (min-width: 960px);
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Properties</h3>
+                        <ul>
+                            <li><code>display</code></li>
+                            <li><code>position</code></li>
+                            <li><code>height</code></li>
+                            <li><code>font-family</code></li>
+                            <li><code>transition</code></li>
+                            <li>...</li>
+                        </ul>
+                        <p class="fragment">Why vendor prefixes?</p>
+                    </section>
+
+                    <section>
+                        <h3>Declarations</h3>
+                        <p><var>property</var>: <var>value</var></p>
+                        <ul>
+                            <li><code>display: block</code></li>
+                            <li><code>position: fixed</code></li>
+                            <li><code>height: 2em</code></li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Declaration blocks</h3>
+                        <p>{ <var>declaration</var>; <var>declaration</var>; ... }</p>
+                        <pre style="width: 60%"><code class="css">/* single-line */
+{ display: block; height: 3em }
+
+/* multi-line */
+{
+    color: red;
+    opacity: 0.5;
+}</code></pre>
+                        <p><small>Semicolons (<code>;</code>) are only required <em>between declarations</em>.</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Selectors</h3>
+                        <p>Pattern matching against document trees</p>
+                    </section>
+
+                    <section>
+                        <h3>Selectors <small>(simple selectors)</small></h3>
+                        <p>Name a few?</p>
+                        <table class="fragment" style="font-size: 70%;">
+                            <thead>
+                                <tr>
+                                    <th>Basic simple selectors</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Type selectors</td>
+                                    <td><code>p</code>, <code>span</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Universal selectors</td>
+                                    <td><code>*</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Attribute selectors</td>
+                                    <td><code>[title]</code>, <code>[rel~="copyright"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Class selectors</td>
+                                    <td><code>.comment</code>, <code>.post</code></td>
+                                </tr>
+                                <tr>
+                                    <td>ID selectorss</td>
+                                    <td><code>#nav</code>, <code>#main</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Pseudo classes</td>
+                                    <td><code>:hover</code>, <code>:lang(zh)</code>, <code>:checked</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h4>Pseudo classes</h4>
+                        <p>How many pseudo classes do you know?</p>
+                        <table class="fragment" style="font-size: 70%;">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Linguistic</td>
+                                    <td><code>:dir()</code>, <code>:lang()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td><code>:link</code>, <code>:visited</code>, <code>:target</code>, ...</td>
+                                </tr>
+                                <tr>
+                                    <td>User action</td>
+                                    <td><code>:hover</code>, <code>:focus</code>, ...</td>
+                                </tr>
+                                <tr>
+                                    <td>Input</td>
+                                    <td><code>:checked</code>, <code>:valid</code>, <code>:disabled</code>, ...</td>
+                                </tr>
+                                <tr>
+                                    <td>Tree-structural</td>
+                                    <td><code>:first-child</code>, <code>:nth-child()</code>, ...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h3>Selectors <small>(combinators)</small></h3>
+                        <table style="font-size: 70%;">
+                            <thead>
+                                <tr>
+                                    <th>Combinators</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Descendent combinator (<code> </code>)</td>
+                                    <td><code>.post p</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Child combinator (<code>&gt;</code>)</td>
+                                    <td><code>ul > li</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Adjacent sibling combinator (<code>+</code>)</td>
+                                    <td><code>h1 + h2</code>, <code>:checked + label</code></td>
+                                </tr>
+                                <tr>
+                                    <td>General sibling combinator (<code>~</code>)</td>
+                                    <td><code>h1 ~ pre</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h3>Selectors <small>(pseudo elements)</small></h3>
+                        <ul>
+                            <li><code>::first-line</code></li>
+                            <li><code>::first-letter</code></li>
+                            <li><code>::before</code></li>
+                            <li><code>::after</code></li>
+                        </ul>
+                        <p>Compatibility: <code>::</code> vs. <code>:</code></p>
+                    </section>
+
+                    <section>
+                        <h3>Rule sets</h3>
+                        <p><var>selector</var> <var>declaration block</var></p>
+                        <figure>
+                            <pre><code class="css">.post a {
+    color: #69c;
+    text-decoration: underline;
+}</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Statements</h3>
+                        <p><var>at-rule</var> | <var>ruleset</var></p>
+                        <p>A style sheet consists of a list of <em>statements</em>.</p>
+                        <pre><code class="css">@charset "UTF-8";
+
+a {
+    color: #69c;
+}
+
+@media screen and (min-width: 35em) {
+    a {
+        font-size: 1.2em;
+    }
+}</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Showcases <small>(by <a href="http://weibo.com/otakustay">Otakustay</a>)</small></h3>
+                        <figure><img src="img/dropcap.png" alt="Demonstrates dropcap effect." style="height: 400px;"></figure>
+                        <figure class="fragment" style="position: absolute; right: 100px; bottom: 100px; width: 540px;">
+                            <pre><code class="css">p:first-of-type::first-letter {
+    font-size: 40px;
+    font-weight: bold;
+}
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Showcases <small>(by <a href="http://weibo.com/otakustay">Otakustay</a>)</small></h3>
+                        <figure><img src="img/quote.png" alt="Demonstrates a generated quotation mark on a blockquote element."></figure>
+                        <figure class="fragment" style="position: absolute; right: 100px; bottom: -60px; width: 540px;">
+                            <pre><code class="css">blockquote::before {
+    content: "“";
+    font-size: 60px;
+    font-weight: bold;
+    color: gray;
+    vertical-align: bottom;
+    position: relative;
+    top: 15px;
+}
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Showcases <small>(by <a href="http://weibo.com/otakustay">Otakustay</a>)</small></h3>
+                        <figure><img src="img/rotate.png" alt="Rotate images according to its list order." style="width: 60%;"></figure>
+                        <figure class="fragment" style="position: absolute; right: 20px; bottom: 0; width: 540px;">
+                            <pre><code class="css">div:nth-child(2n+1) {
+    -webkit-transform: rotate(-10deg);
+}
+div:nth-child(2n+2) {
+    -webkit-transform: rotate(10deg);
+}
+div:nth-child(2n+3) {
+    -webkit-transform: rotate(0);
+}
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Recap</h3>
+                        <figure>
+                            <style>
+                            #syntax-demo {
+                                width: 120%;
+                                height: 450px;
+                                margin: -0.5em;
+                                background-color: #272822;
+                                -webkit-transform: scale(0.9);
+                                        transform: scale(0.9);
+                            }
+                            </style>
+                            <iframe id="syntax-demo" src="http://apps.workflower.fi/vocabs/css/en" frameborder="0" style=""></iframe>
+                            <figcaption>via <a href="http://apps.workflower.fi/vocabs/">Vocabs</a></figcaption>
+                        </figure>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2><code>/* break */</code></h2>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>Cascading &amp; Inheritance</h2>
+                    </section>
+
+                    <section>
+                        <h3>Value processing</h3>
+                        <p style="font-size: 85%;"><span class="fragment highlight-em">declared → cascaded → specified</span> → computed → used → actual</p>
+                        <p><small>See <a href="http://www.w3.org/TR/css3-cascade/#stages-examples">Value processing examples</a>.</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Cascading</h3>
+                        <p>Finding value for an element/property combination</p>
+                        <ol>
+                            <li>Origin and importance</li>
+                            <li>Specificity</li>
+                            <li>Order of appearance</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h4>Style sheet origins</h4>
+                        <p class="fragment"><span class="fa fa-desktop"></span> <abbr title="user agent">UA</abbr>, <span class="fa fa-user"></span> user, <span class="fa fa-code"></span> author</p>
+                        <p class="fragment">... and we have <code>!important</code> ...</p>
+                        <p class="fragment"><b>author</b> vs. <b>user</b>?</p>
+                        <p class="fragment">What about<br><b>author &amp; important</b> vs. <b>user &amp; important</b>?</p>
+                    </section>
+
+                    <section>
+                        <h4>Cascading <small>(origin and importance)</small></h4>
+                        <style>
+                        #order {
+                            width: 40%;
+                            list-style-position: inside;
+                        }
+                        #order li {
+                            padding-left: 20px;
+                        }
+                        </style>
+                        <ol id="order">
+                            <li>Important + UA</li>
+                            <li>Important + user</li>
+                            <li style="border-bottom: 3px solid #666;">Important + author</li>
+                            <li>Normal + author</li>
+                            <li>Normal + user</li>
+                            <li>Normal + UA</li>
+                        </ol>
+                        <p class="fragment"><small>That's all? Check <a href="http://www.w3.org/TR/css3-cascade/#cascade-origin">CSS Cascading and Inheritance Level 3</a>.</small></p>
+                    </section>
+
+                    <section>
+                        <h4>Specificity</h4>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li class="fragment">ID<br><code>#main</code></li>
+                            <li class="fragment">class/attribute/pseudo-class<br><code>.title</code>, <code>[name]</code>, <code>:hover</code></li>
+                            <li class="fragment">type/pseudo-element<br><code>article</code>, <code>::before</code></li>
+                        </ol>
+                        <p class="fragment">Compare [a, b, c] and choose a winner!</p>
+                        <p class="fragment"><code>style</code> attribute > selectors</p>
+                    </section>
+
+                    <section>
+                        <h4>Quiz</h4>
+                        <div data-height="330" data-theme-id="0" data-slug-hash="XbJPjB" data-default-tab="html" data-user="Justineo" class='codepen'><pre><code>&lt;style&gt;
+p.row :hover {
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
+#link {
+    color: green;
+}
+&lt;/style&gt;
+&lt;p class=&quot;row&quot; stlye=&quot;color: red !important; text-decoration: underline !important;&quot;&gt;
+    &lt;a id=&quot;link&quot; href=&quot;post.html&quot; style=&quot;text-decoration: none;&quot;&gt;Go to post&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+<p>See the Pen <a href='http://codepen.io/Justineo/pen/XbJPjB/'>XbJPjB</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</div>
+                        <p><small>What's the <code>color</code> and <code>text-decoration</code> of the “Go to post” link?</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Defaulting</h3>
+                        <ul class="fragment">
+                            <li>initial value</li>
+                            <li>inherited value</li>
+                            <li><code>inherit</code> keyword</li>
+                        </ul>
+                        <figure class="fragment">
+                            <img src="img/line-height.png" alt="line-height is defined with inital value of normal and is inherited.">
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Recap</h3>
+                        <ul>
+                            <li class="fragment">Value processing start from <strong>cascading</strong> and <strong>defaulting</strong></li>
+                            <li class="fragment">Origin/importance > specificity > order</li>
+                            <li class="fragment">Author > user > UA, <em>reversed</em> when important</li>
+                            <li class="fragment">Count <em>simple selectors/pseudo elements</em> to calculate specificity</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2><code>/* break */</code></h2>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>Values and Units</h2>
+                        <ul class="fragment">
+                            <li><code>1.2rem</code></li>
+                            <li><code>60deg</code></li>
+                            <li><code>rebeccapurple</code></li>
+                            <li><code>1000ms</code></li>
+                            <li><code>url(logo.png)</code></li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Quoted Strings: <span class="type">string</span></h3>
+                        <pre><code class="css">a[rel~="next"]::after {
+    content: "→";
+}
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Resource Locators: <span class="type">url</span></h3>
+                        <pre><code class="css">body {
+    background: url(starrynight.png);
+}
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Numeric Data</h3>
+                        <ul>
+                            <li class="fragment">Integers: <span class="type">integer</span><br><small class="fragment"><code>z-index: 1; order: 3;</code></small></li>
+                            <li class="fragment">Numbers: <span class="type">number</span><br><small class="fragment"><code>line-height: 1.5; flex: 0.618;</code></small></li>
+                            <li class="fragment">Percentages: <span class="type">percentage</span><br><small class="fragment"><code>width: 80%; font-size: 120%;</code></small></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Distance Units: <span class="type">length</span></h3>
+                        <ul class="fragment">
+                            <li>Relative</li>
+                            <li>Absolute</li>
+                        </ul>
+                        <p class="fragment"><code>0px</code> → <code>0</code></p>
+                        <p class="fragment"><strong><span class="type">length</span> only!</strong></p>
+                    </section>
+
+                    <section>
+                        <h4>Relative lengths</h4>
+                        <p><code>em</code>, <code>ex</code>, <code>ch</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>, ...</p>
+                        <figure class="fragment">
+                            <img class="transparent" src="img/ex-ch.png" alt="ex is the x-height, ch is the width of character &quot;0&quot;" style="height: 360px;">
+                            <figcaption><code>ex</code> and <code>ch</code></figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>Absolute lengths</h4>
+                        <p><code>px</code>, <code>pt</code>, <code>in</code>, <code>cm</code>, <code>mm</code>, ...</p>
+                        <p class="fragment">Physical or pixel?</p>
+                        <figure class="fragment">
+                            <img src="img/pixel.png" alt="Pixels must become larger if the viewing distance increases.">
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>Colors: <span class="type">color</span></h4>
+                        <ul>
+                            <li>Keywords<br><small><code style="color: lightgreen;">lightgreen</code>, <code style="color: gold">gold</code>, <code>currentColor</code>, <code style="color: transparent;">transparent</code> <sup>← transparent</sup>, ...</small></li>
+                            <li>Hexadecimal notation<br><small><code style="color: #69c;">#69c</code>, <code style="color: #abcdef;">#abcdef</code>, ...</small></li>
+                            <li>Functional notation<br><small><code style="color: rgb(200, 150, 100);">rgb(200, 150, 100)</code>, <code style="color: hsla(120, 100%, 50%, 0.5);">hsla(120, 100%, 50%, 0.5)</code>, ...</small></li>
+                        </ul>
+                        <p class="fragment"><small>See more in <a href="http://dev.w3.org/csswg/css-color/">CSS Color Module Level 4</a>.</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Other Units</h3>
+                        <p><span class="type">angle</span>, <span class="type">time</span>, <span class="type">image</span>, ...</p>
+                        <pre class="fragment"><code class="css">.box {
+    transform: rotate(30deg);
+    transition-duration: 2s;
+    background: linear-gradient(to top, red 0%, blue 100%);
+}
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Recap</h3>
+                        <ul>
+                            <li>Data types: <span class="type">number</span>, <span class="type">integer</span>, <span class="type">length</span>, <span class="type">color</span>, ...</li>
+                            <li>Length: relative vs. “absolute”</li>
+                            <li>Color: keywords, hex, rgb(a), hsl(a), ...</li>
+                        </ul>
+                        <p class="fragment"><small>Dimension units after zero values are optional for <em><span class="type">length</span> only</em>!</small></p>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>Layout Basics</h2>
+                        <figure>
+                            <img src="img/canvas-viewport.png" alt="canvas and viewport" style="height: 380px;">
+                            <figcaption>The canvas (not <code>&lt;canvas&gt;</code>) and the viewport</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Box Model</h3>
+                        <figure>
+                            <img class="transparent" src="img/box-model.png" alt="box model consists of content, padding, border and margin" style="height: 300px;">
+                        </figure>
+                        <p class="fragment">Why <code>box-sizing</code>?</p>
+                        <p class="fragment"><small>What about <code>* { box-sizing: border-box }</code>?</small></p>
+                    </section>
+
+                    <section>
+                        <h4>A Web Desktop</h4>
+                        <p data-height="340" data-theme-id="0" data-slug-hash="aOOZgG" data-default-tab="result" data-user="Justineo" class='codepen'>See the Pen <a href='http://codepen.io/Justineo/pen/aOOZgG/'>aOOZgG</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+                    </section>
+
+                    <section>
+                        <h3>Painting Order</h3>
+                        <figure class="fragment">
+                            <img class="transparent" src="img/order.png" alt="Painting order is background-color → background-image → border → children → outline." style="height: 400px;">
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Positioning Schemes</h3>
+                        <ul>
+                            <li>Normal flow</li>
+                            <li>Floats</li>
+                            <li>Absolute positioning</li>
+                        </ul>
+                        <p class="fragment">Determined by <code>position</code> and <code>float</code></p>
+                    </section>
+
+                    <section>
+                        <h3>Normal Flow</h3>
+                        <ul>
+                            <li><em>Block</em> Formatting Context</li>
+                            <li><em>Inline</em> Formatting Context</li>
+                            <li class="fragment"><em>Flex</em> Formatting Context</li>
+                            <li class="fragment"><em>Grid</em> Formatting Context</li>
+                            <li class="fragment">Relative positioning</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>BFC vs. IFC</h4>
+                    <style>
+                    .reveal .bfc,
+                    .reveal .ifc {
+                        margin: 0 auto 0.5em;
+                        width: 45%;
+                        background-color: rgba(255, 255, 255, 0.1);
+                        border: 5px solid rgba(255, 255, 255, 0.3);
+                    }
+                    #bfc {
+                        float: left;
+                        height: 360px;
+                    }
+                    .ifc {
+                        text-align: left;
+                    }
+                    #ifc {
+                        width: 45%;
+                        height: 360px;
+                        float: right;
+                        text-align: left;
+                    }
+                    .bfc .box {
+                        text-align: center;
+                        line-height: 1.5;
+                    }
+                    .ifc .box {
+                        color: transparent;
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                        word-break: break-all;
+                    }
+                    </style>
+                        <div class="bfc" id="bfc">
+                            <div class="box" style="background-color: lightgreen; height: 40px;"></div>
+                            <div class="box" style="background-color: khaki; height: 120px;"></div>
+                            <div class="box" style="background-color: lightblue; height: 70px;"></div>
+                        </div>
+                        <div class="ifc" id="ifc">
+                            <span class="box" style="background-color: lightgreen;">_ _ _ _ _ _ _ _ </span><span class="box" style="background-color: khaki;">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span><span class="box" style="background-color: lightblue;">_ _ _ _ _ _ _ _ _ _ _ _  </span><span class="box" style="background-color: yellow;">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span><span class="box" style="background-color: greenyellow;">_ _ _ _ _ _ _ _ _ _ _ _ </span>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Floats</h3>
+                        <style>
+                        #float span {
+                            opacity: 0.3;
+                        }
+                        </style>
+                        <div class="ifc" id="float">
+                            <div class="box" style="display: inline-block; width: 200px; height: 150px; line-height: 150px; text-align: center; margin: 2px; background-color: goldenrod; color: #fff; float: left;">float: left;</div><span class="box" style="background-color: lightgreen;">_ _ _ _ _ _ _ _ </span><span class="box" style="background-color: khaki;">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span><span class="box" style="background-color: lightblue;">_ _ _ _ _ _ _ _ _ _ _ _ </span><span class="box" style="background-color: yellow;">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span><span class="box" style="background-color: greenyellow;">_ _ _ _ _ _ _ _ _ _ _ _ </span>
+                        </div>
+                        <p class="fragment">What's “clear fix”?</p>
+                    </section>
+
+                    <section>
+                        <h3>Absolute Positioning</h3>
+                        <p><code>position: absolute/fixed</code></p>
+                        <p class="fragment">Finding the <strong>containing block</strong></p>
+                        <p class="fragment"><small>(See detail <a href="http://www.w3.org/TR/CSS21/visudet.html#containing-block-details">here</a>.)</small></p>
+                    </section>
+
+                    <section>
+                        <h4><code>position: absolute</code></h4>
+
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2>Reference</h2>
+                    <ol>
+                    </ol>
+                </section>
+
+                <section>
+                    <h1>Q ? A : Thanks</h1>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || "linear", // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
+                // parallaxBackgroundSize: "2100px 900px",
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: "../../reveal.js/lib/js/classList.js", condition: function() { return !document.body.classList; } },
+                    { src: "../../reveal.js/plugin/markdown/marked.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/markdown/markdown.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/highlight/highlight.js", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: "../../reveal.js/plugin/zoom-js/zoom.js", async: true, condition: function() { return !!document.body.classList; } },
+                    { src: "../../reveal.js/plugin/notes/notes.js", async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+        <script async src="http://assets.codepen.io/assets/embed/ei.js"></script>
+    </body>
+</html>
