@@ -196,7 +196,7 @@ function randomize() {
 
   var styleText = '';
   items.forEach(function (item, i) {
-    item.style.borderColor = colors[i].css();
+    item.style.borderColor = colors[i];
 
     if (style) {
       style.parentNode.removeChild(style);
