@@ -106,6 +106,7 @@
                         <li><span class="fa fa-check"></span> General knowledge</li>
                         <li><span class="fa fa-check"></span> Syntax</li>
                         <li><span class="fa fa-check"></span> Cascading</li>
+                        <li><span class="fa fa-check"></span> Values &amp; units</li>
                         <li><span class="fa fa-check"></span> Layout basics</li>
                         <li><span class="fa fa-close"></span> Rendering details</li>
                     </ul>
@@ -527,13 +528,13 @@ a {
                         <figure><img src="img/rotate.png" alt="Rotate images according to its list order." style="width: 60%;"></figure>
                         <figure class="fragment" style="position: absolute; right: 20px; bottom: 0; width: 540px;">
                             <pre><code class="css">div:nth-child(2n+1) {
-    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
 }
 div:nth-child(2n+2) {
-    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
 }
 div:nth-child(2n+3) {
-    -webkit-transform: rotate(0);
+    transform: rotate(0);
 }
 </code></pre>
                         </figure>
@@ -649,13 +650,30 @@ p.row :hover {
                     <section>
                         <h3>Defaulting</h3>
                         <ul class="fragment">
-                            <li>initial value</li>
-                            <li>inherited value</li>
-                            <li><code>inherit</code> keyword</li>
+                            <li class="fragment">initial value</li>
+                            <li class="fragment">inherited value</li>
+                            <li class="fragment"><code>inherit</code> keyword</li>
                         </ul>
+                        <p class="fragment"><em>Computed value</em> of the parent element</p>
+                        <pre class="fragment"><code class="css">.post {
+    font-size: 16px;
+    line-height: 2;    /* Which   */
+    line-height: 200%; /* to      */
+    line-height: 2em;  /* choose? */
+}
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h4>Inherited value</h4>
                         <figure class="fragment">
-                            <img src="img/line-height.png" alt="line-height is defined with inital value of normal and is inherited.">
+                            <img src="img/line-height.png" alt="line-height is defined with initial value of normal and is inherited.">
                         </figure>
+                        <ul>
+                            <li class="fragment"><code>font-size: 2</code><br>Specified → <code>2</code></li>
+                            <li class="fragment"><code>font-size: 200%</code><br><code>font-size: 2em</code><br>Absolute → 2 * 16px = <code>32px</code></li>
+                        </ul>
+                        <p class="fragment"></p>
                     </section>
 
                     <section>
@@ -665,6 +683,7 @@ p.row :hover {
                             <li class="fragment">Origin/importance > specificity > order</li>
                             <li class="fragment">Author > user > UA, <em>reversed</em> when important</li>
                             <li class="fragment">Count <em>simple selectors/pseudo elements</em> to calculate specificity</li>
+                            <li class="fragment">Inherited values are <em>computed values</em> of the parent</li>
                         </ul>
                     </section>
 
@@ -725,7 +744,7 @@ p.row :hover {
 
                     <section>
                         <h4>Relative lengths</h4>
-                        <p><code>em</code>, <code>ex</code>, <code>ch</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>, ...</p>
+                        <p class="fragment"><code>em</code>, <code>ex</code>, <code>ch</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>, ...</p>
                         <figure class="fragment">
                             <img class="transparent" src="img/ex-ch.png" alt="ex is the x-height, ch is the width of character &quot;0&quot;" style="height: 360px;">
                             <figcaption><code>ex</code> and <code>ch</code></figcaption>
@@ -744,9 +763,9 @@ p.row :hover {
                     <section>
                         <h4>Colors: <span class="type">color</span></h4>
                         <ul>
-                            <li>Keywords<br><small><code style="color: lightgreen;">lightgreen</code>, <code style="color: gold">gold</code>, <code>currentColor</code>, <code style="color: transparent;">transparent</code> <sup>← transparent</sup>, ...</small></li>
-                            <li>Hexadecimal notation<br><small><code style="color: #69c;">#69c</code>, <code style="color: #abcdef;">#abcdef</code>, ...</small></li>
-                            <li>Functional notation<br><small><code style="color: rgb(200, 150, 100);">rgb(200, 150, 100)</code>, <code style="color: hsla(120, 100%, 50%, 0.5);">hsla(120, 100%, 50%, 0.5)</code>, ...</small></li>
+                            <li class="fragment">Keywords<br><small><code style="color: lightgreen;">lightgreen</code>, <code style="color: gold">gold</code>, <code>currentColor</code>, <code style="color: transparent;">transparent</code> <sup>← transparent</sup>, ...</small></li>
+                            <li class="fragment">Hexadecimal notation<br><small><code style="color: #69c;">#69c</code>, <code style="color: #abcdef;">#abcdef</code>, ...</small></li>
+                            <li class="fragment">Functional notation<br><small><code style="color: rgb(200, 150, 100);">rgb(200, 150, 100)</code>, <code style="color: hsla(120, 100%, 50%, 0.5);">hsla(120, 100%, 50%, 0.5)</code>, ...</small></li>
                         </ul>
                         <p class="fragment"><small>See more in <a href="http://dev.w3.org/csswg/css-color/">CSS Color Module Level 4</a>.</small></p>
                     </section>
@@ -778,7 +797,7 @@ p.row :hover {
 
                     <section>
                         <h2>Layout Basics</h2>
-                        <figure>
+                        <figure class="fragment">
                             <img src="img/canvas-viewport.png" alt="canvas and viewport" style="height: 380px;">
                             <figcaption>The canvas (not <code>&lt;canvas&gt;</code>) and the viewport</figcaption>
                         </figure>
@@ -808,9 +827,9 @@ p.row :hover {
                     <section>
                         <h3>Positioning Schemes</h3>
                         <ul>
-                            <li>Normal flow</li>
-                            <li>Floats</li>
-                            <li>Absolute positioning</li>
+                            <li class="fragment">Normal flow</li>
+                            <li class="fragment">Floats</li>
+                            <li class="fragment">Absolute positioning</li>
                         </ul>
                         <p class="fragment">Determined by <code>position</code> and <code>float</code></p>
                     </section>
@@ -892,15 +911,76 @@ p.row :hover {
 
                     <section>
                         <h4><code>position: absolute</code></h4>
+                        <ul>
+                            <li class="fragment">Closest parent with <code>position</code> other than <code>static</code><br><span class="fragment">or with <code>transform</code> other than <code>none</code></span></li>
+                        </ul>
+                        <figure class="fragment" style="margin-top: 0;">
+                            <img src="img/icb.png" alt="Initial containing block starts from the origin of the canvas and has the same size of the viewport." style="height: 380px;">
+                            <figcaption>no such parent → initial containing block</figcaption>
+                        </figure>
+                    </section>
 
+                    <section>
+                        <h5>Initial containing block</h5>
+                        <div data-height="320" data-theme-id="0" data-slug-hash="dooBPz" data-default-tab="css" data-user="Justineo" class='codepen'><pre><code>body {
+  width: 120%;
+  background-color: khaki;
+}
+
+.box {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 64px;
+  height: 64px;
+  background-color: lightgreen;
+}
+</code></pre>
+<p>See the Pen <a href='http://codepen.io/Justineo/pen/dooBPz/'>dooBPz</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+                    </section>
+
+                    <section>
+                        <h4><code>position: fixed</code></h4>
+                        <ul>
+                            <li class="fragment">The viewport</li>
+                            <li class="fragment">Closest parent with <code>transform</code> other than <code>none</code></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Recap</h3>
+                        <ul>
+                            <li class="fragment">The canvas &amp; the viewport</li>
+                            <li class="fragment">Box model &amp; <code>box-sizing</code></li>
+                            <li class="fragment">3 position schemes:<br>normal flow / floats / absolute positioning</li>
+                            <li class="fragment">BFC/IFC/FFC/...</li>
+                            <li class="fragment">Finding containing blocks for absolute positioning</li>
+                        </ul>
                     </section>
 
                 </section>
 
                 <section>
-                    <h2>Reference</h2>
-                    <ol>
-                    </ol>
+                    <h2>Summary</h2>
+                    <ul>
+                        <li>History</li>
+                        <li>Syntax</li>
+                        <li>Cascading</li>
+                        <li>Values &amp; units</li>
+                        <li>Layout basics</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Further Reading</h2>
+                    <ul>
+                        <li><a href="http://www.w3.org/Style/CSS/current-work">CSS Specifications</a></li>
+                        <li><a href="http://www.w3.org/TR/CSS21/">Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</a></li>
+                        <li><a href="http://www.w3.org/TR/css3-cascade/">CSS Cascading and Inheritance Level 3</a></li>
+                        <li><a href="http://www.w3.org/TR/selectors/">Selectors Level 3</a></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </section>
 
                 <section>
