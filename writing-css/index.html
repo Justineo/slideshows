@@ -108,7 +108,7 @@
                         <li><span class="fa fa-check"></span> Cascading</li>
                         <li><span class="fa fa-check"></span> Values &amp; units</li>
                         <li><span class="fa fa-check"></span> Layout basics</li>
-                        <li><span class="fa fa-close"></span> Rendering details</li>
+                        <li><span class="fa fa-close"></span> Rendering details &amp; calculation</li>
                     </ul>
                 </section>
 
@@ -573,16 +573,17 @@ div:nth-child(2n+3) {
                     <section>
                         <h3>Value processing</h3>
                         <p style="font-size: 85%;"><span class="fragment highlight-em">declared → cascaded → specified</span> → computed → used → actual</p>
+                        <p><small>cascading → defaulting → absolutizing → calculation → UA adjustment</small></p>
                         <p><small>See <a href="http://www.w3.org/TR/css3-cascade/#stages-examples">Value processing examples</a>.</small></p>
                     </section>
 
                     <section>
                         <h3>Cascading</h3>
-                        <p>Finding value for an element/property combination</p>
+                        <p>Finding value for an <em>element/property</em> combination</p>
                         <ol>
-                            <li>Origin and importance</li>
-                            <li>Specificity</li>
-                            <li>Order of appearance</li>
+                            <li class="fragment">Origin and importance</li>
+                            <li class="fragment">Specificity</li>
+                            <li class="fragment">Order of appearance</li>
                         </ol>
                     </section>
 
@@ -922,7 +923,7 @@ p.row :hover {
 
                     <section>
                         <h5>Initial containing block</h5>
-                        <div data-height="320" data-theme-id="0" data-slug-hash="dooBPz" data-default-tab="css" data-user="Justineo" class='codepen'><pre><code>body {
+                        <div data-height="360" data-theme-id="0" data-slug-hash="dooBPz" data-default-tab="css" data-user="Justineo" class='codepen'><pre><code>body {
   width: 120%;
   background-color: khaki;
 }
@@ -936,7 +937,7 @@ p.row :hover {
   background-color: lightgreen;
 }
 </code></pre>
-<p>See the Pen <a href='http://codepen.io/Justineo/pen/dooBPz/'>dooBPz</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+                        <p>See the Pen <a href='http://codepen.io/Justineo/pen/dooBPz/'>dooBPz</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
                     </section>
 
                     <section>
@@ -945,6 +946,27 @@ p.row :hover {
                             <li class="fragment">The viewport</li>
                             <li class="fragment">Closest parent with <code>transform</code> other than <code>none</code></li>
                         </ul>
+                    </section>
+
+                    <section>
+                        <h5><code>position: fixed</code> &amp; <code>transform</code></h5>
+                        <div data-height="360" data-theme-id="0" data-slug-hash="yNNdNB" data-default-tab="css" data-user="Justineo" class='codepen'><pre><code>.out {
+  margin: 64px;
+  width: 256px;
+  height: 256px;
+  background-color: khaki;
+  transform: scale(1);
+}
+
+.in {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 64px;
+  height: 64px;
+  background-color: lightgreen;
+}</code></pre>
+                        <p>See the Pen <a href='http://codepen.io/Justineo/pen/yNNdNB/'>yNNdNB</a> by GU Yiling (<a href='http://codepen.io/Justineo'>@Justineo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
                     </section>
 
                     <section>
@@ -978,8 +1000,6 @@ p.row :hover {
                         <li><a href="http://www.w3.org/TR/CSS21/">Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</a></li>
                         <li><a href="http://www.w3.org/TR/css3-cascade/">CSS Cascading and Inheritance Level 3</a></li>
                         <li><a href="http://www.w3.org/TR/selectors/">Selectors Level 3</a></li>
-                        <li></li>
-                        <li></li>
                     </ul>
                 </section>
 
