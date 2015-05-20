@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Creating Style Sheets</title>
+
+        <meta name="description" content="A revisit on creating Web style sheets.">
+        <meta name="author" content="Gu Yiling">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/font-awesome.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/just.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+        <!-- If the query includes "print-pdf", include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( "link" );
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = "../../reveal.js/css/print/pdf.css";
+                document.getElementsByTagName( "head" )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(["_setAccount", "UA-34177998-1"]);
+          _gaq.push(["_trackPageview"]);
+
+          (function() {
+            var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+            ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+            var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+        <style>
+            .reveal mark.underline {
+                background: none;
+                color: inherit;
+                text-decoration: underline;
+            }
+            .reveal img.clear {
+                border: none;
+                background: none;
+            }
+            .reveal img.inline {
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <div class="slides">
+                <section>
+                    <h1 style="font-size: 2.4em;">Creating Style Sheets</h1>
+                    <address>
+                        <p>顾轶灵 <small>@ <a href="http://efe.baidu.com/">EFE</a></small></p>
+                        <p>
+                            <a href="http://weibo.com/justineo" title="@Justineo" class="icon-weibo"></a>
+                            <a href="https://twitter.com/#!/_justineo" title="@_justineo" class="icon-twitter"></a>
+                            <a href="http://github.com/Justineo" title="@Justineo" class="icon-github-circled"></a>
+                        </p>
+                    </address>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>从理解设计开始</h2>
+                    </section>
+
+                    <section>
+                        <h3>样式表的意义？</h3>
+                        <p class="fragment"><strong>「还原设计意图」</strong></p>
+                    </section>
+
+                    <section>
+                        <p>「设计稿发给你了，看一下大概需要几天？」</p>
+                    </section>
+
+                    <section>
+                        <h3>但是……<span class="fragment">设计稿 ≠ 设计意图</span></h3>
+                        <ul>
+                            <li class="fragment">「这个设计图是 960px 宽的，在宽屏下要怎么显示啊？是定宽还是自适应啊？」</li>
+                            <li class="fragment">「点击量好高，消费金额显示不下了啊，整个卡片布局都得修改了。」</li>
+                            <li class="fragment">……</li>
+                        </ul>
+                        <p class="fragment">↑ <ruby>真<rp>(</rp><rt>kuā</rt><rp>)</rp>实<rp>(</rp><rt>zhāng</rt><rp>)</rp></ruby>的故事。</p>
+                    </section>
+
+                    <section>
+                        <h3>工作流程</h3>
+                        <figure>
+                            <svg width="1000" height="400" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
+                                <defs>
+                                    <marker id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255, 255, 255, 0.5)"/></marker>
+                                    <marker id="triangle-em" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#90ee90"/></marker>
+                                </defs>
+                                <g fill="#fff">
+                                    <text x="0" y="160">设计师</text>
+                                    <text x="210" y="160">设计稿</text>
+                                    <text x="420" y="160">工程师</text>
+                                    <text x="630" y="160">页面样式</text>
+                                    <text x="870" y="160">用户</text>
+                                </g>
+                                <g marker-end="url(#triangle)" stroke="rgba(255, 255, 255, 0.5)" stroke-width="4" fill="none">
+                                    <polyline points="120 145 180 145"/>
+                                    <polyline points="330 145 390 145"/>
+                                    <polyline points="540 145 600 145"/>
+                                    <polyline points="780 145 840 145"/>
+                                </g>
+                                <g class="fragment">
+                                    <text x="400" y="30" fill="rgba(255, 255, 255, 0.5)">设计意图</text>
+                                    <polyline points="60 105 60 50 900 50 900 95" marker-end="url(#triangle)" stroke="rgba(255, 255, 255, 0.5)" stroke-width="4" stroke-dasharray="5,5" fill="none"/>
+                                </g>
+                                <g stroke="rgba(255, 255, 255, 0.5)" stroke-width="4" fill="none">
+                                    <polyline class="fragment" marker-end="url(#triangle)" points="475 190 475 260 60 260 60 200"/>
+                                    <polyline class="fragment" marker-end="url(#triangle-em)" points="275 195 445 195 445 235 90 235 90 195 255 195" stroke="#90ee90"/>
+                                </g>
+                            </svg>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>Point(s) vs. Function</h3>
+                        <p>还原设计 ~ 曲线拟合</p>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>编写样式代码</h2>
+                    </section>
+
+                    <section>
+                        <h3 lang="en">CSS is Powerful but <em>“Simple”</em></h3>
+                        <div class="fragment">
+                            <blockquote lang="en-US" class="hyphenate" cite="http://www.w3.org/Style/CSS/">
+                                <p>Cascading Style Sheets (CSS) is a <em>simple mechanism</em> for adding style (e.g., fonts, colors, spacing) to Web documents.</p>
+                                <footer>— <a href="http://www.w3.org/Style/CSS/">W3C CSS Homepage</a></footer>
+                            </blockquote>
+                        </div>
+                        <p class="fragment"><em>不是</em>传统意义上的「编程语言」</p>
+                        <figure class="fragment" style="width: 60%;">
+                            <pre><code class="css">a {
+    color: #69c !important;
+}</code></pre>
+                            <figcaption>重要？不重要？</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <p>「但是 Web 发展到现在，与当初已经有了很大的变化。」</p>
+                        <ul>
+                            <li class="fragment">普通用户 → 专业工程师</li>
+                            <li class="fragment">Web pages → Web apps</li>
+                            <li class="fragment">模块化、工程化</li>
+                            <li class="fragment"><strong>可维护性</strong></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>CSS 的<ruby>痛<rp>(</rp><rt>cáo</rt><rp>)</rp>点<rp>(</rp><rt>diǎn</rt><rp>)</rp></ruby></h3>
+                    </section>
+
+                    <section>
+                        <h3>语法限制</h3>
+                        <p class="fragment" title="And some times naïve.">Too simple!</p>
+                        <pre class="fragment"><code>.post {
+    background-color: white;
+    color: rebeccapurple;
+}
+
+.post h1, .post h2, .post h3,
+.post h4, .post h5, .post h6 {
+    /* reversed colors */
+    background-color: rebeccapurple;
+    color: white;
+}
+</code></pre>
+                        <p class="fragment"><abbr title="Don't repeat yourself">DRY</abbr>? No.</p>
+                    </section>
+
+                    <section>
+                        <h3>复用机制</h3>
+                        <ul class="fragment">
+                            <li>继承</li>
+                            <li>共享声明块</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>继承</h4>
+                        <pre class="fragment"><code class="css">button {
+    font-family: inherit;
+}
+</code></pre>
+                        <ul>
+                            <li class="fragment">仅针对<em>单条</em>声明</li>
+                            <li class="fragment">继承关系来自<em>文档结构</em>而非 CSS 本身</li>
+                        </ul>
+                        <p class="fragment">非理想的样式继承机制</p>
+                    </section>
+
+                    <section>
+                        <h4>共享声明块</h4>
+                        <ul style="width: 70%;">
+                            <li class="fragment">
+                                <p>选择器组</p>
+                                <pre><code>.title,
+.comment {
+    color: #333;
+}
+</code></pre>
+                            </li>
+                            <li class="fragment">
+                                <p>在文档中添加<em>用来复用样式</em>的内容</p>
+                                <pre><code class="html">&lt;h1 class="post-title block"&gt;...&lt;h1&gt;
+...
+&lt;article class="post block"&gt;...&lt;article&gt;
+...
+&lt;article class="comment block"&gt;...&lt;article&gt;
+</code></pre>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>「样式类」</h4>
+                        <ul>
+                            <li><code>clearfix, cf</code></li>
+                            <li><code>float-right</code>, <code>fr</code>, <code>pull-right</code>, ...</li>
+                            <li><code>red</code>, <code>mr10</code>, ...</li>
+                            <li><code>...</code></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>样式层的抽象和复用<span class="fragment">？</span></h3>
+                        <p class="fragment">没有！</p>
+                    </section>
+
+                    <section>
+                        <h3>Bug or feature?</h3>
+                        <blockquote style="font-size: 70%;" class="hyphenate fragment" lang="en">
+                            <p>On the other hand, CSS stops <mark class="underline">short of</mark> even more powerful features that programmers use in their programming languages: <mark class="underline">macros, variables, symbolic constants, conditionals, expressions over variables, etc</mark>. That is because these things give power-users a lot of rope, but less experienced users will unwittingly hang themselves; or, more likely, be so scared that they won't even touch CSS. <mark class="underline">It's a balance.</mark> And for CSS the balance is different than for some other things.</p>
+                            <footer>— Bos Bert, <a href="http://www.w3.org/People/Bos/DesignGuide/maintainability.html">What is a good standard?</a> <small>(2003)</small></footer>
+                        </blockquote>
+                    </section>
+
+                    <section>
+                        <h3>Bug or feature?</h3>
+                        <blockquote lang="en" class="hyphenate fragment" style="font-size: 70%;">
+                            <p>Adding any form of macros or additional scopes and indirections, including symbolic constants, is not just redundant, but changes CSS in ways that <mark class="underline">make it unsuitable for its intended audience</mark>. Given that there is currently no alternative to CSS, <mark class="underline">these things must not be added</mark>.</p>
+                            <footer>— Bos Bert, <a href="http://www.w3.org/People/Bos/CSS-variables">Why “variables” in CSS are harmful</a> <small>(2008)</small></footer></footer>
+                        </blockquote>
+                    </section>
+
+                    <section>
+                        <p>但是……</p>
+                        <ul>
+                            <li class="fragment"><a href="http://www.w3.org/TR/css3-conditional/">Conditional Rules</a> <small>(<abbr title="Candidate Recommendation">CR</abbr>)</small><br><small><code>@media</code>, <code>@supports</code></small></li>
+                            <li class="fragment"><a href="http://www.w3.org/TR/css-variables/">Cascading Variables</a> <small>(<abbr title="Last Call Working Draft">LC</abbr>)</small><br><small><code>--*</code>, <code>var()</code></small></li>
+                            <li class="fragment"><a href="http://dev.w3.org/csswg/css-extensions/">Custom selectors, properties, functions, ...</a> <small>(Editor's Draft)</small><br><small><code>@custom-selector</code>, <code>@custom-property</code>, ...</small></li>
+                        </ul>
+                        <p class="fragment"><a href="http://www.w3.org/Style/2011/CSS-process#rectrack">Document statuses</a>: WD - LC - CR - PR - REC</p>
+                    </section>
+
+                    <section>
+                        <figure><img src="img/far-away.jpg" alt="Endless road." style="height: 400px;"></figure>
+                        <p>可似乎有点遥远……</p>
+                    </section>
+
+                    <section>
+                        <h3>「CSS 框架」</h3>
+                        <ul>
+                            <li>Bootstrap</li>
+                            <li>Semantic UI</li>
+                            <li>Foundation</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>CSS 方法论/架构/最佳实践</h3>
+                        <ul>
+                            <li>BEM</li>
+                            <li>OOCSS</li>
+                            <li>SMACSS</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>预处理器的崛起</h3>
+                        <figure><img src="img/superman.png" alt="The superman logo is a diamond shaped polygon with an “S” in it." style="height: 400px;" class="transparent"></figure>
+                    </section>
+
+                    <section>
+                        <h3>预处理器 / <abbr title="Domain-specific language / dynamic stylesheet language">DSL</abbr></h3>
+                        <div class="fragment">
+                            <p><img src="img/sass-logo.svg" alt="Sass logo" class="inline clear" width="150"> <time>(2006)</time></p>
+                            <p><img src="img/less-logo.svg" alt="Less logo" class="inline clear" width="150"> <time>(2009)</time></p>
+                            <p><img src="img/stylus-logo.svg" alt="Stylus logo" class="inline clear" width="150"> <time>(2010)</time></p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>预处理器能做什么？</h3>
+                        <ul>
+                            <li class="fragment">提供语法糖增强语法</li>
+                            <li class="fragment">将重复的值抽象为变量</li>
+                            <li class="fragment">将重复的样式抽象出来进行混入或继承</li>
+                            <li class="fragment">...</li>
+                        </ul>
+                        <p class="fragment">提供了在<em>纯样式层</em>提高可维护性的机制</p>
+                    </section>
+
+                    <section>
+                        <h4>eg. 嵌套语法 <small> (<a href="https://whatwg.org/">WHATWG</a> 的 <code>&lt;h1&gt;</code> 推荐样式)</small></h4>
+                        <figure style="font-size: 90%;">
+                            <pre><code class="less">/* heading.less */
+article, aside, nav, section {
+    h1 {
+        margin-top: 0.83em; margin-bottom: 0.83em; font-size: 1.50em;
+    }
+    &amp; &amp; h1 {
+        margin-top: 1.00em; margin-bottom: 1.00em; font-size: 1.17em;
+    }
+    &amp; &amp; &amp; h1 {
+        margin-top: 1.33em; margin-bottom: 1.33em; font-size: 1.00em;
+    }
+    &amp; &amp; &amp; &amp; h1 {
+        margin-top: 1.67em; margin-bottom: 1.67em; font-size: 0.83em;
+    }
+    &amp; &amp; &amp; &amp; &amp; h1 {
+        margin-top: 2.33em; margin-bottom: 2.33em; font-size: 0.67em;
+    }
+}
+</code></pre>
+                        </figure>
+                        <p>via <cite><a href="https://html.spec.whatwg.org/multipage/rendering.html#sections-and-headings">14.3.7 Sections and headings</a></cite></p>
+                    </section>
+
+                    <section>
+                        <h4>编译后</h4>
+                        <figure>
+                            <img src="img/lessc.png" alt="headings.css文件大小为47229B">
+                        </figure>
+                        <p><strong><code>47KB</code></strong>? Are you serious?</p>
+                        <p>See <a href="http://dwz.cn/KUwpV" target="_blank" title="Powered by estFiddle.">compiled code</a>.</p>
+                    </section>
+
+                    <section>
+                        <h4>eg. 抽象样式</h4>
+                        <figure style="font-size: 90%;">
+                            <pre><code class="less">.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}
+
+.badge(@color, @radius: 5px) {
+    .border-radius(@radius);
+    background-color: lighten(@color, 20%)
+    color: @color;
+}
+
+@color-alert: red;
+@color-warning: yellow;
+@color-success: lightgreen;
+
+.alert   { .badge(@color-alert);   }
+.warning { .badge(@color-warning); }
+.success { .badge(@color-success); }
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>预处理器工作流程</h3>
+                        <ol>
+                            <li><strong>DSL 源码</strong> → 动态 AST</li>
+                            <li>动态 AST → 静态 AST</li>
+                            <li>静态 AST → CSS</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3>开发者工作流程</h3>
+                        <p><strong>DSL</strong> → <strong>生产环境 CSS</strong></p>
+                    </section>
+
+                    <section>
+                        <h3>预处理器拯救世界？</h3>
+                    </section>
+
+                    <section>
+                        <h3>Vendor-prefix 的尴尬</h3>
+                        <figure>
+                            <pre><code class="less">/* Bootstrap's mixin */
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}</code></pre>
+                        </figure>
+                        <p><small>如果不同项目需要支持不同浏览器？</small></p>
+                    </section>
+
+                    <section>
+                        <h3>Autoprefixer <small> (2013)</small></h3>
+                        <figure style="width: 60%;">
+                            <figcaption>输入 (标准 CSS)</figcaption>
+                            <pre><code class="css">.badge {
+  border-radius: 5px;
+}</code></pre>
+                        </figure>
+                        <div class="fragment">
+                            <p>&darr;</p>
+                            <figure style="float: left; width: 50%;">
+                                <figcaption>配置条件 <code>&gt; 0%</code> (尽可能兼容)</figcaption>
+                                <pre><code class="css">.badge {
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}</code></pre>
+                            </figure>
+                            <figure style="float: right; width: 50%;">
+                                <figcaption>配置条件 <code>&gt; 1%</code> (市场占有率大于 1%)</figcaption>
+                                <pre><code class="css">.badge {
+  border-radius: 5px;
+}</code></pre>
+                            </figure>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Autoprefixer</h3>
+                        <ul>
+                            <li>不依赖 DSL，书写标准 CSS</li>
+                            <li>数据来自 <a href="http://caniuse.com/">Can I Use</a><small> (<a href="https://github.com/fyrd/caniuse">GitHub</a>)</small>，由社区更新</li>
+                            <li>根据目标环境配置<em>按需</em>生成前缀</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>预处理器的局限</h3>
+                        <ul>
+                            <li>提供整套方案，模块化能力不足</li>
+                            <li>DSL 决定了功能范围，用户自定义能力有限</li>
+                            <li>功能缺失怎么办？——feature request</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>「后处理器」 <small>(非官方)</small></h3>
+                        <ul>
+                            <li>直接处理<em>标准</em>的 CSS 代码</li>
+                            <li>模块化，一次只做一件事</li>
+                            <li>按需<em>自由组合</em>模块，灵活调用</li>
+                            <li>逻辑通过<em>编程语言</em>描述，不借助 DSL</li>
+                        </ul>
+                        <p>适合处理兼容性问题、进行 polyfill、优化输出</p>
+                        <p><small>广义上「后处理」也属于预处理的范畴，其实 CSS 压缩等已经是其中之一</small></p>
+                    </section>
+
+                    <section>
+                        <h3>后处理器工作流程</h3>
+                        <ol>
+                            <li><strong>标准 CSS</strong> → CSS AST</li>
+                            <li>对 CSS AST 进行后处理 <small>(不同后处理模块的核心功能)</small></li>
+                            <li>CSS AST → CSS 代码</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3>开发者工作流程</h3>
+                        <p><strong>标准 CSS (甚至草案)</strong> → <strong>生产环境 CSS</strong></p>
+                    </section>
+
+                    <section>
+                        <h3>「后处理框架」</h3>
+                        <ol class="fragment">
+                            <li>将 CSS 解析为 AST</li>
+                            <li>操作 AST</li>
+                            <li>将 AST 格式化输出</li>
+                        </ol>
+                        <br>
+                        <ul class="fragment">
+                            <li><a href="https://github.com/reworkcss/rework">rework</a> <small>(2012)</small> - <small>「CSS 预处理插件框架」</small></li>
+                            <li><a href="https://github.com/postcss/postcss">postcss</a> <small>(2013)</small> - <small>「通过 JS 插件转换 CSS」</small></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>如何选择？</h3>
+                    </section>
+
+                    <section>
+                        <h3>前后结合的方案</h3>
+                        <p class="fragment">解决兼容性问题<em>不是</em>样式本身的复用</p>
+                        <ul>
+                            <li class="fragment">预处理器处理样式层的抽象、复用，减少冗余</li>
+                            <li class="fragment">后处理器处理兼容、优化</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>前后结合的工作流</h3>
+                        <p><strong>DSL</strong> → <strong>标准 CSS</strong> → <strong>生产环境 CSS</strong></p>
+                    </section>
+
+                    <section>
+                        <h4>Bootstrap</h4>
+                        <figure>
+                            <pre><code class="less">// Vendor Prefixes
+//
+// All vendor mixins are deprecated as of v3.2.0 due to the introduction of
+// Autoprefixer in our Gruntfile. They will be removed in v4.
+</code></pre>
+                        </figure>
+                        <figcaption>via <a href="https://github.com/twbs/bootstrap/blob/f8e34ff48bf5107268d86bf050e1a1ed8299b399/less/mixins/vendor-prefixes.less">bootstrap/less/mixins/vendor-prefixes.less</a></figcaption>
+                    </section>
+
+                    <section>
+                        <h4>est 2.0 <small>(EFE Less mixin library)</small></h4>
+                        <figure>
+                            <pre><code class="less">.border-radius(@radius: @default-border-radius) when not (@use-autoprefixer) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}
+.border-radius(@radius: @default-border-radius) when (@use-autoprefixer) {
+    border-radius: @radius;
+}
+.border-radius(@radius-x, @radius-y) {
+    .border-radius(@radius-x ~"/" @radius-y);
+}
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>有趣的现象</h3>
+                        <ul>
+                            <li>预处理器越来越「后」</li>
+                            <li>「后处理器」越来越「前」</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>eg. Less 插件</h4>
+                        <ul>
+                            <li>可以调用「后处理器」：Autoprefixer、clean-css、...</li>
+                            <li>可以操作 DSL 的 AST</li>
+                            <li>可以对 DSL 代码进行预处理</li>
+                            <li>...</li>
+                        </ul>
+                        <p>用来增强 DSL 的表达能力受限的不足</p>
+                    </section>
+
+                    <section>
+                        <h4>eg. postcss 模块</h4>
+                        <ul>
+                            <li><a href="https://github.com/postcss/postcss-mixins">postcss-mixins</a></li>
+                            <li><a href="https://github.com/postcss/postcss-nested">postcss-nested</a></li>
+                            <li><a href="https://github.com/davidtheclark/postcss-simple-extend">postcss-simple-extend</a></li>
+                            <li>...</li>
+                        </ul>
+                        <p>用来增强原生 CSS 抽象能力的不足、弥补语法缺陷</p>
+                    </section>
+
+                    <section>
+                        <h3>结果</h3>
+                        <ul>
+                            <li>「后处理器」不再提「后处理」 - postcss</li>
+                            <li>大家都叫「预处理」 - rework、Myth</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>优化与工具</h2>
+                        <figure class="fragment"><img src="img/flash.png" alt="The Flash's logo is a lightning bolt in a circle." class="transparent"></figure>
+                    </section>
+
+                    <section>
+                        <h3>CSS 优化有多重要？</h3>
+                        <ul>
+                            <li class="fragment">JS 可以异步加载</li>
+                            <li class="fragment">多媒体资源可以异步加载 <small>(图片/视频/音频/...)</small></li>
+                            <li class="fragment">CSS 往往是<em>关键路径</em></li>
+                        </ul>
+                        <p class="fragment">流量 === <strong>￥</strong></p>
+                    </section>
+
+                    <section>
+                        <h3>减小数据量</h3>
+                        <ul>
+                            <li class="fragment">源码压缩</li>
+                            <li class="fragment">二进制压缩</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>简单压缩</h4>
+                        <ul>
+                            <li class="fragment">空格/换行</li>
+                            <li class="fragment"><code>rebeccapurple</code> → <code>#639</code>, ...</li>
+                            <li class="fragment"><code>0px</code> → <code>0</code><br><code>0.5</code> → <code>.5</code></li>
+                            <li class="fragment"><code>from</code> → <code>0%</code><br><code>100%</code> → <code>to</code></li>
+                            <li class="fragment"><code>bold</code> → <code>700</code>, <code>normal</code> → <code>400</code></li>
+                            <li class="fragment"><code>1000ms</code> → <code>1s</code></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>高级压缩</h4>
+                        <p><small>(需要解析 CSS 语法)</small></p>
+                        <ul>
+                            <li class="fragment">去重<br><small><code>@keyframes</code>, 重复属性, ...</small></li>
+                            <li class="fragment">合并<br><small>相邻的相同选择器/规则集/<code>@media</code></small></li>
+                        </ul>
+                        <p class="fragment"><a href="http://cssshrink.com/">CSS Shrink</a></p>
+                    </section>
+
+                    <section>
+                        <h4>提高 gzip 率</h4>
+                        <p class="fragment"><strong>提高冗余</strong></p>
+                        <p class="fragment">冗余 → 有序 → 低信息量</p>
+                    </section>
+
+                    <section data-transition="fade">
+                        <h5>提高冗余</h5>
+                        <pre><code class="css">.post a {
+  color: #6a0;
+  text-decoration: underline;
+  padding: 3px;
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 3px;
+}
+
+.comment {
+  margin: 5px 0;
+  padding: 3px;
+  background-color: rgba(255, 255, 255, .1);
+  text-decoration: underline;
+  color: #cc9900;
+  border-radius: 3px;
+}</code></pre>
+                        <p class="fragment"><small>164 Bytes zipped</small></p>
+                    </section>
+
+                    <section data-transition="fade">
+                        <h5>给属性排个序</h5>
+                        <pre><code class="css">.post a {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, .1);
+  color: #6a0;
+  text-decoration: underline;
+}
+
+.comment {
+  margin: 5px 0;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, .1);
+  color: #cc9900;
+  text-decoration: underline;
+}</code></pre>
+                        <p class="fragment" lang="en"><small><em>158</em> Bytes zipped</small></p>
+                    </section>
+
+                    <section>
+                        <div>
+                            <h4>属性排序</h4>
+                            <p><a href="http://csscomb.com/">CSScomb</a></p>
+                        </div>
+                        <div class="fragment" style="margin-top: 2em;">
+                            <h4>Mixins?</h4>
+                            <p>访问 DSL 的 AST</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h4>「Used CSS」</h4>
+                        <p>只传输<em>会被使用</em>的 CSS 代码</p>
+                        <figure class="fragment">
+                            <img src="img/unused.png" alt="Removing unused CSS using PhantomJS." style="height: 360px;">
+                            <figcaption><a href="https://github.com/giakki/uncss">UnCSS</a> 工作流程</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>减少请求数</h3>
+                        <ul>
+                            <li class="fragment">小图片内嵌入 CSS <small>(<code>datauri</code>)</small></li>
+                            <li class="fragment"><code>&lt;link&gt;</code> → <code>&lt;style&gt;</code> (?)</li>
+                            <li class="fragment">CSS Sprites (?)</li>
+                            <li class="fragment">字体图标</li>
+                            <li class="fragment">...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>避免大文件和顺序依赖</h3>
+                        <ul>
+                            <li class="fragment">图片压缩！</li>
+                            <li class="fragment">并行下载 <small>(<a href="http://sgdev-blog.blogspot.jp/2014/01/maximum-concurrent-connection-to-same.html">limit</a>)</small>、domain sharding</li>
+                            <li class="fragment"><code>&lt;link&gt;</code> &gt; <code>@import</code></li>
+                        </ul>
+                        <figure class="fragment" style="margin-top: 0;">
+                            <img src="img/parallel.png" alt="Chrome now support parallel downloads." style="height: 240px;">
+                            <figcaption>Chrome 下并行下载文件 (<a href="https://developer.chrome.com/devtools/docs/network#resource-network-timing">network timing</a>)</figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>「关键路径」CSS</h3>
+                        <p><a href="https://github.com/addyosmani/critical">critical</a></p>
+                        <figure class="fragment">
+                            <img src="img/critical.png" alt="Critical's workflow" style="height: 320px;">
+                            <figcaption><a href="http://addyosmani.com/blog/slides-css-performance-tooling/">Advanced CSS Performance Tooling</a></figcaption>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h3>选择器性能 <small>(Old school)</small></h3>
+                        <ul>
+                            <li class="fragment">避免 <code>*</code></li>
+                            <li class="fragment">去掉不必要的约束</li>
+                            <li class="fragment">减少嵌套</li>
+                            <li class="fragment">越靠右越精确</li>
+                            <li class="fragment">...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>选择器性能</h3>
+                        <blockquote class="fragment hyphenate" style="font-size: 70%;" lang="en">
+                            <p>CSS selector matching is now <mark class="underline">reasonably fast</mark> for the <mark class="underline">absolute majority of common selectors</mark> that used to be slow at the time of the profiler implementation. This time is also included into the Timeline "Recalculate Style" event.</p>
+                            <p>As such, I believe the CSS selector profiler is not as useful as it [might have been] used to and can safely be dropped. This will also <mark class="underline">reduce the fraction of developers trying to micro-optimize already fast selectors</mark>.</p>
+                            <footer>— <a href="https://code.google.com/p/chromium/issues/detail?id=265486">Drop the CSS selector profiler</a></footer>
+                        </blockquote>
+                        <p class="fragment"><small>Chrome 30 起去掉了 Selector Profiler</small></p>
+                    </section>
+
+                    <section>
+                        <h3>动画性能</h3>
+                        <ul>
+                            <li class="fragment">触发硬件加速<br><small><code>translateZ()</code>, <code>translate3d()</code></small></li>
+                            <li class="fragment">低消耗变换<br><small><code>translate()</code>, <code>scale()</code>, <code>rotate()</code>, <code>opacity</code></small></li>
+                        </ul>
+                        <p class="fragment"><small><a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">High Performance Animations</a></small></p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h3>一个字：</h3>
+                    <ul>
+                        <li>可维护性很重要</li>
+                        <li>加载速度优化 &gt; 性能优化</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Q ? A : Thanks</h1>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || "linear", // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
+                // parallaxBackgroundSize: "2100px 900px",
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: "../../reveal.js/lib/js/classList.js", condition: function() { return !document.body.classList; } },
+                    { src: "../../reveal.js/plugin/markdown/marked.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/markdown/markdown.js", condition: function() { return !!document.querySelector( "[data-markdown]" ); } },
+                    { src: "../../reveal.js/plugin/highlight/highlight.js", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: "../../reveal.js/plugin/zoom-js/zoom.js", async: true, condition: function() { return !!document.body.classList; } },
+                    { src: "../../reveal.js/plugin/notes/notes.js", async: true, condition: function() { return !!document.body.classList; } },
+                    { src: "../../reveal.js/plugin/hyphenator/h.js", async: true }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
