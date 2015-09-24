@@ -148,63 +148,78 @@
                             <thead>
                                 <tr>
                                     <th>Module</th>
-                                    <th>Latest Level (2014/05)</th>
+                                    <th>Latest Level (2015/09)</th>
                                     <th>Example</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Text</td>
-                                    <td>3</td>
-                                    <td>text-justify, word-break</td>
-                                </tr>
-                                <tr>
-                                    <td>Text Decoration</td>
-                                    <td>3</td>
-                                    <td>text-shadow, text-emphasis</td>
+                                    <td>3 (<abbr title="Last Call">LC</abbr>) / 4 (<abbr title="First Public Working Draft">FPWD</abbr>)</td>
+                                    <td><code>text-justify</code>, <code>word-break</code>, <code>hyphens</code></td>
                                 </tr>
                                 <tr>
                                     <td>Flexible Box</td>
-                                    <td>1</td>
-                                    <td>flex, justify-content</td>
+                                    <td>1 (<abbr title="Last Call">LC</abbr>)</td>
+                                    <td><code>flex</code>, <code>justify-content</code></td>
                                 </tr>
                                 <tr>
                                     <td>Color</td>
-                                    <td>4</td>
-                                    <td>hwb(), color()</td>
+                                    <td>3 (<abbr title="Recommendation">REC</abbr>) / 4 (<abbr title="Editor's Draft">ED</abbr>)</td>
+                                    <td><code>rgba()</code>, <code>currentColor</code>, <code>hwb()</code></td>
                                 </tr>
                                 <tr>
                                     <td>Animations</td>
-                                    <td>1</td>
-                                    <td>animation, @keyframes</td>
+                                    <td>1 (<abbr title="Working Draft">WD</abbr>)</td>
+                                    <td><code>animation</code>, <code>@keyframes</code></td>
                                 </tr>
                                 <tr>
                                     <td>Transforms</td>
-                                    <td>1</td>
-                                    <td>transform, perspective</td>
+                                    <td>1 (<abbr title="Working Draft">WD</abbr>)</td>
+                                    <td><code>transform</code>, <code>perspective</code></td>
                                 </tr>
                                 <tr>
                                     <td>Transitions</td>
-                                    <td>1</td>
-                                    <td>transition, timing functions</td>
+                                    <td>1 (<abbr title="Working Draft">WD</abbr>)</td>
+                                    <td><code>transition</code>, timing functions</td>
                                 </tr>
                                 <tr>
                                     <td>Cascading Variables</td>
-                                    <td>1</td>
-                                    <td>--foo, var()</td>
+                                    <td>1 (<abbr title="Working Draft">WD</abbr>)</td>
+                                    <td><code>--foo</code>, <code>var()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Round Display</td>
+                                    <td>1 (<abbr title="First Public Working Draft">FPWD</abbr>)</td>
+                                    <td><code>border-boundary</code>, <code>position: polar</code></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p class="fragment"><a href="http://www.w3.org/Style/CSS/current-work#roadmap">More...</a></p>
+                        <p class="fragment"><a href="http://www.w3.org/Style/CSS/current-work#roadmap">More...</a> <small>(<a href="http://www.w3.org/2005/10/Process-20051014/tr">Development Process</a>)</small></p>
                     </section>
 
                     <section>
-                        <h3>Including CSS into HTML</h3>
-                        <p>How?</p>
+                        <h3>Adding CSS to HTML</h3>
+                        <p class="fragment">How?</p>
                     </section>
 
                     <section>
-                        <h4>1. <code>&lt;link&gt;</code> element</h4>
+                        <h4>1. Inline styles</h4>
+                        <figure>
+                            <pre><code class="html">&lt;body&gt;
+    &lt;h1 style="font-size: 2em; font-weight: 700;"&gt;
+        Hello World
+    &lt;/h1&gt;
+    &lt;p style="margin: 2em 0;"&gt;
+        Paragraph here
+    &lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+                        </figure>
+                    </section>
+
+                    <section>
+                        <h4>2. <code>&lt;link&gt;</code> element</h4>
                         <figure>
                             <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -220,12 +235,12 @@
                     </section>
 
                     <section>
-                        <h4>2. <code>&lt;style&gt;</code> element</h4>
+                        <h4>3. <code>&lt;style&gt;</code> element</h4>
                         <figure>
                             <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;meta charset="utf-8" /&gt;
+    &lt;meta charset="utf-8"&gt;
     &lt;title&gt;Hello World&lt;/title&gt;
     &lt;style type="text/css"&gt;
         /* ... */
@@ -238,33 +253,14 @@
                     </section>
 
                     <section>
-                        <h4>3. Inline styles</h4>
+                        <h4>3. <code>@import</code> rules inside <code>&lt;style&gt;</code> element</h4>
                         <figure>
-                            <pre><code class="html">&lt;body&gt;
-    &lt;h1 style="color: red;"&gt;
-        Hello World
-    &lt;/h1&gt;
-    &lt;p style="margin: 2em 0;"&gt;
-        Paragraph here
-    &lt;/p&gt;
-&lt;/body&gt;
-</code></pre>
-                        </figure>
-                    </section>
-
-                    <section>
-                        <h4>4. <code>@import</code> rules</h4>
-                        <figure>
-                            <pre><code class="css">@import url(normalize.css);
+                            <style>.html .css { opacity: 0.9; }</style>
+                            <pre><code class="html">&lt;style&gt;
+@import url(normalize.css);
 @import url(layout.css);
 @import url(typography.css);
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3em;
-}
+&lt;/style&gt;
 </code></pre>
                         </figure>
                         <p>Performs <em>worse</em> than the <code>&lt;link&gt;</code> way!<br><small>See <cite><a href="http://www.stevesouders.com/blog/2009/04/09/dont-use-import/">don’t use @import</a></cite>.</small></p>
@@ -276,14 +272,10 @@ nav {
                             <li class="fragment"><em><b>C</b>ascading</em> <b>S</b>tyle <b>S</b>heets</li>
                             <li class="fragment">CSS 1, CSS 2, CSS 2.1<span class="fragment">, <s>CSS 3</s></span><span class="fragment">, <s>CSS 4</s></span></li>
                             <li class="fragment">CSS Modules + Level</li>
-                            <li class="fragment">4 ways to use CSS in HTML</li>
+                            <li class="fragment">3 ways to use CSS in HTML</li>
                         </ul>
                     </section>
 
-                </section>
-
-                <section>
-                    <h2><code>/* break */</code></h2>
                 </section>
 
                 <section>
@@ -561,10 +553,6 @@ div:nth-child(2n+3) {
                 </section>
 
                 <section>
-                    <h2><code>/* break */</code></h2>
-                </section>
-
-                <section>
 
                     <section>
                         <h2>Cascading &amp; Inheritance</h2>
@@ -688,10 +676,6 @@ p.row :hover {
                         </ul>
                     </section>
 
-                </section>
-
-                <section>
-                    <h2><code>/* break */</code></h2>
                 </section>
 
                 <section>
